@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 24, 2008 4:28:03 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.Special" table="SPECIALS">
+        <comment></comment>
+        
+       <id name="specialId" type="long">
+            <column name="SPECIAL_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">PRODUCT_SPECIAL_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        
+        <property name="productId" type="long">
+            <column name="PRODUCTS_ID" not-null="true"/>
+        </property>
+        
+        <property name="specialNewProductPrice" type="big_decimal">
+            <column name="SPECIALS_NEW_PRODUCTS_PRICE" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="specialDateAdded" type="timestamp">
+            <column name="SPECIALS_DATE_ADDED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="specialLastModified" type="timestamp">
+            <column name="SPECIALS_LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="expiresDate" type="date">
+            <column name="EXPIRES_DATE" length="0" >
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateStatusChange" type="timestamp">
+            <column name="DATE_STATUS_CHANGE" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="status" type="int">
+            <column name="STATUS">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="specialDateAvailable" type="date">
+            <column name="SPECIALS_DATE_AVAILABLE" length="0">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

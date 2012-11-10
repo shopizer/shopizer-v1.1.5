@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 29, 2008 9:50:00 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.customer.CustomerBasket" table="CUSTOMERS_BASKET">
+        <comment></comment>
+        <id name="customerBasketId" type="long">
+            <column name="CUSTOMERS_BASKET_ID" />
+            <!--
+            <generator class="assigned" />
+            -->
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">CUST_BASKET_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+
+        </id>
+        <property name="customerId" type="long">
+            <column name="CUSTOMERS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productId" type="long">
+            <column name="PRODUCTS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerBasketQuantity" type="int">
+            <column name="CUSTOMERS_BASKET_QUANTITY" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="finalPrice" type="big_decimal">
+            <column name="FINAL_PRICE" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerBasketDateAdded" type="string">
+            <column name="CUSTOMERS_BASKET_DATE_ADDED" length="8">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantid" type="java.lang.Integer">
+            <column name="MERCHANTID">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

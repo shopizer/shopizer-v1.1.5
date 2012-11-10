@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 2, 2007 10:47:54 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.central.entity.reference.CentralCountriesStatus" table="CENTRAL_COUNTRIES_STATUS">
+        <comment></comment>
+        <id name="centralCountriesStatusId" type="int">
+            <column name="CENTRAL_COUNTRIES_STATUS_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="countriesId" type="int">
+            <column name="COUNTRIES_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="centralCountriesStatusCode" type="int">
+            <column name="CENTRAL_COUNTRIES_STATUS_CODE">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="centralCountriesCode" type="string">
+            <column name="CENTRAL_COUNTRIES_CODE" length="2">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

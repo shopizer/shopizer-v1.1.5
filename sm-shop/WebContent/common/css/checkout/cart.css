@@ -1,0 +1,190 @@
+/***************************************
+   ajax cart
+-------------------------------------- */
+
+#cart th,
+#cart td {
+  padding: 3px 6px;
+}
+#cart th {
+  text-align: left;
+  color: #000;
+}
+
+
+#cart tbody th,
+.subhead {
+  background-color: #6f93ce;
+  padding-left: 0;
+}
+th img {
+  float: left;
+}
+
+tr.even,
+tr.first {
+  background-color: #eee;
+}
+tr.odd,
+tr.second {
+  background-color: #ddd;
+}
+tr.third {
+  background-color: #ccc;
+}
+
+
+#cart {
+  border-collapse: collapse;
+}
+#cart tfoot {
+  /**border-top: 2px solid #000;**/
+  white-space: nowrap;
+}
+#cart tfoot tr {
+  /**border-bottom: 1px solid #ccc;**/
+}
+td.item {
+  width: 100%;
+}
+td.quantity input {
+  width: 30px;
+
+}
+#cart th.price, td.price,
+#cart th.cost, td.cost,
+td.value {
+  text-align: right;
+}
+td.delete-item {
+  text-align: center;
+}
+tr.total {
+  font-weight: bold;
+}
+tr.actions {
+  text-align: right;
+}
+
+
+
+
+
+/***************************************
+   summary
+-------------------------------------- */
+
+
+
+
+
+
+#cartbox {
+	margin: 60px;
+	border-right: #ccc 1px solid;
+	border-top: #ccc 1px solid;
+	/**left: 10px; **/
+	border-left: #ccc 1px solid;
+	width: 680px;
+	border-bottom: #ccc 1px solid;
+	/**top: 100px; **/
+	background-color: #fff
+}
+
+#cartbox .cartcontent {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; TEXT-ALIGN: center
+}
+#cartbox H2 {
+	FONT: 1.8em Georgia, "Times New Roman", serif; LETTER-SPACING: 1px
+}
+#cartmask {
+	Z-INDEX: 50; WIDTH: 710px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #fff
+}
+#cartbox .options {
+	MARGIN-TOP: 10px; LETTER-SPACING: 1px
+}
+#cartbox .options A {
+	FONT-WEIGHT: bold
+}
+#cartbox TABLE {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+#cartbox TABLE TR {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+#cartbox TABLE TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+/*
+#cartbox TABLE {
+	BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-COLLAPSE: collapse
+}
+*/
+#cartbox TABLE .head {
+	FONT-WEIGHT: bold; BACKGROUND-COLOR: #f8f8f8
+}
+#cartbox TABLE .footer {
+	FONT-WEIGHT: bold; BACKGROUND-COLOR: #f8f8f8; TEXT-ALIGN: right
+}
+/*
+#cartbox TABLE TD {
+	PADDING-RIGHT: 8px; PADDING-LEFT: 8px; PADDING-BOTTOM: 8px; PADDING-TOP: 8px; BORDER-BOTTOM: #bbbbbb 1px solid
+}
+*/
+
+
+
+
+
+
+
+#minicartbox {
+	/**
+	border-right: #ccc 1px solid;
+	border-top: #ccc 1px solid;
+	border-left: #ccc 1px solid;
+	border-bottom: #ccc 1px solid;
+	**/
+
+	width: 480px;
+	background-color: #fff
+	position: relative;
+	top: 40px;
+}
+
+#minicartbox .cartcontent {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; TEXT-ALIGN: center
+}
+#minicartbox H2 {
+	FONT: 1.8em Georgia, "Times New Roman", serif; LETTER-SPACING: 1px
+}
+
+#minicartbox .options {
+	MARGIN-TOP: 10px; LETTER-SPACING: 1px
+}
+#minicartbox .options A {
+	FONT-WEIGHT: bold
+}
+#minicartbox TABLE {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+#minicartbox TABLE TR {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+#minicartbox TABLE TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+/*
+#minicartbox TABLE {
+	BORDER-RIGHT: #bbbbbb 1px solid; BORDER-TOP: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-COLLAPSE: collapse
+}
+*/
+#minicartbox TABLE .head {
+	FONT-WEIGHT: bold; BACKGROUND-COLOR: #f8f8f8
+}
+#minicartbox TABLE .footer {
+	FONT-WEIGHT: bold; BACKGROUND-COLOR: #eeeeee; TEXT-ALIGN: right
+}
+#minicartbox TABLE .footer-light {
+	BACKGROUND-COLOR: #f8f8f8; TEXT-ALIGN: right
+}

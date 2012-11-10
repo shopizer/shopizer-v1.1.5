@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sm-core" default="build" basedir=".">
+	<description>
+		Build script for the core libraries of the salesmanager
+   </description>
+
+
+
+
+	<property name="libname" value="sm-core" />
+	<property name="lib.dir" value="lib" />
+	<property name="dist.dir" value="dist" />
+	<property name="src.dir" value="src" />
+	<property name="conf.dir" value="conf" />
+	<property name="working.dir" value="working" />
+	<property name="bin.dir" value="bin" />
+	<property name="jar.file" value="${dist.dir}/${libname}.jar" />
+
+
+
+	<path id="master-classpath" description="Master CLASSPATH for this script">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib.dir}/compile/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib.dir}/hibernate/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib.dir}/misc/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib.dir}/spring/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib.dir}/struts/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib.dir}/axis/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib.dir}/jax-ws/">
+					<include name="*.jar" />
+		</fileset>		
+		<pathelement location="${class.dir}/" />
+	</path>
+
+	<target name="copyconf" description="copy configuration files to web content">
+
+		<copy todir="${bin.dir}/" overwrite="true">
+			<fileset dir="${conf.dir}/hibernate" includes="**" />
+			<fileset dir="${conf.dir}/properties" includes="**" />
+			<fileset dir="${conf.dir}/spring" includes="**" />
+		</copy>
+
+
+	</target>
+
+	<target name="init" description="Setup for build script">
+		<delete>
+			<fileset dir="${dist.dir}" />
+		</delete>
+		<delete>
+			<fileset dir="${working.dir}" />
+		</delete>
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${working.dir}" />
+	</target>
+
+	<target name="compile" description="Compiles .java files to WAR directory" depends="init">
+		<javac srcdir="${src.dir}" destdir="${working.dir}" debug="true" failonerror="true" classpathref="master-classpath" />
+	</target>
+
+	<target name="jar" depends="compile,copyconf">
+		<jar destfile="${jar.file}" basedir="${working.dir}" manifest="${conf.dir}/META-INF/MANIFEST.MF">
+
+		</jar>
+	</target>
+
+
+	<target name="build" depends="jar">
+
+	</target>
+	
+	<target name="javadoc" depends="build">
+	
+	  <javadoc packagenames="com.salesmanager.core.entity.*,com.salesmanager.core.service.*,com.salesmanager.core.module.model.*"
+	           sourcepath="src"
+	           excludepackagenames="*.impl.*,*.dao.*"
+	           defaultexcludes="yes"
+	           destdir="docs/api"
+	           author="true"
+	           version="true"
+	           use="true"
+	           windowtitle="${libname} API">
+	    <doctitle><![CDATA[<h1>${libname}</h1>]]></doctitle>
+	    <bottom><![CDATA[<i>Shopizer !</i>]]></bottom>
+	    <tag name="todo" scope="all" description="To do:"/>
+	    <link offline="true" href="http://java.sun.com/j2se/1.5.0/docs/api/" packagelistLoc="C:\tmp"/>
+	    <link href="http://developer.java.sun.com/developer/products/xml/docs/api/"/>
+	  </javadoc>
+	
+	</target>
+
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 17, 2008 4:47:04 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.ProductOptionDescription" table="PRODUCTS_OPTIONS_DESCRIPTION">
+        <comment></comment>
+        <composite-id name="id" class="com.salesmanager.core.entity.catalog.ProductOptionDescriptionId">
+            <key-property name="productOptionId" type="long">
+                <column name="PRODUCTS_OPTIONS_ID" />
+            </key-property>
+            <key-property name="languageId" type="int">
+                <column name="LANGUAGE_ID" />
+            </key-property>
+        </composite-id>
+        <property name="productOptionName" type="string">
+            <column name="PRODUCTS_OPTIONS_NAME" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productOptionComment" type="string">
+            <column name="PRODUCTS_OPTIONS_COMMENT" length="64">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

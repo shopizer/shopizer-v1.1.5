@@ -1,0 +1,47 @@
+.jcarousel-skin-tango .jcarousel-container {
+    background: #FFFFFF; /** CHANGE THE BG TO WHITE **/
+    border: none; /** overwrites jcarousel border **/
+    border-top: 1px solid #cccccc; /** ADDED TOP LINE **/
+    border-bottom: 1px solid #cccccc; /** ADDED TOP LINE **/
+}
+
+
+
+.jcarousel-skin-tango .jcarousel-container-horizontal {
+    width: 650px; /** MODIFIED SIZ TO 650 PX **/
+    height: 150px;
+    padding: 10px 40px; /** REDUCED WIDGET PADDING **/
+}
+
+
+
+.jcarousel-skin-tango .jcarousel-clip-horizontal {
+    width:  520px; /** (IMAGE WIDTH * NUMBER OF IMAGE TO DISPLAY) + (PADDING[10 px] * NUMBER OF IMAGE TO DISPLAY) **/
+    height: 140px; /** THIS WILL ALLOW TEXT TO BE DIPLAY UNDER THE IMAGE **/
+    float: left;
+}
+
+
+.jcarousel-skin-tango .jcarousel-item {
+    width: 120px; /** IMAGE WIDTH **/
+    height: 140px; /** IMAGE HEIGHT = 100px + 40px TO DISPLAY DESCRIPTION **/
+}
+
+/** TEXT MESSAGE */
+.jcarousel-skin-tango .message {
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    width: 120px;
+    height: 140px;
+}
+
+.jcarousel-skin-tango .text {
+    margin-top: 20px;
+    font-size: 45px; 
+    color: #333333;
+    font-weight: bold; 
+    font-family: Arial, Helvetica, sans-serif; 
+    letter-spacing: -4px; 
+    text-align:center;
+}

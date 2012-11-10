@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 11, 2008 8:33:48 AM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.ModuleConfiguration" table="MODULE_CONFIGURATION">
+        <cache usage="read-only"/>
+        <comment></comment>
+        <composite-id name="id" class="com.salesmanager.core.entity.reference.ModuleConfigurationId">
+            <key-property name="configurationModule" type="string">
+                <column name="CONFIGURATION_MODULE" length="60" not-null="true"/>
+            </key-property>
+            <key-property name="configurationKey" type="string">
+                <column name="CONFIGURATION_KEY" not-null="true"/>
+            </key-property>
+            <key-property name="countryIsoCode2" type="string">
+                <column name="COUNTRY_ISO_CODE_2" length="2" not-null="true"/>
+            </key-property>
+        </composite-id>
+        <property name="configurationValue" type="string">
+            <column name="CONFIGURATION_VALUE" length="65535" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

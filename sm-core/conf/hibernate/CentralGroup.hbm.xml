@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 11, 2009 9:19:07 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.system.CentralGroup" table="CENTRAL_GROUP">
+        <id name="centralGroupId" type="java.lang.Integer">
+            <column name="CENTRAL_GROUP_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="centralGroupCode" type="string">
+            <column name="CENTRAL_GROUP_CODE" length="10" not-null="true" unique="true" />
+        </property>
+        <property name="centralGroupDescription" type="string">
+            <column name="CENTRAL_GROUP_DESCRIPTION" length="40" />
+        </property>
+        <property name="centralGroupPosition" type="byte">
+            <column name="CENTRAL_GROUP_POSITION" not-null="true" />
+        </property>
+        <property name="centralGroupVisible" type="boolean">
+            <column name="CENTRAL_GROUP_VISIBLE" not-null="true" />
+        </property>
+        <property name="centralGroupNew" type="boolean">
+            <column name="CENTRAL_GROUP_NEW" not-null="true" />
+        </property>
+        <property name="centralGroupNewUntil" type="timestamp">
+            <column name="CENTRAL_GROUP_NEW_UNTIL" length="0" />
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0" />
+        </property>
+    </class>
+</hibernate-mapping>

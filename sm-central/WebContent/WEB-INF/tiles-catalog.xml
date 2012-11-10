@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+ */
+-->
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<!-- menuIndex not implemented all values set to 0 -->
+    
+    <!-- Category, Options, Properties, Products -->
+    <definition name="category" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="category" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/catalog/category.jsp"/>
+    </definition>
+    
+    <definition name="editcategory" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="editcategory" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/catalog/editcategory.jsp"/>
+    </definition>
+    
+    <definition name="editparentcategory" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="editparentcategory" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/catalog/editparentcategory.jsp"/>
+    </definition>
+    
+    <definition name="relationship" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="relationship" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/catalog/relationshipItems.jsp"/>
+    </definition>
+    
+    <definition name="relationshipProduct" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="relationshipProduct" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/catalog/productleftmenu.jsp"/>
+    	<put-attribute name="body" value="/catalog/relationshipItems.jsp"/>
+    </definition>
+    
+    <definition name="crosssellItems" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="crosssellItems" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/catalog/crosssellItems.jsp"/>
+    </definition>
+    
+    <definition name="productlist" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="productlist" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/catalog/productlist.jsp"/>
+    </definition>
+
+    <definition name="createproduct" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="createproduct" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/catalog/editproduct.jsp"/>
+    </definition>
+    
+    <definition name="editproduct" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="editproduct" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/catalog/productleftmenu.jsp"/>
+    	<put-attribute name="body" value="/catalog/editproduct.jsp"/>
+    </definition>
+    
+    <definition name="cropproduct" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="editproduct" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/catalog/productleftmenu.jsp"/>
+    	<put-attribute name="body" value="/catalog/cropproduct.jsp"/>
+    </definition> 
+    
+    <definition name="discounts" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="editproduct" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/catalog/productleftmenu.jsp"/>
+    	<put-attribute name="body" value="/catalog/discounts.jsp"/>
+    </definition>
+    
+    <definition name="productprices" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="productprices" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/catalog/productleftmenu.jsp"/>
+    	<put-attribute name="body" value="/catalog/productprices.jsp"/>
+    </definition>
+    
+    <definition name="pricediscounts" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="pricediscounts" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/catalog/productleftmenu.jsp"/>
+    	<put-attribute name="body" value="/catalog/pricediscounts.jsp"/>
+    </definition>  
+    
+    <definition name="fileview" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="fileview" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/catalog/productleftmenu.jsp"/>
+    	<put-attribute name="body" value="/catalog/fileview.jsp"/>
+    </definition> 
+    
+    <definition name="productimages" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="fileview" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/catalog/productleftmenu.jsp"/>
+    	<put-attribute name="body" value="/catalog/pictures.jsp"/>
+    </definition>
+    
+    <definition name="productoptions" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="productoptions" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/catalog/productoptions.jsp"/>
+    </definition>
+    
+    <definition name="productoptionsvalues" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="productoptionsvalues" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/catalog/productoptionsvalues.jsp"/>
+    </definition>
+    
+    <definition name="producttextoptionvalues" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="producttextoptionvalues" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/catalog/producttextoptionvalues.jsp"/>
+    </definition> 
+    
+    <definition name="productattributes" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="productattributes" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/catalog/productleftmenu.jsp"/>
+    	<put-attribute name="body" value="/catalog/productattributes.jsp"/>
+    </definition>  
+    
+ 
+    <definition name="editproduct" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="editproduct" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/catalog/productleftmenu.jsp"/>
+    	<put-attribute name="body" value="/catalog/editproduct.jsp"/>
+    </definition> 
+   
+    <definition name="productpreview" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="productpreview" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/catalog/productleftmenu.jsp"/>
+    	<put-attribute name="body" value="/catalog/productpreview.jsp"/>
+    </definition>
+    
+    <definition name="productreview" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="productreview" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/catalog/productleftmenu.jsp"/>
+    	<put-attribute name="body" value="/catalog/productreview.jsp"/>
+    </definition>          
+    
+</tiles-definitions>

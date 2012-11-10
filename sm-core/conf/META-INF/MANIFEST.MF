@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Implementation-Version: 0.1
+Specification-Title: Catalog Core Utility Classes 0.1
+Specification-Version: 0.1
+Created-By: CSTI Consulting

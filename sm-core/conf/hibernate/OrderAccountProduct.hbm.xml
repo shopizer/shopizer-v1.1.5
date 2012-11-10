@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 3, 2009 8:19:32 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.orders.OrderAccountProduct" table="ORDERS_ACCOUNT_PRODUCTS">
+        <comment></comment>
+        <id name="orderAccountProductId" type="long">
+            <column name="ORDER_ACCOUNT_PRODUCT_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">ORDER_ACCOUNT_PRD_ID_NEXT_VAL</param>
+                <param name="max_lo">1</param>
+        	</generator>
+        </id>
+        <property name="orderAccountId" type="long">
+            <column name="ORDER_ACCOUNT_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderProductId" type="long">
+            <column name="ORDER_PRODUCT_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountProductStartDate" type="timestamp">
+            <column name="ORDER_ACCOUNT_PRODUCT_ST_DT" length="0" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountProductEndDate" type="timestamp">
+            <column name="ORDER_ACCOUNT_PRODUCT_END_DT" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountProductEot" type="timestamp">
+            <column name="ORDER_ACCOUNT_PRODUCT_EOT" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountProductAccountedDate" type="timestamp">
+            <column name="ORDER_ACCOUNT_PRODUCT_ACCNT_DT" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountProductLastStatusDate" type="timestamp">
+            <column name="ORDER_ACCOUNT_PRODUCT_L_ST_DT" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountProductLastTransactionStatus" type="int">
+            <column name="ORDER_ACCOUNT_PRODUCT_L_TRX_ST" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountProductPaymentFrequencyType" type="int">
+            <column name="ORDER_ACCOUNT_PRODUCT_PM_FR_TY" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountProductStatus" type="int">
+            <column name="ORDER_ACCOUNT_PRODUCT_STATUS" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

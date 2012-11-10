@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 19, 2010 2:04:12 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.ProductPriceDescription" table="PRODUCTS_PRICE_DESCRIPTION">
+        <composite-id name="id" class="com.salesmanager.core.entity.catalog.ProductPriceDescriptionId">
+            <key-property name="productPriceId" type="long">
+                <column name="PRODUCT_PRICE_ID" />
+            </key-property>
+            <key-property name="languageId" type="int">
+                <column name="LANGUAGE_ID" />
+            </key-property>
+        </composite-id>
+        <property name="productPriceName" type="string">
+            <column name="PRODUCT_PRICE_NAME" />
+        </property>
+        
+        
+		<many-to-one name="productPrice" class="com.salesmanager.core.entity.catalog.ProductPrice" insert="false" update="false" column="PRODUCT_PRICE_ID" not-null="true"/>
+        
+        
+    </class>
+    
+    
+
+    
+    
+</hibernate-mapping>

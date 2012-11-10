@@ -1,0 +1,329 @@
+/*
+ * Specific to customer
+ *
+ */
+
+
+
+* html .formcontent {
+	height:1%;
+}
+
+
+.site {
+	font-size: 12px;
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+#sectionheader{
+	float:left;
+	width:380px;
+	color:#999;
+	font-size:16px;
+	font-style:italic;
+	font-weight:bold;
+}
+
+/** Fieldset determine the position **/
+
+
+.formcontent fieldset {
+	border:0;
+	position: relative;
+	left: 160px;
+	top: 15px;
+}
+
+.formcontent legend {
+display:none;
+margin:0;
+padding:0;
+}
+
+
+
+.formcontent fieldset h3 {
+background:#999999;
+color:#FFFFFF;
+font-size:1em;
+margin:0;
+padding:10px;
+}
+
+/* Subheadings in the forms */
+.formcontent fieldset h5 {
+display:inline;
+width:400px;
+}
+
+
+
+/* Fieldset paragraphs - the text (instructions, descriptions etc) in a fieldset */
+.formcontent fieldset p {
+margin:0;
+padding:0 5px;
+}
+
+
+
+
+
+/* Input - input elements */
+.formcontent fieldset input {
+margin-left:5px;
+border: 1px solid #cdcdcd;
+}
+
+
+/* Select Boxes */
+.formcontent fieldset select {
+margin-left:5px;
+}
+
+/* Select Boxes */
+.formcontent fieldset textarea {
+margin-left:5px;
+border: 1px solid #cdcdcd;
+}
+
+.formcontent fieldset formelement asubmit {
+left-margin:50px;
+}
+
+
+
+
+/** Form elements hold form lines **/
+
+/* hack for mack \*/
+.formcontent fieldset .formelement {
+clear:both;
+}
+
+/* */
+.formcontent fieldset .formelement {
+height:3em;
+margin:5px;
+}
+
+.formcontent fieldset .formelementlarge {
+margin:5px;
+
+}
+
+/* mack a-hack \*/
+.formcontent fieldset formelement {
+height:auto;
+}
+
+
+.formcontent fieldset .formlabel {
+display:block;
+float:left;
+text-align:right;
+width:130px;
+}
+
+
+.formcontent fieldset .formtextblock {
+display:block;
+float:left;
+width:130px;
+height:200px;
+}
+
+.formcontent fieldset .formerror {
+font-weight:bold;
+color:red;
+}
+
+.formcontent fieldset .formlabel_padd {
+display:block;
+float:left;
+width:80%;
+}
+
+.formcontent fieldset .formlabel_large {
+float:right;
+width:85%;
+}
+
+.formcontent fieldset#formoptin label {
+float:right;
+width:85%;
+}
+
+
+
+/****** CHECKOUT FORM ******/
+
+#checkoutform fieldset#formpayment .formlabel {
+margin-bottom:10px;
+}
+
+
+#checkoutform fieldset#formpayment .formlabel,#checkoutform fieldset#formpayment p {
+margin-left:20px;
+}
+
+
+/**
+
+#checkoutform ul#dr_formNavigator {
+display:none;
+}
+**/
+
+/**
+#checkoutform #dr_cc_login {
+padding-right:5px;
+}
+**/
+
+/**
+#checkoutform a.dr_morePaymentInfo {
+color:#666666;
+font-size:11px;
+margin:0;
+padding:0 0 0 12px;
+text-decoration:none;
+}
+**/
+
+/* Legend Title */
+#checkoutform h3 {
+background-color:#999;
+color:#FFF;
+overflow:hidden;
+padding:10px;
+width:460px;
+}
+
+/* form message */
+#checkoutform .formmessage {
+width:460px;
+padding:10px;
+}
+
+/* form error message */
+#checkoutform .formerrormessage {
+width:460px;
+padding:10px;
+font:bold;
+}
+
+#checkoutform .button {
+	top: 25px;
+	position: relative;
+	left: 565px;
+}
+
+#checkoutform .link {
+	top: 25px;
+	position: relative;
+	left: 565px;
+}
+
+
+
+#formcontainer{
+
+
+	width:480px;
+	background-color: #E8E8E8;
+	margin-bottom:10px;
+}
+
+
+.paymentblock {
+	background:url()  repeat-x bottom;
+	padding-bottom:10px;
+ }
+
+#formsubsection {
+ 	    clear:both;
+ 	    display:block;
+ 	    color: #999999;
+ 	    margin:10px 0;
+ 	    padding:0;
+ }
+
+
+
+/** Form validation **/
+
+.LV_validation_message{ font-weight:bold; margin:0 0 0 5px; } 
+.LV_invalid { color:#FF0000; }
+ 
+.LV_valid_field, 
+input.LV_valid_field:hover,
+input.LV_valid_field:active, 
+textarea.LV_valid_field:hover, 
+
+
+.LV_invalid_field, 
+input.LV_invalid_field:hover, 
+input.LV_invalid_field:active, 
+textarea.LV_invalid_field:hover, 
+textarea.LV_invalid_field:active { border: 1px solid #FF0000; }
+
+
+/** tables **/
+#list-table {
+  margin: 0px;
+  text-align: left;
+  border-collapse: collapse;
+}
+#list-table th {
+  font-weight: normal;
+  padding: 8px;
+  background: #9C9C9C;
+  border-top: 4px solid #9C9C9C;
+  border-bottom: 1px solid #fff;
+  color: #FFF;
+}
+#list-table td {
+  padding: 8px;
+  background: #F5F5F5; 
+  border-bottom: 1px solid #fff;
+  color: #000;
+  border-top: 1px solid transparent;
+}
+#list-table tr:hover td	{
+  background: #CCCCCC;
+  color: #fff;
+}
+
+.paginationCustomer {
+            font-size: 80%;
+	    float:right;
+        }
+        
+.paginationCustomer a {
+    text-decoration: none;
+    border: solid 1px #AAE;
+    color: #15B;
+}
+
+.paginationCustomer a, .paginationCustomer span {
+    display: block;
+    float: left;
+    padding: 0.3em 0.5em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.paginationCustomer .current {
+    background: #26B;
+    background: #535353;
+    color: #fff;
+    border: solid 1px #AAE;
+}
+
+.paginationCustomer .current.prev, .paginationCustomer .current.next{
+	color:#999;
+	border-color:#999;
+	background:#fff;
+}

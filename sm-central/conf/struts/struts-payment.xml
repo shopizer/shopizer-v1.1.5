@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+
+    <package name="payment" extends="default" namespace="/payment">
+
+
+    	    
+    	    <result-types>
+    		 	<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 	<result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+            </result-types>
+
+
+  			<default-action-ref name="payment" />
+    	  
+
+    	    <!-- For payment modules -->
+	        <!-- moduleid_method.action -->
+	        <!-- {1}=moduleid,  {2}=method-->
+	        <!-- eg psigate_display.action -->			
+		    <action name="*_*" method="{2}" class="com.salesmanager.central.payment.Payment{1}Action">
+				<result name="success" type="tiles">payment</result>
+				<result name="input" type="tiles">payment</result>
+				<result name="deletecomplete" type="redirectAction">payment</result>
+				<interceptor-ref name="smPaymentStack" />
+			</action>
+
+        <action name="payment" class="com.salesmanager.central.payment.PaymentMethodListAction" method="displayPaymentModules">
+			<result name="success" type="tiles">paymentmethods</result>
+			<interceptor-ref name="smCheckoutRoleStack" />
+		</action>
+
+
+
+
+    </package>
+
+
+</struts>

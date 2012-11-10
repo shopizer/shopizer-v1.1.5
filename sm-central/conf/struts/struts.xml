@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+    <package name="reference" namespace="/ref" extends="struts-default">
+        <action name="ref" class="com.salesmanager.central.ref.RefAction" method="prepare">
+			<result>/ref/regions.jsp</result>
+        </action>
+    </package>
+    
+    <package name="json-request" extends="json-default">     
+    	<!--
+    	<result-types>         
+    		<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />         
+    		<result-type name="json" class="com.googlecode.jsonplugin.JSONResult">             
+    		<param name="enableGZIP">true</param>             
+    		<param name="noCache">true</param>             
+    		<param name="defaultEncoding">UTF-8</param>         
+    		</result-type>     
+    	</result-types>
+    	--> 
+    </package>
+    
+
+   
+
+    <package name="default" extends="struts-default">
+
+
+
+          <result-types>
+    		 <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 <result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+    	  </result-types>
+
+	    <interceptors>
+		  <interceptor name="smAction" class="com.salesmanager.central.web.ActionInterceptor"/>
+	      <interceptor name="smPayment" class="com.salesmanager.central.payment.PaymentModuleActionInterceptor"/>
+	      <interceptor name="smShipping" class="com.salesmanager.central.shipping.ShippingModuleActionInterceptor"/>
+	      <interceptor name="smStoreRole" class="com.salesmanager.central.security.StoreRoleInterceptor"/>
+	      <interceptor name="smAdminRole" class="com.salesmanager.central.security.AdminRoleInterceptor"/>
+	      <interceptor name="smCheckoutRole" class="com.salesmanager.central.security.CheckoutRoleInterceptor"/>
+	      <interceptor name="smOrderRole" class="com.salesmanager.central.security.OrderRoleInterceptor"/>
+	      <interceptor name="smCatalogRole" class="com.salesmanager.central.security.CatalogRoleInterceptor"/>
+	    
+	      <!-- Public -->
+	      <interceptor-stack name="smAdminStack">
+	        <interceptor-ref name="defaultStack"/>
+	        <interceptor-ref name="smAction"/>
+	      </interceptor-stack>
+
+		  <interceptor-stack name="smStack">
+	        <interceptor-ref name="defaultStack"/>
+	      </interceptor-stack>
+	      
+	      
+	      <interceptor-stack name="smPaymentStack">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="smCheckoutRole" />
+			<interceptor-ref name="smPayment" />
+			<interceptor-ref name="smAction"/>
+		  </interceptor-stack>
+		  
+		  				
+		  <interceptor-stack name="smShippingStack">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="smCheckoutRole" />
+			<interceptor-ref name="smShipping" />
+			<interceptor-ref name="smAction"/>
+		  </interceptor-stack>
+		  
+		  <!-- Role Store -->
+		  <interceptor-stack name="smStoreRoleStack">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="smStoreRole" />
+			<interceptor-ref name="smAction"/>
+		  </interceptor-stack>
+		  
+		  <!-- Admin role -->
+		  <interceptor-stack name="smAdminRoleStack">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="smAdminRole" />
+			<interceptor-ref name="smAction"/>
+		  </interceptor-stack>
+		  
+		  <!-- Checkout role -->
+		  <interceptor-stack name="smCheckoutRoleStack">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="smCheckoutRole" />
+			<interceptor-ref name="smAction"/>
+		  </interceptor-stack>
+		  
+		  <!-- Order role -->
+		  <interceptor-stack name="smOrderRoleStack">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="smOrderRole" />
+			<interceptor-ref name="smAction"/>
+		  </interceptor-stack>
+		  
+		  <!-- Catalog role -->
+		  <interceptor-stack name="smCatalogRoleStack">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="smCatalogRole" />
+			<interceptor-ref name="smAction"/>
+		  </interceptor-stack>
+	      
+	    </interceptors>
+	    
+
+				
+
+
+	    
+	    <default-interceptor-ref name="smStack"/>
+	    
+        
+        <global-results>
+             <result name="GENERICERROR">/error.jsp</result>
+             <result name="ANONYMOUSGENERICERROR">/simple-error.jsp</result> 
+             <result name="AUTHORIZATIONEXCEPTION" type="redirectAction">/common/authorizationRedirect.jsp</result>
+             <result name="AJAXERROR">/common/ajaxError.jsp</result>
+             <result name="error">/common/globalError.jsp</result>
+        </global-results>
+
+	    
+	    
+    </package>
+    
+   
+   <!-- json requests -->
+   <package namespace="/ajax" name="ajax" extends="json-request">     
+    	<action name="resetPassword" class="com.salesmanager.central.profile.ProfileAction" method="resetPassword">         
+    		<result type="json"/>     
+    	</action>
+    	<action name="checkUserName" class="com.salesmanager.central.merchantstore.AjaxRequestAction" method="validateUserName">         
+    		<result type="json"/>     
+    	</action>
+    	<!--  Main Entry Point -->
+        <action name="logon" class="com.salesmanager.central.profile.LogonAction" method="logon">
+        	<result type="json"/>  
+        </action>
+    </package>
+    
+    <package namespace="/anonymous" name="misc" extends="default">     
+    	<action name="resetPassword" class="com.salesmanager.central.profile.ProfileAction" method="displayResetPassword">         
+    		<result name="success" type="tiles">resetPassword</result>     
+    	</action>
+    	<action name="answerQuestions" class="com.salesmanager.central.profile.ProfileAction" method="answerQuestions">         
+    		<result name="success" type="tiles">resetPassword</result>
+    		<result name="input" type="tiles">resetPassword</result>        
+    	</action>
+    </package>
+
+
+
+    <!-- Configuration for the profile package. -->
+    <package name="profile" namespace="/profile" extends="default">
+
+
+	 <result-types>
+    		 <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 <result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+     </result-types>
+
+
+	  <default-action-ref name="dashboard" />
+
+
+        <action name="logout" class="com.salesmanager.central.profile.LogonAction" method="logout">
+            <result name="success">/profile/logout.jsp</result>
+        </action>
+
+        <!-- Central landing page -->
+
+        <action name="dashboard" class="com.salesmanager.central.profile.DashboardAction" method="display">
+            <result name="success" type="tiles">dashboard</result>
+            <interceptor-ref name="smAdminStack" />
+        </action>
+
+
+        <!--  Store Information completion form -->
+        <action name="store" class="com.salesmanager.central.profile.StoreAction" method="display">
+            <result name="success" type="tiles">store</result>
+            <result name="input" type="tiles">store</result>
+            <interceptor-ref name="smStoreRoleStack" />
+        </action>
+
+
+        <action name="savestore" class="com.salesmanager.central.profile.StoreAction" method="saveStore">
+            <result name="input" type="tiles">store</result>
+            <result name="success" type="tiles">store</result>
+            <interceptor-ref name="smStoreRoleStack" />
+        </action>
+        
+        <action name="answerQuestionsDashboard" class="com.salesmanager.central.profile.ProfileAction" method="saveSecurityQuestions">         
+    		<result name="input" type="redirectAction">dashboard</result>
+    		<result name="success" type="redirectAction">dashboard</result>
+    		<interceptor-ref name="smAdminStack" />    
+    	</action>
+    	
+    	<action name="answerQuestionsProfile" class="com.salesmanager.central.profile.ProfileAction" method="saveSecurityQuestions">         
+    		<result name="input" type="redirectAction">dashboard</result>
+    		<result name="success" type="redirectAction">profile</result>
+    		<interceptor-ref name="smAdminStack" />    
+    	</action>
+
+        
+        <!-- Change Language -->
+        <action name="changeLanguage" class="com.salesmanager.central.profile.ProfileAction" method="changeLanguage">
+            <result name="success" type="redirectAction">dashboard</result>
+        </action>
+
+
+        <!-- User profile & billing information -->
+        <action name="profile" class="com.salesmanager.central.profile.ProfileAction" method="display">
+            <result name="success" type="tiles">profile</result>
+            <result name="input" type="tiles">profile</result>
+            <interceptor-ref name="smAdminStack" />
+        </action>
+
+        <action name="saveprofile" class="com.salesmanager.central.profile.ProfileAction" method="saveProfile">
+            <result name="success" type="tiles">profile</result>
+            <result name="input" type="tiles">profile</result>
+            <interceptor-ref name="smAdminStack" />
+        </action>
+        
+        <action name="displayPassword" class="com.salesmanager.central.profile.ProfileAction" method="displayPassword">
+            <result name="success" type="tiles">password</result>
+            <interceptor-ref name="smAdminStack" />
+        </action>
+        
+        <action name="savePassword" class="com.salesmanager.central.profile.ProfileAction" method="changePassword">
+            <result name="input" type="tiles">password</result>
+            <result name="success" type="tiles">password</result>
+            <interceptor-ref name="smAdminStack" />
+        </action>
+        
+        <action name="viewUser" class="com.salesmanager.central.profile.ProfileAction" method="viewUser">
+            <result name="input" type="tiles">user</result>
+            <result name="success" type="tiles">user</result>
+            <interceptor-ref name="smAdminRoleStack" />
+        </action>
+        
+        <action name="saveUser" class="com.salesmanager.central.profile.ProfileAction" method="saveUser">
+            <result name="input" type="tiles">user</result>
+			<result name="success" type="redirectAction">viewUserList</result>
+            <interceptor-ref name="smAdminRoleStack" />
+        </action>
+        
+        <action name="deleteUser" class="com.salesmanager.central.profile.ProfileAction" method="deleteUser">
+            <result name="input" type="redirectAction">viewUserList</result>
+            <result name="success" type="redirectAction">viewUserList</result>
+            <interceptor-ref name="smAdminRoleStack" />
+        </action>
+        
+        <action name="viewUserList" class="com.salesmanager.central.profile.ProfileAction" method="editUserList">
+            <result name="input" type="tiles">userlist</result>
+            <result name="success" type="tiles">userlist</result>
+            <interceptor-ref name="smAdminRoleStack" />
+        </action>
+        
+
+        
+    </package>
+
+    <package name="merchantstore" namespace="/merchantstore" extends="default">
+    	 
+    	 <default-action-ref name="storeFront" />
+    	 
+
+    	 <action name="editmerchantstore" class="com.salesmanager.central.merchantstore.MerchantStoreAction" method="fetchMerchantStore">
+            <result name="success" type="tiles">merchantstoredetails</result>
+            <result name="input" type="tiles">merchantstoredetails</result>
+            <result name="error" type="tiles">merchantstoredetails</result>
+            <result name="unauthorized" type="redirectAction">storeFront</result>
+            <interceptor-ref name="smAdminRoleStack" />
+        </action>
+
+     	 <action name="saveMerchantStore" class="com.salesmanager.central.merchantstore.MerchantStoreAction" method="saveMerchantStore">
+            <result name="success" type="tiles">merchantstoredetails</result>
+            <result name="input" type="tiles">merchantstoredetails</result>
+            <result name="error" type="tiles">merchantstoredetails</result>
+            <result name="unauthorized" type="redirectAction">storeFront</result>
+            <interceptor-ref name="smAdminRoleStack" />
+        </action>
+
+      	 <action name="deleteMerchantStore" class="com.salesmanager.central.merchantstore.MerchantStoreAction" method="deleteMerchant">
+            <result name="success" type="redirectAction">viewMerchantStores</result>
+            <result name="input">merchantstoredetails</result>
+            <result name="error" type="redirectAction">merchantstoredetails</result>
+            <result name="unauthorized" type="redirectAction">storeFront</result>
+            <interceptor-ref name="smAdminRoleStack" />
+        </action>
+
+        <action name="viewMerchantStores" class="com.salesmanager.central.merchantstore.MerchantStoreAction" method="viewMerchantStores">
+            <result name="success" type="tiles">merchantstorelist</result>
+            <interceptor-ref name="smAdminRoleStack" />
+        </action>
+
+
+        <action name="storeFront" class="com.salesmanager.central.merchantstore.StoreFrontAction" method="displayStoreFrontConfig">
+            <result name="success" type="tiles">storeConfiguration</result>
+            <interceptor-ref name="smStoreRoleStack" />
+        </action>
+        
+        <action name="editStoreConfiguration" class="com.salesmanager.central.merchantstore.StoreFrontAction" method="editStoreFontConfig">
+            <result name="success" type="tiles">storeConfiguration</result>
+            <result name="input" type="tiles">storeConfiguration</result>
+            <interceptor-ref name="smStoreRoleStack" />
+        </action>
+        
+        <action name="updateSlideList" class="com.salesmanager.central.merchantstore.StoreFrontAction" method="updateSlideList">
+            <result name="success" type="tiles">storeConfiguration</result>
+            <interceptor-ref name="smStoreRoleStack" />
+        </action>
+        
+        <action name="viewSlide" class="com.salesmanager.central.merchantstore.StoreFrontAction" method="viewSlide">
+            <result name="success" type="tiles">slideDetails</result>
+            <interceptor-ref name="smStoreRoleStack" />
+        </action>
+        
+        
+        <action name="editSlide" class="com.salesmanager.central.merchantstore.StoreFrontAction" method="editSlide">
+            <result name="success" type="tiles">slideDetails</result>
+            <result name="input" type="tiles">slideDetails</result>
+            <interceptor-ref name="smStoreRoleStack" />
+        </action>
+        
+        <action name="deleteSlide" class="com.salesmanager.central.merchantstore.StoreFrontAction" method="deleteSlide">
+            <result name="success" type="redirectAction">storeFront</result>
+            <interceptor-ref name="smStoreRoleStack" />
+        </action>
+        
+         <!-- delete slide image -->
+         <action name="delete_file" class="com.salesmanager.central.merchantstore.StoreFrontAction" method="deleteFile">
+			<result name="success" type="tiles">slideDetails</result>
+			<result name="unauthorized" type="redirectAction">storeFront</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+        
+        <!-- Store front portlets -->
+        <action name="storeFrontPortlets" class="com.salesmanager.central.merchantstore.StoreFrontPortletsAction" method="display">
+			<result name="success" type="tiles">storePortlets</result>
+			<result name="input" type="tiles">storePortlets</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+
+        <action name="saveStoreFrontPortlets" class="com.salesmanager.central.merchantstore.StoreFrontPortletsAction" method="save">
+			<result name="success" type="tiles">storePortlets</result>
+			<result name="input" type="tiles">storePortlets</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+	    <action name="updateCustomPortletsList" class="com.salesmanager.central.merchantstore.StoreFrontPortletsAction" method="saveCustomPortlets">
+			<result name="success" type="tiles">storePortlets</result>
+			<result name="input" type="tiles">storePortlets</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+				
+		<action name="deleteCustomPortlet" class="com.salesmanager.central.merchantstore.StoreFrontPortletsAction" method="deleteCustomPortlet">
+			<result name="success" type="tiles">storePortlets</result>
+			<result name="input" type="tiles">storePortlets</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		<action name="savePortlet" class="com.salesmanager.central.merchantstore.StoreFrontPortletsAction" method="savePortlet">
+			<result name="success" type="tiles">customStorePortlets</result>
+			<result name="input" type="tiles">customStorePortlets</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		<action name="customPortletDetails" class="com.salesmanager.central.merchantstore.StoreFrontPortletsAction" method="customPortletsDetails">
+			<result name="success" type="tiles">customStorePortlets</result>
+			<result name="input" type="tiles">storePortlets</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+        
+        
+        <!-- Contact us -->
+        <action name="contactUs" class="com.salesmanager.central.merchantstore.ContactUsConfigurationAction" method="display">
+			<result name="success" type="tiles">contactUs</result>
+			<result name="input" type="tiles">contactUs</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		<action name="saveContactUs" class="com.salesmanager.central.merchantstore.ContactUsConfigurationAction" method="save">
+			<result name="success" type="tiles">contactUs</result>
+			<result name="input" type="tiles">contactUs</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+
+
+        
+        <!-- Store Front Pages -->
+        <action name="storePageList" class="com.salesmanager.central.merchantstore.StoreFrontPagesAction" method="displayList">
+			<result name="success" type="tiles">storePageList</result>
+			<result name="input" type="tiles">storePageList</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		<action name="updateStorePageList" class="com.salesmanager.central.merchantstore.StoreFrontPagesAction" method="saveList">
+			<result name="success" type="tiles">storePageList</result>
+			<result name="input" type="tiles">storePageList</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		<action name="storePageDetails" class="com.salesmanager.central.merchantstore.StoreFrontPagesAction" method="displayDetails">
+			<result name="success" type="tiles">storePageDetails</result>
+			<result name="input" type="tiles">storePageDetails</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		<action name="deletePage" class="com.salesmanager.central.merchantstore.StoreFrontPagesAction" method="delete">
+			<result name="success" type="tiles">storePageList</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		<action name="savePage" class="com.salesmanager.central.merchantstore.StoreFrontPagesAction" method="save">
+			<result name="success" type="tiles">storePageDetails</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		
+		<!-- Content section -->
+        <action name="pageContentList" class="com.salesmanager.central.merchantstore.StoreFrontContentAction" method="displayList">
+			<result name="success" type="tiles">pageContentList</result>
+			<result name="input" type="tiles">pageContentList</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		<action name="updatePageContentList" class="com.salesmanager.central.merchantstore.StoreFrontContentAction" method="saveList">
+			<result name="success" type="tiles">pageContentList</result>
+			<result name="input" type="tiles">pageContentList</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		<action name="pageContentDetails" class="com.salesmanager.central.merchantstore.StoreFrontContentAction" method="displayDetails">
+			<result name="success" type="tiles">pageContentDetails</result>
+			<result name="input" type="tiles">pageContentDetails</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		<action name="deletePageContent" class="com.salesmanager.central.merchantstore.StoreFrontContentAction" method="delete">
+			<result name="success" type="tiles">pageContentList</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		<action name="savePageContent" class="com.salesmanager.central.merchantstore.StoreFrontContentAction" method="save">
+			<result name="success" type="tiles">pageContentDetails</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		
+		
+		<!-- Media Bin -->
+		<!-- Opens in CK Editor -->
+		<action name="displayFileBrowser" class="com.salesmanager.central.merchantstore.BinUploadAction" method ="displayFileBrowser">
+			<result name="success">fileBrowser.jsp</result>
+			<interceptor-ref name="smStoreRoleStack" />    
+        </action>
+		
+		<!-- Media Bin Viewer -->
+	    <action name="uploadMediaFile" class="com.salesmanager.central.merchantstore.BinUploadAction" method ="uploadToBin">
+		 	<result name="input">fileBrowser.jsp</result>
+			<result name="success">fileBrowser.jsp</result>
+			<interceptor-ref name="fileUpload">
+        			<param name="maximumSize">2097152</param><!-- approximatly 2 mb -->
+     		</interceptor-ref>
+     		<interceptor-ref name="smStoreRoleStack" />  
+        </action>
+        
+        <!-- Media Bin Management -->
+        <action name="binView" class="com.salesmanager.central.merchantstore.BinUploadAction" method ="displayFileBrowser">
+		 	<result name="success" type="tiles">fileBrowser</result>
+		 	<interceptor-ref name="smStoreRoleStack" />       
+        </action>
+        
+        <action name="binDelete" class="com.salesmanager.central.merchantstore.BinUploadAction" method ="deleteFile">
+			<result name="success" type="tiles">fileBrowser</result>
+			<result name="error" type="tiles">fileBrowser</result>
+			<interceptor-ref name="smStoreRoleStack" />        
+        </action>
+                
+        <action name="binAdd" class="com.salesmanager.central.merchantstore.BinUploadAction" method ="uploadToBin">
+		 	<result name="input" type="tiles">fileBrowser</result>
+			<result name="success" type="tiles">fileBrowser</result>
+			<interceptor-ref name="fileUpload">
+        			<param name="maximumSize">2097152</param><!-- approximatly 2 mb -->
+     		</interceptor-ref>
+     		<interceptor-ref name="smStoreRoleStack" />       
+        </action>
+
+
+
+    </package>
+
+
+		<include file="struts-shoppingcart.xml" />
+
+		<include file="struts-tax.xml" />
+
+    	<include file="struts-payment.xml" />
+
+    	<include file="struts-shipping.xml" />
+
+    	<include file="struts-order.xml" />
+
+    	<include file="struts-catalog.xml" />
+
+    	<include file="struts-customer.xml" />
+
+    	<include file="struts-invoice.xml" />
+    	
+    	<include file="struts-integration.xml" />
+
+
+
+</struts>
+
+
+

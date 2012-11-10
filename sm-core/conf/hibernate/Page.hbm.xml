@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 28, 2010 6:11:56 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.Page" table="PAGE">
+        <id name="pageId" type="long">
+            <column name="PAGE_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">PAGE_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="merchantId" type="int">
+            <column name="MERCHANT_ID" not-null="true" />
+        </property>
+        <property name="header" type="string">
+            <column name="HEADER" length="65535" />
+        </property>
+        <property name="title" type="string">
+            <column name="TITLE" length="60" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="NAME" length="100" />
+        </property>
+        <property name="visible" type="java.lang.Boolean">
+            <column name="VISIBLE" />
+        </property>
+        <property name="enabled" type="java.lang.Boolean">
+            <column name="ENABLED" />
+        </property>
+        <property name="secured" type="java.lang.Boolean">
+            <column name="SECURED" />
+        </property>
+        <property name="style" type="int">
+            <column name="STYLE" not-null="true" />
+        </property>
+        <property name="property1" type="string">
+            <column name="PROPERTY1" length="120" />
+        </property>
+        <property name="property2" type="string">
+            <column name="PROPERTY2" length="120" />
+        </property>
+        <property name="property3" type="string">
+            <column name="PROPERTY3" length="120" />
+        </property>
+        <property name="property4" type="string">
+            <column name="PROPERTY4" length="120" />
+        </property>
+        <property name="property5" type="string">
+            <column name="PROPERTY5" length="120" />
+        </property>
+        <property name="property6" type="string">
+            <column name="PROPERTY6" length="120" />
+        </property>
+        <property name="property7" type="string">
+            <column name="PROPERTY7" length="120" />
+        </property>
+        <property name="property8" type="string">
+            <column name="PROPERTY8" length="120" />
+        </property>
+        <property name="property9" type="string">
+            <column name="PROPERTY9" length="120" />
+        </property>
+        <property name="property10" type="string">
+            <column name="PROPERTY10" length="120" />
+        </property>
+    </class>
+</hibernate-mapping>

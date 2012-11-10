@@ -1,0 +1,74 @@
+
+    .dropZone
+    {
+            background-color:#FFFFFF;
+            height:400px;
+            width:359px;
+            border: #000000 solid 1px;
+            overflow:auto;
+    }
+
+
+    .dropHover
+    {
+            border:dashed 2px black;
+    }
+
+    .droppedItemStyle
+    {
+             background-color:#FFF;
+             border: #FFF solid 1px;
+             color:#000;
+             height:20px;
+             z-index:99999;
+	     font-family: Verdana, sans-serif;
+	     font-size: 11px;
+	     list-style: none;
+	     padding: 0px;
+	     padding-left: 20px;
+	     margin: 0px;
+	     text-align: left;
+    }
+
+    .dropZoneContainer
+    {
+            height:400px;
+            width:360px;
+    }
+
+    .dropZoneHeader
+    {
+            background:#818EBD;
+            color:black;
+            width:360px;
+            font-weight:bold;
+    }
+
+    .navigation
+    {
+             font-size:30px;
+             color:Black;
+             font-family:Verdana;
+             background-color:#99CCFF;
+    }
+
+    .deleteLink
+    {
+            color:Black;
+
+    }
+
+
+    .dragZoneContainer { 
+            width: 260px; 
+            height: 400px; 
+            border-top: solid 1px #BBB; 
+            border-left: solid 1px #BBB; 
+            border-bottom: solid 1px #FFF; 
+            border-right: solid 1px #FFF; 
+            background: #FFF; 
+            overflow: scroll; 
+            padding: 5px; 
+     } 
+
+

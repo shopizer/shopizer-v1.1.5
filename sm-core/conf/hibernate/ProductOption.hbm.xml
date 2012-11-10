@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 24, 2008 4:28:03 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.ProductOption" table="PRODUCTS_OPTIONS">
+        <comment></comment>
+        <id name="productOptionId" type="long">
+            <column name="PRODUCTS_OPTIONS_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">PRODUCT_OPTION_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="productOptionSortOrder" type="int">
+            <column name="PRODUCTS_OPTIONS_SORT_ORDER" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productOptionType" type="int">
+            <column name="PRODUCTS_OPTIONS_TYPE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantId" type="int">
+            <column name="MERCHANTID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+
+
+		<!-- requete optimisee pour table avec enfants -->
+        <set name="descriptions" lazy="false" batch-size="10" fetch="join" inverse="true">
+				<key column="PRODUCTS_OPTIONS_ID"/>
+				<one-to-many class="com.salesmanager.core.entity.catalog.ProductOptionDescription" />
+		</set>
+
+
+		<set name="values" lazy="true" inverse="true"
+				table="PRODUCTS_OPTIONS_VAL_PRD_OPTS">
+				<key column="PRODUCTS_OPTIONS_ID"/>
+				<!--THIS IS NOT SUPPORTED FOR NOW, CHECK PATCH order-by="PRODUCTS_OPTIONS_VALUES_SORT_ORDER asc"-->
+				<many-to-many class="com.salesmanager.core.entity.catalog.ProductOptionValue" column="PRODUCTS_OPTIONS_VALUES_ID" />
+		</set>
+
+
+
+
+
+    </class>
+</hibernate-mapping>

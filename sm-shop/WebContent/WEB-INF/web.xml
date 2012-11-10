@@ -1,0 +1,92 @@
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_4.xsd">
+
+    <display-name>Shopping web application (catalog - checkout - customer)</display-name>
+
+    <servlet>
+    	<description>Load the application reference tables</description>
+    	<display-name>ReferenceLoaderServlet</display-name>
+    	<servlet-name>ReferenceLoaderServlet</servlet-name>
+    	<servlet-class>com.salesmanager.catalog.web.ReferenceLoaderServlet</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+  	</servlet>
+  	
+  	<servlet>
+    	<description>Load resources bundles for shopping templates modules</description>
+    	<display-name>TemplateResourceBundleLoader</display-name>
+    	<servlet-name>TemplateResourceBundleLoader</servlet-name>
+    	<servlet-class>com.salesmanager.common.TemplateResourceBundleLoader</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+  	</servlet>
+  	
+
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+    
+    <listener>
+    	<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+    </listener>
+    
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+
+  	
+  	
+  	<servlet>
+        <servlet-name>dwr-invoker</servlet-name>
+        <servlet-class>uk.ltd.getahead.dwr.DWRServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <!-- MUST BE SET TO FALSE -->
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>logLevel</param-name>
+            <param-value>WARN</param-value>
+        </init-param>
+    </servlet>
+    
+
+    <servlet-mapping>
+        <servlet-name>dwr-invoker</servlet-name>
+        <url-pattern>/dwr/*</url-pattern>
+    </servlet-mapping>
+    
+    <context-param> 
+		<param-name> org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG </param-name> 
+		<param-value> /WEB-INF/tiles-catalog.xml,/WEB-INF/tiles-checkout.xml,/WEB-INF/tiles-integration.xml</param-value> 
+    </context-param>
+    
+    
+    <!-- switch to https during checkout -->
+    <!--
+    <security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Automatic SLL Forwarding</web-resource-name>
+			<url-pattern>/checkout/*</url-pattern>
+			<http-method>GET</http-method>
+            <http-method>POST</http-method>
+		</web-resource-collection>
+		<user-data-constraint>
+		  <transport-guarantee>
+			CONFIDENTIAL
+		  </transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	-->
+    
+    
+    
+    
+
+</web-app>

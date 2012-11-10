@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Order" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="central-orders" whenResourceMissingType="Empty">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="87"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\shopizer-1.1.1\\sm-core\\conf\\templates\\template\\jasperreports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BASE_DIR" class="java.lang.String"/>
+	<field name="reportHeader.merchantStoreLogo" class="java.lang.String"/>
+	<field name="reportHeader.store.storename" class="java.lang.String"/>
+	<field name="reportHeader.store.storeaddress" class="java.lang.String"/>
+	<field name="reportHeader.store.storecity" class="java.lang.String"/>
+	<field name="reportHeader.store.zoneName" class="java.lang.String"/>
+	<field name="reportHeader.store.countryName" class="java.lang.String"/>
+	<field name="reportHeader.store.storepostalcode" class="java.lang.String"/>
+	<field name="reportHeader.searchReportCriteria" class="java.lang.String"/>
+	<field name="orders" class="java.util.Collection"/>
+	<field name="totals" class="java.util.Collection"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="134" splitType="Stretch">
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="1" y="65" width="554" height="69"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{reportHeader.store.storename}+"\n"+
+$F{reportHeader.store.storeaddress}+"\n"+
+$F{reportHeader.store.storecity} + ", " + $F{reportHeader.store.zoneName} +" "+$F{reportHeader.store.countryName}+"\n"+
+$F{reportHeader.store.storepostalcode}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="1" y="0" width="150" height="65"/>
+				<imageExpression class="java.lang.String"><![CDATA[$F{reportHeader.merchantStoreLogo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="151" y="2" width="403" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{reportHeader.searchReportCriteria}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="43" height="35"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{orders})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[new String($P{BASE_DIR}+"OrderLine.jasper")]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="50" width="43" height="36" isRemoveLineWhenBlank="true"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{totals})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[new String($P{BASE_DIR}+"OrderSubTotal.jasper")]]></subreportExpression>
+			</subreport>
+			<rectangle>
+				<reportElement positionType="Float" x="0" y="36" width="553" height="14" backcolor="#CCCCCC"/>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" positionType="Float" x="1" y="35" width="150" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$R{label.order.summary}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="454" y="22" width="59" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" -"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="513" y="22" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="1" y="22" width="80" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="22" width="142" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$R{label.order.orderreport}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

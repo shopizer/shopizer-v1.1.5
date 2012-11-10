@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+ */
+-->
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <!-- Shopping Cart -->
+    <definition name="cart.main" template="/layout/cartDefault.jsp">
+        <put-attribute name="header" value="/layout/checkout/cartHeader.jsp"/>
+        <put-attribute name="messages" value="/checkout/components/messages.jsp"/>
+	  <put-attribute name="body" value="/checkout/cart/cart.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+
+    <!-- Main checkout entry (1st screen customer)-->
+    <definition name="checkout.customer" template="/layout/checkoutDefault.jsp">
+        <put-attribute name="header" value="/layout/checkout/checkoutHeader.jsp"/>
+        <put-attribute name="messages" value="/checkout/components/messages.jsp"/>
+        <put-attribute name="progress" value="/checkout/components/progress-g.jsp"/>
+	  <put-attribute name="body" value="/checkout/customer/billing.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+
+    <definition name="checkout.files" template="/layout/cartDefault.jsp">
+        <put-attribute name="header" value="/layout/checkout/checkoutHeader.jsp"/>
+        <put-attribute name="messages" value="/checkout/components/messages.jsp"/>
+	  <put-attribute name="body" value="/checkout/customer/getfiles.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+    
+    <definition name="checkout.shipping" template="/layout/checkoutDefault.jsp">
+        <put-attribute name="header" value="/layout/checkout/checkoutHeader.jsp"/>
+        <put-attribute name="messages" value="/checkout/components/messages.jsp"/>
+        <put-attribute name="progress" value="/checkout/components/progress-g.jsp"/>
+	  <put-attribute name="body" value="/checkout/shipping/shipping.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+
+    <definition name="checkout.payment" template="/layout/checkoutDefault.jsp">
+        <put-attribute name="header" value="/layout/checkout/checkoutHeader.jsp"/>
+        <put-attribute name="messages" value="/checkout/components/messages.jsp"/>
+        <put-attribute name="progress" value="/checkout/components/progress-g.jsp"/>
+	  	<put-attribute name="body" value="/checkout/payment/payment.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+
+    <definition name="checkout.summary" template="/layout/checkoutDefault.jsp">
+        <put-attribute name="header" value="/layout/checkout/checkoutHeader.jsp"/>
+        <put-attribute name="messages" value="/checkout/components/messages.jsp"/>
+        <put-attribute name="progress" value="/checkout/components/progress-g.jsp"/>
+	  <put-attribute name="body" value="/checkout/components/confirmation.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+
+    <definition name="checkout.displayorder" template="/layout/checkoutDefault.jsp">
+        <put-attribute name="header" value="/layout/checkout/checkoutHeader.jsp"/>
+        <put-attribute name="messages" value="/checkout/components/messages.jsp"/>
+	  <put-attribute name="body" value="/checkout/components/confirmation.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+    
+    <definition name="invoice.display" template="/layout/invoiceDefault.jsp">
+        <put-attribute name="messages" value="/checkout/invoice/invoiceMessages.jsp"/>
+	    <put-attribute name="invoice" value="/checkout/invoice/templates/standard/invoice.jsp"/>
+	    <put-attribute name="body" value="/checkout/invoice/invoice.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+    
+    <definition name="invoice.payment" template="/layout/invoiceDefault.jsp">
+	    <put-attribute name="messages" value="/checkout/invoice/invoiceMessages.jsp"/>
+	    <put-attribute name="invoice" value="/checkout/invoice/templates/standard/invoice.jsp"/>
+	    <put-attribute name="body" value="/checkout/invoice/invoicePayment.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+    
+    <definition name="invoice.summary" template="/layout/invoiceDefault.jsp">
+	    <put-attribute name="messages" value="/checkout/invoice/invoiceMessages.jsp"/>
+	    <put-attribute name="invoice" value="/checkout/invoice/templates/standard/invoice.jsp"/>
+	    <put-attribute name="body" value="/checkout/invoice/invoiceSummary.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+    
+    <definition name="invoice.thankyou" template="/layout/invoiceDefault.jsp">
+	    <put-attribute name="messages" value="/checkout/invoice/invoiceMessages.jsp"/>
+	    <put-attribute name="invoice" value="/checkout/invoice/templates/standard/invoice.jsp"/>
+	    <put-attribute name="body" value="/checkout/invoice/invoiceThankYou.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+
+    <definition name="checkout.thankyou" template="/layout/thankYouDefault.jsp">
+        <put-attribute name="header" value="/layout/checkout/cartHeader.jsp"/>
+        <put-attribute name="messages" value="/checkout/components/messages.jsp"/>
+	  	<put-attribute name="body" value="/checkout/thankyou/thankyou.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+    
+    
+
+
+    <definition name="subscription.main" template="/layout/subscriptionDefault.jsp">
+        <put-attribute name="header" value="/layout/checkout/checkoutHeader.jsp"/>
+         <put-attribute name="checkoutheader" value="/layout/checkout/checkoutheader.jsp"/>
+         <put-attribute name="messages" value="/checkout/components/messages.jsp"/>
+        <put-attribute name="progress" value="/checkout/subscription/progress-g.jsp"/>
+        <put-attribute name="body" value="/checkout/subscription/subscription.jsp"/>
+        <put-attribute name="checkoutfooter" value="/layout/checkout/checkoutfooter.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+
+    <definition name="subscription.confirmation" template="/layout/subscriptionDefault.jsp">
+        <put-attribute name="header" value="/layout/checkoutHeader.jsp"/>
+        <put-attribute name="checkoutheader" value="/layout/checkoutheader.jsp"/>
+        <put-attribute name="messages" value="/components/messages.jsp"/>
+        <put-attribute name="progress" value="/subscription/progress-g.jsp"/>
+        <put-attribute name="body" value="/components/confirmation.jsp"/>
+        <put-attribute name="checkoutfooter" value="/layout/checkoutfooter.jsp"/>
+        <put-attribute name="footer" value="/layout/footer.jsp"/>
+    </definition>
+
+    
+    <definition name="cart.messages" template="/layout/cartDefault.jsp">
+        <put-attribute name="header" value="/layout/checkout/checkoutHeader.jsp"/>
+        <put-attribute name="body" value="/checkout/components/messages.jsp"/>
+        <put-attribute name="footer" value="/layout/checkout/footer.jsp"/>
+    </definition>
+	
+
+
+
+</tiles-definitions>

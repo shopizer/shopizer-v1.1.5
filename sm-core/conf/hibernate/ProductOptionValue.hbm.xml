@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 24, 2008 4:28:03 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.ProductOptionValue" table="PRODUCTS_OPTIONS_VALUES">
+        <comment></comment>
+        <id name="productOptionValueId" type="long">
+            <column name="PRODUCTS_OPTIONS_VALUES_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">PRODUCT_OPT_VALUES_ID_NEXT_VAL</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+
+
+        <property name="productOptionValueSortOrder" type="int">
+            <column name="PRODUCTS_OPTIONS_VALUES_SORT_O" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="productOptionValueImage" type="string">
+            <column name="PRODUCTS_OPTIONS_VALUES_IMAGE" length="64" not-null="false">
+                <comment></comment>
+            </column>
+        </property>
+        
+        
+        <property name="merchantId" type="int">
+            <column name="MERCHANTID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+
+
+		<!-- requete optimisee pour parent / enfant -->
+        <set name="descriptions" lazy="false" batch-size="10" fetch="join" inverse="true">
+				<key column="PRODUCTS_OPTIONS_VALUES_ID"/>
+				<one-to-many class="com.salesmanager.core.entity.catalog.ProductOptionValueDescription"/>
+		</set>
+
+
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 5, 2008 10:22:35 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.CoreModuleService" table="CORE_MODULES_SERVICES">
+        <!-- Read only cache -->
+        <cache usage="read-only"/>
+        <comment></comment>
+        <id name="coreModuleServiceId" type="int">
+            <column name="CORE_MD_SERVICES_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="coreModuleServiceCode" type="int">
+            <column name="CORE_MD_SERVICES_CODE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleName" type="string">
+            <column name="CORE_MD_NAME" length="60" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="countryIsoCode2" type="string">
+            <column name="COUNTRY_ISO_CODE_2" length="2" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceSubtype" type="int">
+            <column name="CORE_MD_SERVICES_SUBTYPE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceDescription" type="string">
+            <column name="CORE_MD_SERVICES_DESCRIPTION" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceLogoPath" type="string">
+            <column name="CORE_MD_SERVICES_LOGO_PATH" length="65535">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServicePosition" type="byte">
+            <column name="CORE_MD_SERVICES_POSITION">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceVisible" type="boolean">
+            <column name="CORE_MD_SERVICES_VISIBLE">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceNew" type="boolean">
+            <column name="CORE_MD_SERVICES_NEW">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceUrl" type="string">
+            <column name="CORE_MD_SERVICES_URL" length="120">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceDevProtocol" type="string">
+            <column name="CORE_MD_SERVICES_DEV_PROTOCOL" length="10">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceDevDomain" type="string">
+            <column name="CORE_MD_SERVICES_DEV_DOMAIN" length="75">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceDevPort" type="string">
+            <column name="CORE_MD_SERVICES_DEV_PORT" length="10">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceDevEnv" type="string">
+            <column name="CORE_MD_SERVICES_DEV_ENV" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceProdProtocol" type="string">
+            <column name="CORE_MD_SERVICES_PROD_PROTOCOL" length="10">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceProdDomain" type="string">
+            <column name="CORE_MD_SERVICES_PROD_DOMAIN" length="75">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceProdPort" type="string">
+            <column name="CORE_MD_SERVICES_PROD_PORT" length="10">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="coreModuleServiceProdEnv" type="string">
+            <column name="CORE_MD_SERVICES_PROD_ENV" length="75">
+                <comment></comment>
+            </column>
+        </property>
+                <property name="coreModuleServiceConfigurable" type="boolean">
+            <column name="CORE_MD_SERVICES_CONFIGURABLE">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

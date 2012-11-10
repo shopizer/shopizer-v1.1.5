@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+		<package name="shipping" extends="default" namespace="/shipping">
+
+
+
+			<result-types>
+    		 	<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 	<result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+        	</result-types>
+
+
+
+
+
+	        <!-- For shipping modules -->
+	        <!-- moduleid_method.action -->
+	        <!-- {1}=moduleid,  {2}=method-->
+	        <!-- eg upsxml_display.action -->			
+	        <action name="*_*" method="{2}" class="com.salesmanager.central.shipping.Shipping{1}Action">
+				<result name="success" type="tiles">shipping</result>
+				<result name="input" type="tiles">shipping</result>
+				<result name="deletecomplete" type="redirectAction">shippingrates</result>
+				<interceptor-ref name="smShippingStack" />
+			</action>
+
+
+	        <!-- Shipping entry point -->
+	        <action name="shipping" class="com.salesmanager.central.shipping.ShippingZoneAction" method="displayZones">
+				<result name="success" type="tiles">shippingmain</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+		   <action name="selectshippingzones" class="com.salesmanager.central.shipping.ShippingZoneAction" method="saveZones">
+				<result name="success" type="tiles">shippingmain</result>
+				<result name="input" type="tiles">shippingmain</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<!-- Shipping quotes list page -->
+			<action name="shippingrates" class="com.salesmanager.central.shipping.ShippingRatesAction" method="displayShippingModules">
+				<result name="success" type="tiles">shippingmethods</result>
+				<result name="input" type="tiles">shippingmethods</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+
+			<!-- Real time shipping methods details -->
+	        <action name="savemethoddetails" class="com.salesmanager.central.shipping.ShippingRatesAction" method="saveMethodDetails">
+				<result name="success" type="redirectAction">shippingrates</result>
+				<result name="input" type="tiles">shippingmethods</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+
+			<action name="packing" class="com.salesmanager.central.shipping.EditPackingAction" method="display">
+				<result name="success" type="tiles">packing</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="editPacking" class="com.salesmanager.central.shipping.EditPackingAction" method="editPackingOption">
+				<result name="success" type="redirectAction">packing</result>
+				<result name="error" type="tiles">packing</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+
+			<action name="shippingconfig" class="com.salesmanager.central.shipping.ShippingOtherOptionsAction" method="display">
+				<result name="success" type="tiles">shippingotherconfiguration</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="configureshipping" class="com.salesmanager.central.shipping.ShippingOtherOptionsAction" method="save">
+				<result name="input" type="tiles">shippingotherconfiguration</result>
+				<result name="success" type="redirectAction">shippingconfig</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="ratetable" class="com.salesmanager.central.shipping.ShippingCustomRatesAction" method="display">
+				<result name="success" type="tiles">shippingcustomrates</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="configurecustomshipping" class="com.salesmanager.central.shipping.ShippingOtherOptionsAction" method="save">
+				<result name="input" type="tiles">shippingcustomrates</result>
+				<result name="success" type="tiles">shippingcustomrates</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="addcustomshippingzone" class="com.salesmanager.central.shipping.ShippingCustomRatesAction" method="add">
+				<result name="input" type="tiles">shippingcustomrates</result>
+				<result name="success" type="redirectAction">ratetable</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="addmaxprice" class="com.salesmanager.central.shipping.ShippingCustomRatesAction" method="addMaxPrice">
+				<result name="input" type="tiles">shippingcustomrates</result>
+				<result name="success" type="redirectAction">ratetable</result>
+				<result name="error" type="tiles">shippingcustomrates</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+			<!-- remove one line -->
+			<action name="removecountry" class="com.salesmanager.central.shipping.ShippingCustomRatesAction" method="removeCountry">
+				<result name="input" type="tiles">shippingcustomrates</result>
+				<result name="success" type="redirectAction">ratetable</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="modifypricezone" class="com.salesmanager.central.shipping.ShippingCustomRatesAction" method="modifyPriceZone">
+				<result name="input" type="tiles">shippingcustomrates</result>
+				<result name="success" type="redirectAction">ratetable</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="enabletablerate" class="com.salesmanager.central.shipping.ShippingCustomRatesAction" method="editTableRate">
+				<result name="input" type="tiles">shippingcustomrates</result>
+				<result name="success" type="redirectAction">ratetable</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="removeprice" class="com.salesmanager.central.shipping.ShippingCustomRatesAction" method="removePriceLine">
+				<result name="input" type="tiles">shippingcustomrates</result>
+				<result name="success" type="redirectAction">ratetable</result>
+				<result name="error" type="tiles">shippingcustomrates</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="modifyprice" class="com.salesmanager.central.shipping.ShippingCustomRatesAction" method="modifyPriceLine">
+				<result name="input" type="tiles">shippingcustomrates</result>
+				<result name="success" type="redirectAction">ratetable</result>
+				<result name="error" type="tiles">shippingcustomrates</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+
+			<action name="removezoneprice" class="com.salesmanager.central.shipping.ShippingCustomRatesAction" method="removeZonePrice">
+				<result name="input" type="tiles">shippingcustomrates</result>
+				<result name="success" type="redirectAction">ratetable</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+
+    	</package>
+
+
+
+
+</struts>

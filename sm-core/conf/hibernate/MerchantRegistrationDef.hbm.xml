@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 26, 2007 3:08:40 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.MerchantRegistrationDef" table="MERCHANT_REGISTRATION_DEF">
+        <comment></comment>
+        <id name="merchantRegistrationDefId" type="int">
+            <column name="MERCHANT_REG_DEF_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">MRD_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="merchantRegistrationDefCode" type="int">
+            <column name="MERCHANT_REG_DEF_CODe" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

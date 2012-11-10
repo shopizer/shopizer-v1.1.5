@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="Invoice"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="612"
+		 pageHeight="792"
+		 columnWidth="532"
+		 columnSpacing="0"
+		 leftMargin="40"
+		 rightMargin="40"
+		 topMargin="50"
+		 bottomMargin="50"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false"
+		 resourceBundle="central-invoice">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<style 
+		name="Arial_Normal"
+		isDefault="true"
+		fontName="Arial"
+		fontSize="12"
+		isBold="false"
+		isItalic="false"
+		isUnderline="false"
+		isStrikeThrough="false"
+		pdfFontName="Helvetica"
+		pdfEncoding="Cp1252"
+		isPdfEmbedded="false"
+	>
+	</style>
+	<style 
+		name="Arial_Bold"
+		isDefault="false"
+		fontName="Arial"
+		fontSize="12"
+		isBold="true"
+		isItalic="false"
+		isUnderline="false"
+		isStrikeThrough="false"
+		pdfFontName="Helvetica-Bold"
+		pdfEncoding="Cp1252"
+		isPdfEmbedded="false"
+	>
+	</style>
+	<style 
+		name="Arial_Italic"
+		isDefault="false"
+		fontName="Arial"
+		fontSize="12"
+		isBold="false"
+		isItalic="true"
+		isUnderline="false"
+		isStrikeThrough="false"
+		pdfFontName="Helvetica-Oblique"
+		pdfEncoding="Cp1252"
+		isPdfEmbedded="false"
+	>
+	</style>
+	<style 
+		name="pageHeader"
+		isDefault="false"
+		style="Arial_Bold"
+		forecolor="#FFFFFF"
+		backcolor="#333333"
+	>
+	</style>
+
+	<subDataset name="dataset1" >
+
+
+	</subDataset>
+
+	<subDataset name="dataset2" >
+
+
+	</subDataset>
+
+
+	<parameter name="BASE_DIR" isForPrompting="true" class="java.lang.String"/>
+
+	<field name="customerBillingCity" class="java.lang.String">
+		<fieldDescription><![CDATA[customerBillingCity]]></fieldDescription>
+	</field>
+	<field name="customerBillingCountry" class="java.lang.String">
+		<fieldDescription><![CDATA[customerBillingCountry]]></fieldDescription>
+	</field>
+	<field name="customerBillingCountryName" class="java.lang.String">
+		<fieldDescription><![CDATA[customerBillingCountryName]]></fieldDescription>
+	</field>
+	<field name="customerBillingPostalCode" class="java.lang.String">
+		<fieldDescription><![CDATA[customerBillingPostalCode]]></fieldDescription>
+	</field>
+	<field name="customerBillingState" class="java.lang.String">
+		<fieldDescription><![CDATA[customerBillingState]]></fieldDescription>
+	</field>
+	<field name="customerBillingStreetAddress" class="java.lang.String">
+		<fieldDescription><![CDATA[customerBillingStreetAddress]]></fieldDescription>
+	</field>
+	<field name="customerCity" class="java.lang.String">
+		<fieldDescription><![CDATA[customerCity]]></fieldDescription>
+	</field>
+	<field name="customerCompany" class="java.lang.String">
+		<fieldDescription><![CDATA[customerCompany]]></fieldDescription>
+	</field>
+	<field name="customerCountry" class="java.lang.String">
+		<fieldDescription><![CDATA[customerCountry]]></fieldDescription>
+	</field>
+	<field name="customerPostalCode" class="java.lang.String">
+		<fieldDescription><![CDATA[customerPostalCode]]></fieldDescription>
+	</field>
+	<field name="customerState" class="java.lang.String">
+		<fieldDescription><![CDATA[customerState]]></fieldDescription>
+	</field>
+	<field name="customerStreetAddress" class="java.lang.String">
+		<fieldDescription><![CDATA[customerStreetAddress]]></fieldDescription>
+	</field>
+	<field name="customerZone" class="java.lang.String">
+		<fieldDescription><![CDATA[customerZone]]></fieldDescription>
+	</field>
+	<field name="dueDate" class="java.util.Date">
+		<fieldDescription><![CDATA[dueDate]]></fieldDescription>
+	</field>
+	<field name="merchantStoreLogo" class="java.lang.String">
+		<fieldDescription><![CDATA[merchantStoreLogo]]></fieldDescription>
+	</field>
+	<field name="merchantStoreName" class="java.lang.String">
+		<fieldDescription><![CDATA[merchantStoreName]]></fieldDescription>
+	</field>
+	<field name="orderDate" class="java.util.Date">
+		<fieldDescription><![CDATA[orderDate]]></fieldDescription>
+	</field>
+	<field name="orderId" class="java.lang.Long">
+		<fieldDescription><![CDATA[orderId]]></fieldDescription>
+	</field>
+	<field name="orderProducts" class="java.util.Collection">
+		<fieldDescription><![CDATA[orderProducts]]></fieldDescription>
+	</field>
+	<field name="orderTotal" class="java.util.Collection">
+		<fieldDescription><![CDATA[orderTotal]]></fieldDescription>
+	</field>
+	<field name="orderUnpaid" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[orderUnpaid]]></fieldDescription>
+	</field>
+	<field name="paymentMethods" class="java.lang.String">
+		<fieldDescription><![CDATA[paymentMethods]]></fieldDescription>
+	</field>
+	<field name="shipping" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[shipping]]></fieldDescription>
+	</field>
+	<field name="shippingMethods" class="java.lang.String">
+		<fieldDescription><![CDATA[shippingMethods]]></fieldDescription>
+	</field>
+	<field name="storeAddress" class="java.lang.String">
+		<fieldDescription><![CDATA[storeAddress]]></fieldDescription>
+	</field>
+	<field name="storeCity" class="java.lang.String">
+		<fieldDescription><![CDATA[storeCity]]></fieldDescription>
+	</field>
+	<field name="storeCountry" class="java.lang.String">
+		<fieldDescription><![CDATA[storeCountry]]></fieldDescription>
+	</field>
+	<field name="storeEmailAddress" class="java.lang.String">
+		<fieldDescription><![CDATA[storeEmailAddress]]></fieldDescription>
+	</field>
+	<field name="storeState" class="java.lang.String">
+		<fieldDescription><![CDATA[storeState]]></fieldDescription>
+	</field>
+	<field name="storepostalcode" class="java.lang.String">
+		<fieldDescription><![CDATA[storepostalcode]]></fieldDescription>
+	</field>
+	<field name="customerBillingName" class="java.lang.String"/>
+	<field name="orderCredits" class="java.util.Collection"/>
+	<field name="orderSubTotals" class="java.util.Collection"/>
+	<field name="status" class="java.lang.Integer"/>
+	<field name="statusText" class="java.lang.String"/>
+
+	<variable name="AllProjects" class="java.lang.String" resetType="Report" calculation="System">
+	</variable>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="126"  isSplitAllowed="true" >
+				<frame>					<reportElement
+						mode="Transparent"
+						x="-3"
+						y="0"
+						width="532"
+						height="117"
+						forecolor="#000000"
+						backcolor="#E0E0E0"
+						key="frame"/>
+					<box>					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="17"
+						y="-332"
+						width="136"
+						height="14"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="11" isBold="true" isItalic="false" isUnderline="false" isPdfEmbedded ="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[]]></textFieldExpression>
+				</textField>
+				<image  scaleImage="FillFrame" vAlign="Top" hAlign="Left" onErrorType="Blank" isUsingCache="false" evaluationTime="Now" hyperlinkType="Reference"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="3"
+						y="4"
+						width="124"
+						height="43"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="image"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<graphicElement stretchType="NoStretch" fill="Solid" >
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+</graphicElement>
+					<imageExpression class="java.io.File"><![CDATA[($F{merchantStoreLogo} == null?null:new File($F{merchantStoreLogo}))]]></imageExpression>
+				</image>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="3"
+						y="47"
+						width="150"
+						height="68"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{merchantStoreName}+"\n"+
+$F{storeAddress}+"\n"+
+$F{storeCity}+",\n"+ $F{storeState} +" "+$F{storepostalcode}+"\n"+
+$F{storeCountry}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="424"
+						y="95"
+						width="52"
+						height="20"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$R{invoice.number.label}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="Arial_Normal"
+						mode="Opaque"
+						x="424"
+						y="35"
+						width="67"
+						height="20"
+						forecolor="#0000CC"
+						key="textField-2">
+							<printWhenExpression><![CDATA[new Boolean($F{statusText}!=null)]]></printWhenExpression>
+						</reportElement>
+					<box></box>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{statusText}]]></textFieldExpression>
+				</textField>
+				</frame>				<textField isStretchWithOverflow="false" pattern="yyyy-MM-dd" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="356"
+						y="4"
+						width="159"
+						height="14"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="12" isBold="true" isItalic="false" isUnderline="false" isPdfEmbedded ="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[( $F{orderUnpaid}.equals(new Boolean(true)) ? null : $F{dueDate} )]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="198"
+						y="47"
+						width="166"
+						height="60"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="10" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{customerBillingName}+"\n"+
+$F{customerBillingStreetAddress}+"\n"+
+$F{customerBillingCity}+"\n"+
+$F{customerBillingState}+" "+
+$F{customerBillingPostalCode}+"\n"+$F{customerBillingCountry}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="472"
+						y="95"
+						width="33"
+						height="20"
+						forecolor="#666666"
+						backcolor="#FFFFFF"
+						key="textField"/>
+					<box>					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" lineSpacing="Single">
+						<font fontName="Arial" pdfFontName="Helvetica" size="10" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[String.valueOf($F{orderId})]]></textFieldExpression>
+				</textField>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="126"  isSplitAllowed="true" >
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="14"
+						y="0"
+						width="30"
+						height="29"
+						key="subreport"/>
+					<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{orderProducts})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[new String($P{BASE_DIR}+"Product.jasper")]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="14"
+						y="31"
+						width="30"
+						height="18"
+						key="subreport"
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean($F{orderCredits}!=null && $F{orderCredits}.size()>0)]]></printWhenExpression>
+						</reportElement>
+					<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{orderCredits})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[new String($P{BASE_DIR}+"Credit.jasper")]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						style="Arial_Normal"
+						x="14"
+						y="52"
+						width="29"
+						height="18"
+						key="subreport-1"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{orderSubTotals})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[new String($P{BASE_DIR}+"SubTotal.jasper")]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="14"
+						y="75"
+						width="30"
+						height="18"
+						key="subreport-2"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{orderTotal})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[new String($P{BASE_DIR}+"Total.jasper")]]></subreportExpression>
+				</subreport>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="85"  isSplitAllowed="true" >
+				<line direction="TopDown">
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="39"
+						width="532"
+						height="1"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="line"/>
+					<graphicElement stretchType="NoStretch" fill="Solid" >
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+</graphicElement>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="133"
+						y="50"
+						width="121"
+						height="14"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font size="11" isItalic="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{paymentMethods}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="133"
+						y="65"
+						width="121"
+						height="14"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font size="11" isItalic="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{shippingMethods}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="7"
+						y="50"
+						width="112"
+						height="14"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font size="11" isBold="true" isItalic="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$R{invoice.payment.menthods.label}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="7"
+						y="67"
+						width="112"
+						height="13"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font size="11" isBold="true" isItalic="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$R{invoice.shipping.methods.label}]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

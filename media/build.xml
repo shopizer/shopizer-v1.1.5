@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="media" default="build" basedir=".">
+	<description>
+		Media web application holder
+   </description>
+
+
+
+
+
+	<property name="appname" value="media" />
+	<property name="lib.dir" value="lib" />
+	<property name="dist.dir" value="dist" />
+	<property name="src.dir" value="src" />
+	<property name="conf.dir" value="conf" />
+	<property name="core" value="sm-core" />
+	<property name="webcontent.dir" value="WebContent" />
+	<property name="war.dir" value="${webcontent.dir}" />
+	<property name="struts.files.dir" value="${conf.dir}/struts" />
+	<property name="war.file" value="${dist.dir}/${appname}.war" />
+	<property name="ear.file" value="${dist.dir}/${appname}.ear" />
+	<property name="webinf.dir" value="${war.dir}/WEB-INF" />
+	<property name="class.dir" value="${war.dir}/WEB-INF/classes" />
+	<property name="jsp.dir" value="${war.dir}/WEB-INF/jsp" />
+	<property name="libs.dir" value="${war.dir}/WEB-INF/lib" />
+
+
+
+
+	<path id="master-classpath" description="Master CLASSPATH for this script">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="../${core}/lib/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="../${core}/dist/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${tomcat.dir}/lib">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement location="${class.dir}/" />
+	</path>
+
+
+
+	<target name="copyconf" description="copy configuration files to web content">
+
+
+
+
+	</target>
+
+	<target name="init" description="Setup for build script">
+		<delete>
+			<fileset dir="${dist.dir}" />
+		</delete>
+		<delete>
+			<fileset dir="${class.dir}" />
+		</delete>
+		<delete>
+			<fileset dir="${libs.dir}" />
+		</delete>
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${class.dir}" />
+		<mkdir dir="${libs.dir}" />
+		<mkdir dir="${jsp.dir}" />
+		<mkdir dir="${libs.dir}" />
+	</target>
+
+	<target name="compile" description="Compiles .java files to WAR directory">
+		<javac srcdir="${src.dir}" destdir="${class.dir}" debug="true" failonerror="true" classpathref="master-classpath" />
+	</target>
+
+	<target name="war" depends="compile,copyconf">
+		<war destfile="${war.file}" webxml="${webcontent.dir}/WEB-INF/web.xml">
+			<fileset dir="${war.dir}">
+				<include name="**" />
+				<include name="**/*.*" />
+				<exclude name="**/web.xml" />
+			</fileset>
+		</war>
+		<copy file="${war.file}" tofile="../${war.file}" overwrite="true" />
+	</target>
+
+	<target name="deploy" depends="war">
+		<copy file="${war.file}" tofile="${tomcat.dir}/webapps/${appname}.war" overwrite="true" />
+	</target>
+
+
+
+
+	<target name="build" depends="war">
+
+	</target>
+
+</project>

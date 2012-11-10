@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 8, 2009 10:16:40 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.orders.OrderProductPriceSpecial" table="ORDERS_PRODUCTS_PRICES_SPECIAL">
+        <comment></comment>
+        <id name="orderProductPrice" type="long">
+            <column name="ORDERS_PRODUCTS_PRICES" />
+            <generator class="assigned" />
+            <!--
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">ORDER_PRD_PRICE_SP_ID_NEXT_VAL</param>
+                <param name="max_lo">1</param>
+        	</generator>
+        	-->
+        </id>
+        <property name="specialNewProductPrice" type="big_decimal">
+            <column name="SPECIALS_NEW_PRODUCTS_PRICE" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="originalPrice" type="big_decimal">
+            <column name="ORIGINAL_PRICE" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderProductPriceSpecialStartDate" type="timestamp">
+            <column name="ORDERS_PRODUCTS_SPECIAL_ST_DT" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderProductSpecialEndDate" type="timestamp">
+            <column name="ORDERS_PRODUCTS_SPECIAL_END_DT" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderProductSpecialDurationDays" type="java.lang.Integer">
+            <column name="ORDERS_PRODUCTS_SPECIAL_DAYS">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

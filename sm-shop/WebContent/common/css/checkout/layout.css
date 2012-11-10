@@ -1,0 +1,60 @@
+
+html, body{
+ text-align:center;
+ padding-right: 0px;
+ padding-left: 0px;
+ font-size: 11px;
+ padding-bottom: 0px;
+ margin: 0px;
+ padding-top: 0px;
+ /**background-color:#FFF;**/
+ /**font-family: Arial, "Times New Roman", Times, serif**/
+}
+
+
+
+
+#pagewidth{
+ width:800px;
+ text-align:left;
+ margin-left:auto;
+ margin-right:auto;
+}
+
+#header{
+ position:relative;
+ /**background-color:#FFFFFF;**/
+ width:100%;
+}
+
+
+#maincol{
+ /**background-color: #FFFFFF;**/
+ display:inline;
+ position: relative;
+ width:;
+ }
+
+#footer{
+ height:100px;
+ /**background-color:#FFFFFF;**/
+ clear:both;
+ }
+
+
+
+
+.clearfix:after {
+ content: ".";
+ display: block;
+ height: 0;
+ clear: both;
+ visibility: hidden;
+ }
+
+.clearfix{display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clearfix{height: 1%;}
+.clearfix{display: block;}
+/* End hide from IE-mac */

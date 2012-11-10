@@ -1,0 +1,34 @@
+
+#dropmenudiv{
+position:absolute;
+border:1px solid black;
+border-bottom-width: 0;
+font:normal 12px Verdana;
+line-height:18px;
+z-index:100;
+}
+
+#dropmenudiv a{
+width: 100%;
+display: block;
+text-indent: 3px;
+border-bottom: 1px solid black;
+padding: 1px 0;
+text-decoration: none;
+font-weight: bold;
+}
+
+#dropmenudiv a:hover{ /*hover background color*/
+background-color: yellow;
+}
+
+/*Tabs*/
+.tabs {position:relative; left: -84; top: 3; border:1px solid #194367; height: 27px; width: 326; margin: 0; padding: 0; background:#C0D9DE; overflow:hidden }
+.tabs li {display:inline}
+.tabs a:hover, .tabs a.tab-active {background:#fff;}
+.tabs a { height: 27px; font:11px verdana, helvetica, sans-serif;font-weight:bold;
+       position:relative; padding:6px 10px 10px 10px; margin: 0px -4px 0px 0px; color:#2B4353;text-decoration:none; }
+.tab-container { background: #fff; border:0px solid #194367; height:320px; width:500px}
+.tab-panes { margin: 3px; border:1px solid #194367; height:320px}
+div.content { padding: 5px; } 
+

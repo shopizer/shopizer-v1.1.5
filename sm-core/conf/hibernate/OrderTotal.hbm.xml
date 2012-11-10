@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 3, 2007 9:39:21 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.orders.OrderTotal" table="ORDERS_TOTAL">
+        <comment></comment>
+        <id name="orderTotalId" type="long">
+            <column name="ORDERS_TOTAL_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">ORDER_TOTAL_ID_NEXT_VALUE</param>
+                <param name="max_lo">1</param>
+        	</generator>
+        </id>
+        <property name="orderId" type="long">
+            <column name="ORDERS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="title" type="string">
+            <column name="TITLE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="text" type="string">
+            <column name="TEXT" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="value" type="big_decimal">
+            <column name="VALUE" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="module" type="string">
+            <column name="MODULE" length="60" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="sortOrder" type="int">
+            <column name="SORT_ORDER" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

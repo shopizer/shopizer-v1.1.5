@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 29, 2008 9:50:00 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.customer.CustomerBasketAttribute" table="CUSTOMERS_BASKET_ATTRIBUTES">
+        <comment></comment>
+        <id name="customerBasketAttributeId" type="int">
+            <column name="CUSTOMERS_BASKET_ATTRIBUTES_ID" />
+            <!-- 
+            <generator class="assigned" />
+            -->
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">CUST_BASKET_ATTR_ID_NEXT_VAL</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="customerId" type="long">
+            <column name="CUSTOMERS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productId" type="string">
+            <column name="PRODUCTS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productOptionId" type="string">
+            <column name="PRODUCTS_OPTIONS_ID" length="64" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productOptionValueId" type="long">
+            <column name="PRODUCTS_OPTIONS_VALUE_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productOptionValueText" type="string">
+            <column name="PRODUCTS_OPTIONS_VALUE_TEXT">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productOptionSortOrder" type="string">
+            <column name="PRODUCTS_OPTIONS_SORT_ORDER" length="65535" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantid" type="java.lang.Integer">
+            <column name="MERCHANTID">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

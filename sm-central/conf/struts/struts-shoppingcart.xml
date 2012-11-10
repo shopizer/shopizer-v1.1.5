@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+
+
+    <!-- Shopping Cart information -->
+    <package name="cartproperties" extends="default" namespace="/cartproperties">
+
+
+		<result-types>
+    		 	<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 	<result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+        </result-types>
+
+
+
+        <action name="shoppingcart" class="com.salesmanager.central.cart.CartPropertiesAction" method="display">
+			<result name="success" type="tiles">cartproperties</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+
+        <action name="savecart" class="com.salesmanager.central.cart.CartPropertiesAction" method="saveCart">
+        	<result name="input" type="tiles">cartproperties</result>
+			<result name="success" type="redirectAction">shoppingcart</result>
+			<result name="error" type="tiles">cartproperties</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+
+		<action name="deleteimg" class="com.salesmanager.central.cart.CartPropertiesAction" method="deleteImage">
+        	<result name="input" type="tiles">cartproperties</result>
+			<result name="success" type="redirectAction">shoppingcart</result>
+			<result name="error" type="tiles">cartproperties</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+
+		<action name="integrationerrors" class="com.salesmanager.central.cart.IntegrationAction" method="displayErrors">
+			<result name="success" type="tiles">integrationerrors</result>
+			<interceptor-ref name="smAdminStack" />
+		</action>
+
+	    <action name="delete_file" class="com.salesmanager.central.cart.CartPropertiesAction" method="deleteFile">
+			<result name="input">cartproperties.jsp</result>
+			<result name="success" type="redirectAction">shoppingcart</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+		
+		<action name="createSiteMap" class="com.salesmanager.central.cart.SiteMapAction" method="execute">
+			<result name="success" type="redirectAction">shoppingcart</result>
+			<interceptor-ref name="smStoreRoleStack" />
+		</action>
+
+    </package>
+
+</struts>

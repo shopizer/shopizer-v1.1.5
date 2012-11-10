@@ -1,0 +1,263 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 7, 2008 1:15:57 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.Product" table="PRODUCTS">
+        <comment></comment>
+        <id name="productId" type="long">
+            <column name="products_id" />
+             <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">PRODUCT_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+
+        </id>
+
+        <property name="productType" type="int">
+            <column name="PRODUCTS_TYPE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productQuantity" type="int">
+            <column name="PRODUCTS_QUANTITY">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productModel" type="string">
+            <column name="PRODUCTS_MODEL" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productImage" type="string">
+            <column name="PRODUCTS_IMAGE" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productPrice" type="big_decimal">
+            <column name="PRODUCTS_PRICE" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productVirtual" type="boolean">
+            <column name="PRODUCTS_VIRTUAL">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productDateAdded" type="timestamp">
+            <column name="PRODUCTS_DATE_ADDED" length="0" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productLastModified" type="timestamp">
+            <column name="PRODUCTS_LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productDateAvailable" type="timestamp">
+            <column name="PRODUCTS_DATE_AVAILABLE" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productWeight" type="big_decimal">
+            <column name="PRODUCTS_WEIGHT" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productStatus" type="boolean">
+            <column name="PRODUCTS_STATUS">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productTaxClassId" type="long">
+            <column name="PRODUCTS_TAX_CLASS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productManufacturersId" type="int">
+            <column name="MANUFACTURERS_ID">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productOrdered" type="int">
+            <column name="PRODUCTS_ORDERED" precision="12">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productQuantityOrderMin" type="int">
+            <column name="PRODUCTS_QUANTITY_ORDER_MIN">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productQuantityOrderUnits" type="int">
+            <column name="PRODUCTS_QUANTITY_ORDER_UNITS">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productIsFree" type="boolean">
+            <column name="PRODUCT_IS_FREE">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productIsCall" type="boolean">
+            <column name="PRODUCT_IS_CALL">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productIsAlwaysFreeShipping" type="boolean">
+            <column name="PRODUCT_IS_ALWAYS_FREE_SHP">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productQuantityOrderMax" type="int">
+            <column name="PRODUCTS_QUANTITY_ORDER_MAX">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productSortOrder" type="int">
+            <column name="PRODUCTS_SORT_ORDER" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="masterCategoryId" type="long">
+            <column name="MASTER_CATEGORIES_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantId" type="int">
+            <column name="MERCHANTID">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productLength" type="big_decimal">
+            <column name="PRODUCTS_LENGTH" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productWidth" type="big_decimal">
+            <column name="PRODUCTS_WIDTH" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productHeight" type="big_decimal">
+            <column name="PRODUCTS_HEIGHT" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="asin" type="string">
+            <column name="ASIN" length="256">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="upc" type="string">
+            <column name="UPC" length="256">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="sku" type="string">
+            <column name="SKU" length="256">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="ean" type="string">
+            <column name="EAN" length="256">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="isbn" type="string">
+            <column name="ISBN" length="256">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productImageLarge" type="string">
+            <column name="PRODUCTS_IMAGE_LARGE" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productImage1" type="string">
+            <column name="PRODUCTS_IMAGE_1" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productImage2" type="string">
+            <column name="PRODUCTS_IMAGE_2" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productImage3" type="string">
+            <column name="PRODUCTS_IMAGE_3" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productImage4" type="string">
+            <column name="PRODUCTS_IMAGE_4" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productImageCrop" type="boolean">
+            <column name="PRODUCTS_IMAGE_CROP">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productExternalDl" type="string">
+            <column name="PRODUCTS_EXTERNAL_DL" length="120">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="productReviewAvg" type="big_decimal">
+            <column name="PRODUCT_REVIEW_AVG" precision="15" scale="4">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productReviewCount" type="int">
+            <column name="PRODUCT_REVIEW_COUNT" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+
+
+
+        <set name="attributes"
+				lazy="true"
+				inverse="true">
+				<key column="PRODUCTS_ID" />
+				<one-to-many class="com.salesmanager.core.entity.catalog.ProductAttribute" />
+		</set>
+
+
+		<set name="prices"
+				lazy="false"
+				fetch="join"
+				batch-size="10"
+				inverse="true">
+				<key column="PRODUCT_ID" />
+				<one-to-many class="com.salesmanager.core.entity.catalog.ProductPrice" />
+		</set>
+
+
+		<!-- @TODO JDBC Batch update exception [PUT INVERSE+TRUE]-->
+
+        <set name="descriptions"
+				lazy="false"
+				inverse="true"
+				fetch="join">
+				<key column="PRODUCTS_ID" />
+				<one-to-many class="com.salesmanager.core.entity.catalog.ProductDescription" />
+		</set>
+		
+		<!--  <one-to-one name="special" class="com.salesmanager.core.entity.catalog.Special" fetch="join" />-->
+		
+	    <set name="specials"
+				lazy="false"
+				fetch="join"
+				inverse="true">
+				<key column="PRODUCTS_ID" />
+				<one-to-many class="com.salesmanager.core.entity.catalog.Special" />
+		</set>
+
+
+
+    </class>
+</hibernate-mapping>

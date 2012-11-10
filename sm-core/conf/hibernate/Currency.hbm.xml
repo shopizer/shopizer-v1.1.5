@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 1, 2007 3:34:41 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.Currency" table="CURRENCIES">
+        <cache usage="read-only"/>
+        <comment></comment>
+        <id name="currencyId" type="int">
+            <column name="CURRENCIES_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="title" type="string">
+            <column name="TITLE" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="code" type="string">
+            <column name="CODE" length="3" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="symbol" type="string">
+            <column name="SYMBOL" length="10">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="suffix" type="string">
+            <column name="SUFFIX" length="10">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="decimalPoint" type="java.lang.Character">
+            <column name="DECIMAL_POINT" length="1">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="thousandsPoint" type="java.lang.Character">
+            <column name="THOUSANDS_POINT" length="1">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="decimalPlaces" type="java.lang.Character">
+            <column name="DECIMAL_PLACES" length="1">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="value" type="java.lang.Float">
+            <column name="VALUE" precision="13" scale="8">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastUpdated" type="timestamp">
+            <column name="LAST_UPDATED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="supported" type="boolean">
+            <column name="SUPPORTED" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

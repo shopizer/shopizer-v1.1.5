@@ -1,0 +1,97 @@
+<dwr>
+
+    <!-- upload progressbar -->
+    <allow>
+        <create creator="new" javascript="UploadMonitor">
+            <param name="class" value="com.salesmanager.central.util.upload.UploadMonitor"/>
+        </create>
+        <convert converter="bean" match="com.salesmanager.central.util.upload.UploadInfo"/>
+
+
+        <!-- processing file ... -->
+    	<create creator="new" javascript="ProcessMonitor">
+      		<param name="class" value="com.salesmanager.central.util.upload.ProcessMonitor"/>
+      		<include method="updateCounter"/>
+    	</create>
+    	<convert converter="bean" match="com.salesmanager.central.util.upload.ProcessInfo"/>
+
+
+        <!-- update zones (states-provinces) ... -->
+    	<create creator="new" javascript="UpdateZones">
+      		<param name="class" value="com.salesmanager.core.util.www.ajax.UpdateZones"/>
+      		<include method="updateZones"/>
+    	</create>
+    	<convert converter="bean" match="com.salesmanager.core.entity.reference.Zone"/>
+
+
+		<!-- select store template -->
+		<create creator="new" javascript="SelectStoreTemplate">
+            <param name="class" value="com.salesmanager.central.util.store.StoreFront"/>
+            <include method="selectTemplate"/>
+        </create>
+        <convert converter="bean" match="com.salesmanager.core.entity.reference.CoreModuleService"/>
+
+
+		<!-- update shipping estimate time -->
+		<create creator="new" javascript="ShippingEstimateTime">
+            <param name="class" value="com.salesmanager.central.shipping.ShippingAjaxUtil"/>
+            <include method="enableShippingEstimate"/>
+            <include method="disableShippingEstimate"/>
+        </create>
+
+
+		<!-- update options values (product attributes) -->
+		<create creator="new" javascript="UpdateOptionsValues">
+      		<param name="class" value="com.salesmanager.central.catalog.UpdateOptionsValues"/>
+      		<include method="updateOptionsValues"/>
+    	</create>
+    	<convert converter="bean" match="com.salesmanager.central.catalog.ProductOptionValueDisplay"/>
+
+		<!-- handle select customers per company -->
+		<create creator="new" javascript="GetCustomer">
+      		<param name="class" value="com.salesmanager.central.customer.GetCustomer"/>
+      		<include method="getCustomerByCustomerId"/>
+    	</create>
+    	<convert converter="bean" match="com.salesmanager.core.entity.customer.Customer"/>
+
+		<!-- invoice -->
+		<create creator="new" javascript="AddProduct">
+      		<param name="class" value="com.salesmanager.central.cart.AddProduct"/>
+      		<include method="getProductsByCategoryId"/>
+      		<include method="addProduct"/>
+      		<include method="removeProduct"/>
+      		<include method="validatePrices"/>
+      		<include method="addAttributes"/>
+      		<include method="removeAttributes"/>
+      		<include method="calculate"/>
+      		<include method="getProductsHtmlListByCategoryId"/>
+      		<include method="addRelationshipItem"/>
+      		<include method="removeRelationshipItem"/>
+    	</create>
+
+    	<convert converter="bean" match="com.salesmanager.core.entity.orders.*"/>
+    	<convert converter="bean" match="com.salesmanager.core.entity.shipping.ShippingInformation"/>
+   		<convert converter="bean" match="com.salesmanager.core.entity.catalog.ProductPrice"/>
+   		
+   		<convert converter="bean" match="com.salesmanager.core.entity.catalog.Product">
+  			<param name="exclude" value="attributes"/>
+		</convert>
+
+		<convert converter="collection" match="java.util.Collection"/>
+		
+		<!-- portlet -->
+		<create creator="new" javascript="ManagePortlet">
+      		<param name="class" value="com.salesmanager.central.content.ManagePortlet"/>
+      		<include method="movePortlet"/>
+      		<include method="setVisible"/>
+      		<include method="configurePortlet"/>
+    	</create>
+    	<convert converter="bean" match="com.salesmanager.core.entity.reference.Portlet"/>
+    	<convert converter="bean" match="com.salesmanager.core.entity.system.Field"/>
+    	<convert converter="bean" match="com.salesmanager.core.entity.system.DisplayMessage"/>
+
+
+    </allow>
+
+
+</dwr>

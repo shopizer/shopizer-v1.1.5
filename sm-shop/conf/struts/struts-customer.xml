@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+
+
+
+
+    <package name="customer" extends="default" namespace="/profile">
+
+		 <result-types>
+    		 <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 <result-type name="redirect-action" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+    	 </result-types>
+
+		<default-action-ref name="profile" />
+		
+		<!-- API for login -->
+   		<action name="remoteLogon" class="com.salesmanager.customer.profile.LogonAction" method="remoteLogon">
+     		<result name="success">/customer/logon/logonReply.jsp</result>
+   		</action>
+   		
+   		<!-- Standard Login -->
+   		<action name="localLogon" class="com.salesmanager.customer.profile.LogonAction" method="localLogon">
+     		<result name="success" type="redirectAction">
+            	<param name="actionName">profile</param>
+       		</result>
+       		<result name="error" type="redirectAction">
+            	<param name="actionName">landing</param>
+            	<param name="namespace">/</param>
+       		</result>
+   		</action>
+   		
+   		<action name="logout" class="com.salesmanager.customer.profile.LogonAction" method="logout">
+     		<result name="success" type="redirectAction">
+            	<param name="actionName">landing</param>
+            	<param name="namespace">/</param>
+       		</result>
+   		</action>
+   		
+   		<action name="resetPassword" class="com.salesmanager.customer.profile.LogonAction" method="resetPassword">
+     		<result name="success" type="redirectAction">
+            	<param name="actionName">landing</param>
+            	<param name="namespace">/</param>
+       		</result>
+   		</action>
+		
+   		<action name="displayRegistration" class="com.salesmanager.customer.profile.LogonAction" method="displayRegistration">
+     		<result name="success" type="tiles">register</result>
+			<interceptor-ref name="smCatalogStack" />
+   		</action>
+   		
+   		<action name="register" class="com.salesmanager.customer.profile.LogonAction" method="registerCustomer">
+     		<result name="error" type="redirectAction">
+            	<param name="actionName">profile</param>
+       		</result>
+       		<result name="success" type="redirectAction">
+            	<param name="actionName">landing</param>
+            	<param name="namespace">/</param>
+       		</result>
+     		<result name="input" type="tiles">register</result>
+			<interceptor-ref name="smCatalogStack" />
+   		</action>
+   		
+   		<action name="profile" class="com.salesmanager.customer.profile.ProfileAction" method="displayProfile">
+     		<result name="success" type="tiles">profile</result>
+     		<result name="error" type="redirectAction">
+     			  <param name="actionName">profile</param>
+     		</result>
+			<interceptor-ref name="smCustomerStack" />
+   		</action>
+   		
+   		<action name="changePasswordForm" class="com.salesmanager.customer.profile.ProfileAction" method="changePasswordForm">
+     		<result name="success" type="tiles">changePasswordForm</result>
+			<interceptor-ref name="smCustomerStack" />
+   		</action>
+   		
+   		<action name="changePassword" class="com.salesmanager.customer.profile.ProfileAction" method="changePassword">
+     		<result name="success" type="tiles">changePasswordForm</result>
+     		<result name="input" type="tiles">changePasswordForm</result>
+			<interceptor-ref name="smCustomerStack" />
+   		</action>
+   		
+   		<action name="orders" class="com.salesmanager.customer.profile.OrdersAction" method="displayOrders">
+     		<result name="success" type="tiles">orders</result>
+			<interceptor-ref name="smCustomerStack" />
+   		</action>
+
+   		
+   		<action name="changeAddressForm" class="com.salesmanager.customer.profile.AddressAction" method="changeAddressForm">
+     		<result name="success" type="tiles">changeAddressForm</result>
+			<interceptor-ref name="smCustomerStack" />
+   		</action>
+   		
+   		<action name="changeAddress" class="com.salesmanager.customer.profile.AddressAction" method="changeAddress">
+     		<result name="success" type="tiles">changeAddressForm</result>
+			<interceptor-ref name="smCustomerStack" />
+   		</action>
+   		
+   		
+   		<action name="reviews" class="com.salesmanager.customer.profile.ReviewsAction" method="displayReviews">
+     		<result name="success" type="tiles">reviews</result>
+			<interceptor-ref name="smCustomerStack" />
+   		</action>
+
+   		
+   		<action name="removeReview" class="com.salesmanager.customer.profile.ReviewsAction" method="removeReview">
+     		<result name="success" type="redirectAction">reviews</result>
+			<interceptor-ref name="smCustomerStack" />
+   		</action>
+
+
+    </package>
+
+
+
+</struts>

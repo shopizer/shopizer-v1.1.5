@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 1, 2008 9:31:45 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.payment.MerchantPaymentGatewayTrx" table="MERCHANT_PAYMENT_GATEWAY_TRX">
+        <comment></comment>
+        <id name="merchantPaymentGwId" type="long">
+            <column name="MERCHANT_PAYMENT_GW_ID" />
+             <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">GATEWAY_TRX_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="merchantId" type="int">
+            <column name="MERCHANTID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerid" type="long">
+            <column name="CUSTOMERID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderId" type="long">
+            <column name="ORDERS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="merchantPaymentGwMethod" type="string">
+            <column name="MERCHANT_PAYMENT_GW_METHOD" length="50" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantPaymentGwOrderid" type="string">
+            <column name="MERCHANT_PAYMENT_GW_ORDERID" length="100" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantPaymentGwRespcode" type="string">
+            <column name="MERCHANT_PAYMENT_GW_RESPCODE" length="25">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantPaymentGwTrxid" type="string">
+            <column name="MERCHANT_PAYMENT_GW_TRXID" length="100" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantPaymentGwAuthtype" type="string">
+            <column name="MERCHANT_PAYMENT_GW_AUTHTYPE" length="25" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantPaymentGwSent" type="string">
+            <column name="MERCHANT_PAYMENT_GW_SENT" length="65535" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantPaymentGwReceived" type="string">
+            <column name="MERCHANT_PAYMENT_GW_RECEIVED" length="65535" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantPaymentGwSession" type="string">
+            <column name="MERCHANT_PAYMENT_GW_SESSION">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="amount" type="big_decimal">
+            <column name="AMOUNT" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

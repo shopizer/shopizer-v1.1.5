@@ -1,0 +1,18 @@
+.loading-indicator {
+	height: 80px;
+	width: 80px;
+	background: url( '../img/loading.gif' );
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.loading-indicator-bars {
+	background-image: url('../img/loading-bars.gif');
+	width: 150px;
+}
+
+.loading-indicator-overlay {
+	background-color: #FFFFFF;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+}

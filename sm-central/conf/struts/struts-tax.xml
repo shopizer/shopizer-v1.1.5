@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+
+    <package name="tax" extends="default" namespace="/tax">
+    
+    		<result-types>
+    		 	<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 	<result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+        	</result-types>
+
+	        <!-- Tax entry point -->
+
+	        <action name="tax" class="com.salesmanager.central.tax.DisplayTaxAction" method="displayTax">
+				<result name="showoptions" type="tiles">taxoptions</result>
+				<result name="success" type="tiles">edittax</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+
+
+			<!-- Invoked when the user is in custom setup configuration and bring changes -->
+			<action name="configuresetuptax" class="com.salesmanager.central.tax.DisplayTaxAction" method="configureSetupTax">
+				<result name="success" type="tiles">edittax</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+		    <action name="configuretax" class="com.salesmanager.central.tax.DisplayTaxAction" method="configureTax">
+				<result name="success" type="redirectAction">tax</result>
+				<result name="error" type="tiles">taxoptions</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+
+			<!-- Tax Class -->
+			<action name="displaytaxclass" class="com.salesmanager.central.tax.DisplayTaxAction" method="displayTaxClass">
+				<result name="success" type="tiles">taxclass</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="edittaxclass" class="com.salesmanager.central.tax.EditTaxAction" method="editTaxClass">
+				<result name="success" type="tiles">taxclass</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+
+
+		    <!--  Tax Basis -->
+		    <action name="displaytaxbasis" class="com.salesmanager.central.tax.DisplayTaxAction" method="displayTaxBasis">
+				<result name="success" type="tiles">taxbasis</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+		    <action name="edittaxbasis" class="com.salesmanager.central.tax.EditTaxAction" method="editTaxBasis">
+				<result name="success" type="tiles">taxbasis</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+
+			<!-- Tax Rates -->
+		    <action name="showtax" class="com.salesmanager.central.tax.DisplayTaxAction" method="displayTax">
+				<result name="showoptions" type="tiles">taxoptions</result>
+				<result name="success" type="tiles">edittax</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="addtaxline" class="com.salesmanager.central.tax.EditTaxAction" method="addTaxRate">
+				<result name="input" type="tiles">edittax</result>
+				<result name="success" type="tiles">edittax</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+
+			<action name="removetax" class="com.salesmanager.central.tax.DisplayTaxAction" method="removeTax">
+				<result name="success" type="redirectAction">tax</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+			<action name="modifytaxline" class="com.salesmanager.central.tax.EditTaxAction" method="editTaxRate">
+				<result name="success" type="tiles">edittax</result>
+				<result name="input" type="tiles">edittax</result>
+				<interceptor-ref name="smCheckoutRoleStack" />
+			</action>
+
+
+		</package>
+
+
+
+
+</struts>

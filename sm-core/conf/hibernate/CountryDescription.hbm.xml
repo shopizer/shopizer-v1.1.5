@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 31, 2008 10:41:41 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.CountryDescription" table="COUNTRIES_DESCRIPTION">
+        <cache usage="read-only"/>
+        <comment></comment>
+        <composite-id name="id" class="com.salesmanager.core.entity.reference.CountryDescriptionId">
+            <key-property name="countryId" type="int">
+                <column name="COUNTRIES_ID" />
+            </key-property>
+            <key-property name="languageId" type="int">
+                <column name="LANGUAGE_ID" />
+            </key-property>
+        </composite-id>
+        <property name="countryName" type="string">
+            <column name="COUNTRIES_NAME" length="64" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+
+        <many-to-one name="country"
+        	class="com.salesmanager.core.entity.reference.Country"
+        	column="COUNTRIES_ID"
+        	insert="false"
+        	update="false"
+        	not-null="true"/>
+
+    </class>
+</hibernate-mapping>

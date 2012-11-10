@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 14, 2009 10:25:47 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.payment.OffsystemPendingOrder" table="OFFSYSTEM_PENDING_ORDERS">
+        <comment></comment>
+        <id name="offsystemPendingOrderId" type="long">
+            <column name="OFFSYSTEM_PENDING_ORDER_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="payerEmail" type="string">
+            <column name="PAYER_EMAIL" length="100" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="transactionId" type="string">
+            <column name="TRANSACTION_ID" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderId" type="long">
+            <column name="ORDER_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="offsystemModule" type="string">
+            <column name="OFFSYSTEM_MODULE">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantId" type="java.lang.Integer">
+            <column name="MERCHANT_ID">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

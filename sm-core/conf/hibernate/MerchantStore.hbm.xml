@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 19, 2008 9:21:32 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.merchant.MerchantStore" table="MERCHANT_STORE">
+        <comment></comment>
+        <id name="merchantId" type="int">
+
+            <column name="MERCHANTID" />
+            <generator class="assigned" />
+        </id>
+        <property name="storename" type="string">
+            <column name="STORENAME" length="40" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="storephone" type="string">
+            <column name="STOREPHONE" length="15">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="country" type="int">
+            <column name="COUNTRY" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="zone" type="string">
+            <column name="ZONE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="storestateprovince" type="string">
+            <column name="storestateprovince" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="currency" type="string">
+            <column name="CURRENCY" length="6" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="bgcolorcode" type="int">
+            <column name="BGCOLORCODE">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="storelogo" type="string">
+            <column name="STORELOGO">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="storebanner" type="string">
+            <column name="STOREBANNER">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="storeemailaddress" type="string">
+            <column name="STOREEMAILADDRESS" length="96">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="continueshoppingurl" type="string">
+            <column name="CONTINUESHOPPINGURL" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="storeaddress" type="string">
+            <column name="STOREADDRESS" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="storecity" type="string">
+            <column name="STORECITY" length="60">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="storepostalcode" type="string">
+            <column name="STOREPOSTALCODE" length="15">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="supportedlanguages" type="string">
+            <column name="SUPPORTEDLANGUAGES" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="weightunitcode" type="string">
+            <column name="WEIGHTUNITCODE" length="2" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="seizeunitcode" type="string">
+            <column name="SEIZEUNITCODE" length="2" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="inBusinessSince" type="timestamp">
+            <column name="IN_BUSINESS_SINCE" length="0">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="templateModule" type="string">
+            <column name="TEMPLATE_MODULE" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="useCache" type="boolean">
+            <column name="USE_CACHE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="defaultLang" type="string">
+            <column name="DEFAULTLANG" length="2">
+                <comment></comment>
+            </column>
+        </property>
+        
+        
+       <property name="domainName" type="string">
+            <column name="DOMAINNAME">
+                <comment></comment>
+            </column>
+        </property>
+        
+    </class>
+</hibernate-mapping>

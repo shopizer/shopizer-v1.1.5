@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 13, 2008 10:06:00 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.ProductAttribute" table="PRODUCTS_ATTRIBUTES">
+        <comment></comment>
+        <id name="productAttributeId" type="long">
+            <column name="PRODUCTS_ATTRIBUTES_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">PRODUCT_ATTR_ID_NEXT_VAL</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="productId" type="long">
+            <column name="PRODUCTS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="optionId" type="long">
+            <column name="OPTIONS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="optionValueId" type="long">
+            <column name="OPTIONS_VALUES_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="optionValuePrice" type="big_decimal">
+            <column name="OPTIONS_VALUES_PRICE" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productOptionSortOrder" type="int">
+            <column name="PRODUCTS_OPTIONS_SORT_ORDER" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productAttributeIsFree" type="boolean">
+            <column name="PRODUCT_ATTRIBUTE_IS_FREE">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productAttributeWeight" type="big_decimal">
+            <column name="PRODUCTS_ATTRIBUTES_WEIGHT" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="attributeDefault" type="boolean">
+            <column name="ATTRIBUTES_DEFAULT">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="attributeRequired" type="boolean">
+            <column name="ATTRIBUTES_REQUIRED">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="attributeDisplayOnly" type="boolean">
+            <column name="ATTRIBUTES_DISPLAY_ONLY">
+                <comment></comment>
+            </column>
+        </property>
+
+
+        <property name="attributeDiscounted" type="boolean">
+            <column name="ATTRIBUTES_DISCOUNTED">
+                <comment></comment>
+            </column>
+        </property>
+
+
+        <many-to-one name="productOption" class="com.salesmanager.core.entity.catalog.ProductOption" column="OPTIONS_ID" insert="false" update="false"/>
+
+		<many-to-one name="productOptionValue" class="com.salesmanager.core.entity.catalog.ProductOptionValue" column="OPTIONS_VALUES_ID" insert="false" update="false"/>
+
+
+        <!-- <one-to-one name="productAttributeDownload"
+			class="com.salesmanager.core.entity.catalog.ProductAttributesDownload"/>-->
+
+    </class>
+</hibernate-mapping>

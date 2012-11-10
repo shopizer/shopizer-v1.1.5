@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 14, 2009 10:25:47 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.payment.OffsystemNotificationOrder" table="OFFSYSTEM_NOTIFICATION_ORDERS">
+        <comment></comment>
+        <id name="offsystemNotificationOrderId" type="long">
+            <column name="OFFSYSTEM_NOTIF_ORDER_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="offsystemPendingOrderId" type="long">
+            <column name="OFFSYSTEM_PENDING_ORDER_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="payerEmail" type="string">
+            <column name="PAYER_EMAIL" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateReceived" type="timestamp">
+            <column name="DATE_RECEIVED" length="0" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="offsystemModule" type="string">
+            <column name="OFFSYSTEM_MODULE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantId" type="java.lang.Integer">
+            <column name="MERCHANT_ID">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="offsystemStatus" type="java.lang.Integer">
+            <column name="OFFSYSTEM_STATUS">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="offsystemDetails" type="string">
+            <column name="OFFSYSTEM_DETAILS" length="65535">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

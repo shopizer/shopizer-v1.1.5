@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 8, 2009 10:16:40 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+
+    <class name="com.salesmanager.core.entity.customer.CustomerInfo" table="CUSTOMERS_INFO">
+
+        <comment></comment>
+        <id name="customerInfoId" type="long">
+            <column name="CUSTOMERS_INFO_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="customerInfoDateOfLastLogon" type="timestamp">
+            <column name="CUSTOMERS_INFO_DT_LAST_LOGON" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerInfoNumberOfLogon" type="java.lang.Integer">
+            <column name="CUSTOMERS_INFO_NUMBER_LOGONS">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerInfoDateAccountCreated" type="timestamp">
+            <column name="CUSTOMERS_INFO_DT_ACC_CREATED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerInfoDateAccountLastModified" type="timestamp">
+            <column name="CUSTOMERS_INFO_DT_ACC_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="globalProductNotifications" type="java.lang.Integer">
+            <column name="GLOBAL_PRODUCT_NOTIFICATIONS">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

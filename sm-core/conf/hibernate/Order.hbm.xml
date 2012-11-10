@@ -1,0 +1,318 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2007 10:53:57 AM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.orders.Order" table="ORDERS">
+        <comment></comment>
+        <id name="orderId" type="long">
+            <column name="ORDERS_ID" />
+            <generator class="assigned" />
+            <!--
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">ORDER_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        	-->
+        </id>
+        <property name="customerId" type="long">
+            <column name="CUSTOMERS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerName" type="string">
+            <column name="CUSTOMERS_NAME" length="64" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerCompany" type="string">
+            <column name="CUSTOMERS_COMPANY" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerStreetAddress" type="string">
+            <column name="CUSTOMERS_STREET_ADDRESS" length="64" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerSuburb" type="string">
+            <column name="CUSTOMERS_SUBURB" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerCity" type="string">
+            <column name="CUSTOMERS_CITY" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerPostcode" type="string">
+            <column name="CUSTOMERS_POSTCODE" length="10" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerState" type="string">
+            <column name="CUSTOMERS_STATE" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerCountry" type="string">
+            <column name="CUSTOMERS_COUNTRY" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerTelephone" type="string">
+            <column name="CUSTOMERS_TELEPHONE" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerEmailAddress" type="string">
+            <column name="CUSTOMERS_EMAIL_ADDRESS" length="96" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerAddressFormatId" type="int">
+            <column name="CUSTOMERS_ADDRESS_FORMAT_ID">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deliveryName" type="string">
+            <column name="DELIVERY_NAME" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deliveryCompany" type="string">
+            <column name="DELIVERY_COMPANY" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deliveryStreetAddress" type="string">
+            <column name="DELIVERY_STREET_ADDRESS" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deliverySuburb" type="string">
+            <column name="DELIVERY_SUBURB" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deliveryCity" type="string">
+            <column name="DELIVERY_CITY" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deliveryPostcode" type="string">
+            <column name="DELIVERY_POSTCODE" length="10">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deliveryState" type="string">
+            <column name="DELIVERY_STATE" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deliveryCountry" type="string">
+            <column name="DELIVERY_COUNTRY" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="deliveryAddressFormatId" type="int">
+            <column name="DELIVERY_ADDRESS_FORMAT_ID">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="billingName" type="string">
+            <column name="BILLING_NAME" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="billingCompany" type="string">
+            <column name="BILLING_COMPANY" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="billingStreetAddress" type="string">
+            <column name="BILLING_STREET_ADDRESS" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="billingSuburb" type="string">
+            <column name="BILLING_SUBURB" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="billingCity" type="string">
+            <column name="BILLING_CITY" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="billingPostcode" type="string">
+            <column name="BILLING_POSTCODE" length="10">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="billingState" type="string">
+            <column name="BILLING_STATE" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="billingCountry" type="string">
+            <column name="BILLING_COUNTRY" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="billingAddressFormatId" type="int">
+            <column name="BILLING_ADDRESS_FORMAT_ID">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="paymentMethod" type="string">
+            <column name="PAYMENT_METHOD" length="128">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="paymentModuleCode" type="string">
+            <column name="PAYMENT_MODULE_CODE" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="shippingMethod" type="string">
+            <column name="SHIPPING_METHOD" length="128">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="shippingModuleCode" type="string">
+            <column name="SHIPPING_MODULE_CODE" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="couponCode" type="string">
+            <column name="COUPON_CODE" length="32">
+                <comment></comment>
+            </column>
+        </property>
+
+       <property name="cardType" type="string">
+            <column name="CARD_TYPE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="ccOwner" type="string">
+            <column name="CC_OWNER" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="ccNumber" type="string">
+            <column name="CC_NUMBER" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="ccExpires" type="string">
+            <column name="CC_EXPIRES" length="4">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="ccCvv" type="string">
+            <column name="CC_CVV" length="10">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="datePurchased" type="timestamp">
+            <column name="DATE_PURCHASED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderStatus" type="int">
+            <column name="ORDERS_STATUS">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderDateFinished" type="timestamp">
+            <column name="ORDERS_DATE_FINISHED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="currency" type="string">
+            <column name="CURRENCY" length="3">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="currencyValue" type="big_decimal">
+            <column name="CURRENCY_VALUE" precision="14" scale="6">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="total" type="big_decimal">
+            <column name="ORDER_TOTAL" precision="14">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderTax" type="big_decimal">
+            <column name="ORDER_TAX" precision="14">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="ipAddress" type="string">
+            <column name="IP_ADDRESS" length="96">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantId" type="int">
+            <column name="MERCHANTID">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="channel" type="int">
+            <column name="CHANNEL">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="displayInvoicePayments" type="boolean">
+            <column name="DISPLAY_INVOICE_PAYMENTS">
+                <comment></comment>
+            </column>
+        </property>
+
+         
+        <set name="orderProducts"
+				inverse="true"
+				lazy="false"
+				fetch="join">
+				<key column="ORDERS_ID" />
+				<one-to-many class="com.salesmanager.core.entity.orders.OrderProduct"/>
+		</set>
+	    
+
+	   
+	   <set name="orderTotal"
+				inverse="true"
+				lazy="false"
+				order-by="sort_order"
+				fetch="join">
+				<key column="ORDERS_ID" />
+				<one-to-many class="com.salesmanager.core.entity.orders.OrderTotal" />
+		</set>
+		
+
+
+	    <set name="orderHistory"
+				inverse="true"
+				lazy="false"
+				fetch="join">
+				<key column="ORDERS_ID" />
+				<one-to-many class="com.salesmanager.core.entity.orders.OrderStatusHistory" />
+		</set>
+
+
+
+
+    </class>
+</hibernate-mapping>

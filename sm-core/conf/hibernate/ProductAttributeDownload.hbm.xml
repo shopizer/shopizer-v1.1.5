@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 13, 2008 10:06:00 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.ProductAttributeDownload" table="PRODUCTS_ATTRIBUTES_DOWNLOAD">
+        <comment></comment>
+        <id name="productAttributeId" type="long">
+            <column name="PRODUCTS_ATTRIBUTES_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="productAttributeFilename" type="string">
+            <column name="PRODUCTS_ATTRIBUTES_FILENAME" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productAttributeMaxdays" type="java.lang.Integer">
+            <column name="PRODUCTS_ATTRIBUTES_MAXDAYS">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productAttributeMaxcount" type="java.lang.Integer">
+            <column name="PRODUCTS_ATTRIBUTES_MAXCOUNT">
+                <comment></comment>
+            </column>
+        </property>
+        <!--
+        <one-to-one name="productAttribute"
+			class="com.salesmanager.core.entity.catalog.ProductAttribute"
+			constrained="true"/>
+		-->
+    </class>
+</hibernate-mapping>

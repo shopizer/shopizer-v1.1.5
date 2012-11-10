@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2008 8:23:32 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.tax.TaxRate" table="TAX_RATES">
+        <comment></comment>
+        <id name="taxRateId" type="long">
+            <column name="TAX_RATES_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">TAX_RATE_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="merchantId" type="int">
+            <column name="MERCHANTID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="taxZoneId" type="long">
+            <column name="TAX_ZONE_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="taxClassId" type="long">
+            <column name="TAX_CLASS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="taxPriority" type="java.lang.Integer">
+            <column name="TAX_PRIORITY">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="taxRate" type="big_decimal">
+            <column name="TAX_RATE" precision="7" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="piggyback" type="boolean">
+            <column name="PIGGYBACK">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <many-to-one name="zoneToGeoZone" class="com.salesmanager.core.entity.reference.ZoneToGeoZone" column="TAX_ZONE_ID" property-ref="geoZoneId" insert="false" update="false"/>
+        
+        <set name="descriptions"
+				lazy="true"
+				inverse="true"
+				fetch="join">
+				<key column="TAX_RATES_ID" />
+				<one-to-many class="com.salesmanager.core.entity.tax.TaxRateDescription" />
+		</set>
+        
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+ */
+-->
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<!-- menuIndex not implemented all values set to 0 -->
+    
+    <!-- Dashboard, porfile, store -->
+    <definition name="dashboard" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="dashboard" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/dashboard/dashboard.jsp"/>
+    </definition>
+    
+    <definition name="store" template="/layout/adminLayoutBodyLoad.jsp">
+        <put-attribute name="page" value="store" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/profile/store.jsp"/>
+    </definition>
+    
+    <definition name="profile" template="/layout/adminLayoutBodyLoad.jsp">
+        <put-attribute name="page" value="profile" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/profile/profileleftmenu.jsp"/>
+    	<put-attribute name="body" value="/profile/profile.jsp"/>
+    </definition>
+    
+    <definition name="password" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="password" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/profile/profileleftmenu.jsp"/>
+    	<put-attribute name="body" value="/profile/password.jsp"/>
+    </definition>
+    
+    <definition name="user" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="user" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/profile/profileleftmenu.jsp"/>
+    	<put-attribute name="body" value="/profile/user.jsp"/>
+    </definition>
+    
+    <definition name="userlist" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="userlist" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/profile/profileleftmenu.jsp"/>
+    	<put-attribute name="body" value="/profile/userList.jsp"/>
+    </definition>
+    
+    <!-- merchant store -->
+    <definition name="merchantstorelist" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="merchantstore" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/profile/profileleftmenu.jsp"/>
+    	<put-attribute name="body" value="/merchantstore/viewmerchantstore.jsp"/>
+    </definition>
+    
+    <definition name="merchantstoredetails" template="/layout/adminLayoutBodyLoad.jsp">
+        <put-attribute name="page" value="merchantstore" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/profile/profileleftmenu.jsp"/>
+    	<put-attribute name="body" value="/merchantstore/editmerchantstore.jsp"/>
+    </definition>
+    
+    <definition name="storeConfiguration" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="storeConfiguration" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/merchantstore/storefront.jsp"/>
+    </definition>
+    
+ 	<!-- store portlets -->
+    <definition name="storePortlets" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="storePortlets" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/merchantstore/portlets.jsp"/>
+    </definition>
+    
+    <definition name="customStorePortlets" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="customStorePortlets" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/merchantstore/customPortletDetails.jsp"/>
+    </definition>
+    
+    <!-- contact us -->
+    <definition name="contactUs" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="contactUs" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/merchantstore/contactus.jsp"/>
+    </definition>
+    
+    <!-- store pages -->
+    <definition name="storePageList" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="storePageList" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/merchantstore/storePageList.jsp"/>
+    </definition>
+    
+    <definition name="storePageDetails" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="storePageDetails" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/merchantstore/storePageDetails.jsp"/>
+    </definition>
+    
+    <definition name="pageContentList" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="pageContentList" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/merchantstore/pageContentList.jsp"/>
+    </definition>
+    
+    <definition name="pageContentDetails" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="pageContentDetails" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/merchantstore/pageContentDetails.jsp"/>
+    </definition>
+    
+    <definition name="slideDetails" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="slideDetails" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/merchantstore/slideDetails.jsp"/>
+    </definition>
+    
+    <definition name="fileBrowser" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="fileBrowser" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/merchantstore/binView.jsp"/>
+    </definition>
+    
+    <definition name="shoppingcart" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="shoppingcart" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/cartproperties/cartproperties.jsp"/>
+    </definition>
+    
+    <definition name="integrationerrors" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="integrationerrors" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/cartproperties/integrationerrors.jsp"/>
+    </definition>
+    
+    <definition name="featuredItems" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="featuredItems" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/catalog/featuredItems.jsp"/>
+    </definition>
+    
+    <definition name="cartproperties" template="/layout/adminLayout.jsp">
+        <put-attribute name="page" value="cartproperties" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/cartproperties/cartproperties.jsp"/>
+    </definition>
+    
+    <!-- resetPassword -->
+    <definition name="resetPassword" template="/layout/anonymousAdminLayout.jsp">
+    	<put-attribute name="page" value="resetPassword" type="string"/>
+    	<put-attribute name="body" value="/profile/resetPassword.jsp"/>
+	</definition>
+	
+	<definition name="displayPassword" template="/layout/anonymousAdminLayout.jsp">
+    	<put-attribute name="page" value="displayPassword" type="string"/>
+    	<put-attribute name="body" value="/profile/displayPassword.jsp"/>
+	</definition>
+
+    
+    <definition name="global.error" template="/layout/adminLayout.jsp">
+    	<put-attribute name="page" value="global.error" type="string"/>
+        <put-attribute name="menuIndex" value="0" type="string"/>
+        <put-attribute name="menu" value="/components/blank.html"/>
+    	<put-attribute name="body" value="/common/globalError.jsp"/>
+	</definition>
+	
+
+    
+</tiles-definitions>

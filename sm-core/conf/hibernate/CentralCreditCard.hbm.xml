@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2007 7:52:58 AM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.CentralCreditCard" table="CENTRAL_CREDIT_CARDS">
+        <cache usage="read-only"/>
+        <comment></comment>
+        <id name="centralCreditCardId" type="int">
+            <column name="CENTRAL_CREDIT_CARDS_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="centralCreditCardCode" type="string">
+            <column name="CENTRAL_CREDIT_CARDS_CODE" length="3" unique="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="centralCreditCardDescription" type="string">
+            <column name="CENTRAL_CREDIT_CARDS_DESC" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="centralCreditCardPosition" type="byte">
+            <column name="CENTRAL_CREDIT_CARDS_POSITION">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="centralCreditCardVisible" type="boolean">
+            <column name="CENTRAL_CREDIT_CARDS_VISIBLE">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

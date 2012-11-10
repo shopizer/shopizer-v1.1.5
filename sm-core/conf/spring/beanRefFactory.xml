@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+ <beans>
+
+   <bean id="smcore"
+         class="org.springframework.context.support.ClassPathXmlApplicationContext">
+     <constructor-arg>
+       <list>
+         <value>classpath:sm-core-config.xml</value>
+         <value>classpath:sm-core-beans.xml</value>
+         <value>classpath:sm-modules.xml</value>
+         <value>classpath:sm-core-workflow-beans.xml</value>
+       </list>
+     </constructor-arg>
+   </bean>
+
+
+
+ </beans>

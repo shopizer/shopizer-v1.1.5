@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+    <display-name>Central web application</display-name>
+
+  	<welcome-file-list>
+    	<welcome-file>index.jsp</welcome-file>
+  	</welcome-file-list>
+
+
+    <filter>
+        <filter-name>auth</filter-name>
+        <filter-class>com.salesmanager.core.security.CustomAuthFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>auth</filter-name>
+        <url-pattern>*.action</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+
+    <listener>
+	    <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
+    </listener>
+    
+    <listener>
+		<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+    </listener>
+
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>*.action</url-pattern>
+    </filter-mapping>
+    
+    <servlet>
+    	<description>Load resources bundles for shopping templates modules</description>
+    	<display-name>TemplateResourceBundleLoader</display-name>
+    	<servlet-name>TemplateResourceBundleLoader</servlet-name>
+    	<servlet-class>com.salesmanager.central.web.TemplateResourceBundleLoader</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+  	</servlet>
+
+
+    <!-- Enables web services -->
+    <servlet>
+	    <servlet-name>ws</servlet-name>
+	    <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+	    <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+	    <servlet-name>ws</servlet-name>
+	    <url-pattern>/salesManagerCustomerService</url-pattern>
+    </servlet-mapping>
+	<!-- 
+	<servlet-mapping>
+	    <servlet-name>ws</servlet-name>
+	    <url-pattern>/salesManagerOrderService</url-pattern>
+	</servlet-mapping> 
+	-->    
+    
+	<servlet-mapping>
+	    <servlet-name>ws</servlet-name>
+	    <url-pattern>/salesManagerInvoiceService</url-pattern>
+	</servlet-mapping> 
+
+	<servlet>
+        <servlet-name>dwr-invoker</servlet-name>
+        <servlet-class>uk.ltd.getahead.dwr.DWRServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <!-- MUST BE SET TO FALSE -->
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>logLevel</param-name>
+            <param-value>WARN</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dwr-invoker</servlet-name>
+        <url-pattern>/dwr/*</url-pattern>
+    </servlet-mapping>
+
+
+  <servlet>
+    <description>Load the application menus</description>
+    <display-name>ReferenceLoaderServlet</display-name>
+    <servlet-name>ReferenceLoaderServlet</servlet-name>
+    <servlet-class>com.salesmanager.central.web.ReferenceLoaderServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReferenceLoaderServlet</servlet-name>
+    <url-pattern>/ReferenceLoaderServlet</url-pattern>
+  </servlet-mapping>
+  
+  <context-param> 
+	<param-name> org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG </param-name> 
+	<param-value>/WEB-INF/tiles-store.xml,/WEB-INF/tiles-integration.xml,/WEB-INF/tiles-catalog.xml,/WEB-INF/tiles-payment.xml,/WEB-INF/tiles-shipping.xml,/WEB-INF/tiles-invoice.xml,/WEB-INF/tiles-tax.xml,/WEB-INF/tiles-order.xml,/WEB-INF/tiles-customer.xml</param-value> 
+  </context-param>
+
+
+	<!--
+
+	 
+      <security-constraint>
+        <web-resource-collection>
+
+            <web-resource-name>protected-resources</web-resource-name>
+            <url-pattern>/central/*</url-pattern>
+
+            <http-method>HEAD</http-method>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+
+        </web-resource-collection>
+
+
+        <user-data-constraint>
+
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+
+    </security-constraint>
+    
+	-->
+
+</web-app>

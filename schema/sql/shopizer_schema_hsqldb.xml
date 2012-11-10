@@ -1,0 +1,1454 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<database xmlns="http://db.apache.org/ddlutils/schema/1.1" name="salesmanager">
+  <table name="CATEGORIES" description="">
+    <column name="CATEGORIES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CATEGORIES_IMAGE" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="PARENT_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="SORT_ORDER" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="CATEGORIES_STATUS" primaryKey="false" required="false" type="BIT" default="1" autoIncrement="false" />
+    <column name="VISIBLE" primaryKey="false" required="false" type="BIT" default="1" autoIncrement="false" />
+    <column name="REFCATEGORYID" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="REFCATEGORYLEVEL" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="REFCATEGORYNAME" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false" />
+    <column name="REFCATEGORYPARENTID" primaryKey="false" required="false" type="VARCHAR" size="11" autoIncrement="false" />
+    <column name="REFEXPIRED" primaryKey="false" required="false" type="VARCHAR" size="5" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="DEPTH" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="LINEAGE" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <index name="IDX_PARENT_ID_CAT_ID_SM">
+      <index-column name="PARENT_ID" />
+      <index-column name="CATEGORIES_ID" />
+    </index>
+    <index name="IDX_STATUS_CAT_SM">
+      <index-column name="CATEGORIES_STATUS" />
+    </index>
+    <index name="IDX_SORT_ORDER_SM">
+      <index-column name="SORT_ORDER" />
+    </index>
+    <index name="IDX_MERCHANT_ID_SM">
+      <index-column name="MERCHANTID" />
+    </index>
+    <index name="IDX_MERCHANT_ID_LINEAGE">
+      <index-column name="MERCHANTID" />
+      <index-column name="LINEAGE" />
+    </index>
+  </table>
+  <table name="CATEGORIES_DESCRIPTION" description="">
+    <column name="CATEGORIES_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="LANGUAGE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="CATEGORIES_NAME" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="CATEGORIES_DESCRIPTION" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="SE_URL_SRC" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false" />
+    <column name="SE_URL" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false" />
+    <column name="METATAG_TITLE" primaryKey="false" required="false" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="METATAG_KEYWORDS" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="METATAG_DESCRIPTION" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="CATEGORIES_TITLE" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <index name="IDX_CATEGORIES_NAME_SM">
+      <index-column name="CATEGORIES_NAME" />
+    </index>
+    <index name="IDX_CATEGORIES_ID_SM">
+      <index-column name="CATEGORIES_ID" />
+    </index>
+    <index name="IDX_CATEGORIES_SE_SM">
+      <index-column name="SE_URL" />
+    </index>
+  </table>
+  <table name="CENTRAL_CHANNELS" description="">
+    <column name="CENTRAL_CHANNELS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="CENTRAL_CHANNEL_CODE" primaryKey="false" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="CENTRAL_CHANNEL_DESCRIPTION" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false" />
+    <column name="CENTRAL_CHANNEL_POSITION" primaryKey="false" required="false" type="TINYINT" size="3" default="0" autoIncrement="false" />
+    <column name="CENTRAL_CHANNEL_VISIBLE" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <unique name="UNQ_CHANNEL_GROUP_KEY">
+      <unique-column name="CENTRAL_CHANNEL_CODE" />
+    </unique>
+  </table>
+  <table name="CENTRAL_COUNTRIES_STATUS" description="">
+    <column name="CENTRAL_COUNTRIES_STATUS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="COUNTRIES_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CENTRAL_COUNTRIES_STATUS_CODE" primaryKey="false" required="false" type="INTEGER" size="10" default="-1" autoIncrement="false" />
+    <column name="CENTRAL_COUNTRIES_CODE" primaryKey="false" required="false" type="CHAR" size="2" default="0" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="true" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <index name="IDX_CENTRAL_COUNTRIES_STATUS">
+      <index-column name="CENTRAL_COUNTRIES_STATUS_CODE" />
+    </index>
+  </table>
+  <table name="CENTRAL_CREDIT_CARDS" description="">
+    <column name="CENTRAL_CREDIT_CARDS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="CENTRAL_CREDIT_CARDS_CODE" primaryKey="false" required="false" type="VARCHAR" size="3" default="1" autoIncrement="false" />
+    <column name="CENTRAL_CREDIT_CARDS_DESC" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false" />
+    <column name="CENTRAL_CREDIT_CARDS_POSITION" primaryKey="false" required="false" type="TINYINT" size="3" default="0" autoIncrement="false" />
+    <column name="CENTRAL_CREDIT_CARDS_VISIBLE" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <unique name="UNQ_CCARD_KEY">
+      <unique-column name="CENTRAL_CREDIT_CARDS_CODE" />
+    </unique>
+  </table>
+  <table name="CENTRAL_FUNCTION" description="">
+    <column name="CENTRAL_FUNCTION_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="CENTRAL_FUNCTION_CODE" primaryKey="false" required="false" type="VARCHAR" size="10" default="" autoIncrement="false" />
+    <column name="CENTRAL_GROUP_CODE" primaryKey="false" required="false" type="VARCHAR" size="10" default="" autoIncrement="false" />
+    <column name="CENTRAL_FUNCTION_DESCRIPTION" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false" />
+    <column name="CENTRAL_FUNCTION_POSITION" primaryKey="false" required="false" type="TINYINT" size="3" default="0" autoIncrement="false" />
+    <column name="CENTRAL_FUNCTION_VISIBLE" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="CENTRAL_FUNCTION_URL" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false" />
+    <column name="CENTRAL_FUNCTION_NEW" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="CENTRAL_FUNCTION_NEW_UNTIL" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="ROLE" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <unique name="UNQ_CENTRAL_FUNCTION_KEY">
+      <unique-column name="CENTRAL_FUNCTION_CODE" />
+    </unique>
+    <index name="IDX_KEY_CENTRAL_FUNCTION">
+      <index-column name="CENTRAL_GROUP_CODE" />
+    </index>
+  </table>
+  <table name="CENTRAL_GROUP" description="">
+    <column name="CENTRAL_GROUP_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="CENTRAL_GROUP_CODE" primaryKey="false" required="true" type="VARCHAR" size="10" default="" autoIncrement="false" />
+    <column name="CENTRAL_GROUP_DESCRIPTION" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false" />
+    <column name="CENTRAL_GROUP_POSITION" primaryKey="false" required="true" type="TINYINT" size="3" default="0" autoIncrement="false" />
+    <column name="CENTRAL_GROUP_VISIBLE" primaryKey="false" required="true" type="BIT" default="0" autoIncrement="false" />
+    <column name="CENTRAL_GROUP_NEW" primaryKey="false" required="true" type="BIT" default="0" autoIncrement="false" />
+    <column name="CENTRAL_GROUP_NEW_UNTIL" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <unique name="UNQ_CENTRAL_GROUP_KEY">
+      <unique-column name="CENTRAL_GROUP_CODE" />
+    </unique>
+  </table>
+  <table name="CENTRAL_INTEGRATION_ERRORS" description="">
+    <column name="CENTRAL_INTEGRATION_ERRORS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CENTRAL_INTEGRATION_ERR_DESC" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <index name="IDX_CENTRAL_INT_ERRORS">
+      <index-column name="MERCHANTID" />
+    </index>
+  </table>
+  <table name="CENTRAL_MEASURE_UNITS" description="">
+    <column name="CENTRAL_MEASURE_UNITS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="CENTRAL_MEASURE_UNITS_TYPE" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CENTRAL_MEASURE_UNITS_CODE" primaryKey="false" required="true" type="CHAR" size="5" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <index name="IDX_CENTRAL_MEASURE_UNITS_CODE">
+      <index-column name="CENTRAL_MEASURE_UNITS_CODE" />
+    </index>
+  </table>
+  <table name="CENTRAL_REG_ASSOCIATION" description="">
+    <column name="CENTRAL_REG_ASSOCIATION_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANT_REGISTRATION_DEF_CODE" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CENTRAL_GROUP_CODE" primaryKey="false" required="false" type="VARCHAR" size="10" default="" autoIncrement="false" />
+    <column name="CENTRAL_FUNCTION_CODE" primaryKey="false" required="false" type="VARCHAR" size="10" default="" autoIncrement="false" />
+    <column name="PROMOTION_CODE" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <unique name="UNQ_CENTRAL_REG_ASS_KEY">
+      <unique-column name="MERCHANT_REGISTRATION_DEF_CODE" />
+      <unique-column name="CENTRAL_GROUP_CODE" />
+      <unique-column name="CENTRAL_FUNCTION_CODE" />
+      <unique-column name="PROMOTION_CODE" />
+    </unique>
+    <index name="IDX_KEY_CENTRAL_FUNCTION_1">
+      <index-column name="MERCHANT_REGISTRATION_DEF_CODE" />
+      <index-column name="CENTRAL_GROUP_CODE" />
+    </index>
+    <index name="IDX_KEY_CENTRAL_FUNCTION_2">
+      <index-column name="MERCHANT_REGISTRATION_DEF_CODE" />
+      <index-column name="CENTRAL_FUNCTION_CODE" />
+    </index>
+  </table>
+  <table name="CENTRAL_SEQUENCER" description="">
+    <column name="CENTRAL_SEQUENCER_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUST_BASKET_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUST_BASKET_ATTR_ID_NEXT_VAL" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MERCHANT_CONF_ID_NEXT_VAL" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MERCHANT_USER_INFO_ID_NEXT_VAL" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CATEGORY_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCT_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCT_OPTIONS_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCT_ATTR_ID_NEXT_VAL" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_ID_NEXT_VAL" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="GEO_ZONE_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="TAX_RATE_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCT_OPTION_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCT_OPT_VALUES_ID_NEXT_VAL" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDER_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUSTOMER_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDER_TOTAL_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDER_PRODUCT_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDER_PRD_PRICE_ID_NEXT_VAL" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDER_PRODUCT_ATTR_ID_NEXT_VAL" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDER_PRODUCT_DL_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_PRD_ID_NEXT_VAL" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDER_ACCNT_PRD_PRICE_ID_N_VAL" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDER_ACCNT_PRD_ATTR_ID_N_VAL" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCT_SPECIAL_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="DYNAMIC_LABEL_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="GATEWAY_TRX_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="REVIEW_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MERCHANTID_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CRA_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CIE_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MANUFACTURERS_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MRD_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MUR_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="GTGZ_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="STATUS_HIST_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="RELATIONSHIP_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="TAXCLASS_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PORTLET_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PAGE_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PAGEFLOW_ID_NEXT_VALUE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+  </table>
+  <table name="CORE_MODULES_SERVICES" description="">
+    <column name="CORE_MD_SERVICES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="CORE_MD_SERVICES_CODE" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CORE_MD_NAME" primaryKey="false" required="true" type="VARCHAR" size="60" autoIncrement="false" />
+    <column name="COUNTRY_ISO_CODE_2" primaryKey="false" required="true" type="CHAR" size="2" default="XX" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_SUBTYPE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_DESCRIPTION" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_LOGO_PATH" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_POSITION" primaryKey="false" required="false" type="TINYINT" size="3" default="0" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_VISIBLE" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_NEW" primaryKey="false" required="false" type="BIT" default="1" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_URL" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_DEV_PROTOCOL" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_DEV_DOMAIN" primaryKey="false" required="false" type="VARCHAR" size="75" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_DEV_PORT" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_DEV_ENV" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_PROD_PROTOCOL" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_PROD_DOMAIN" primaryKey="false" required="false" type="VARCHAR" size="75" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_PROD_PORT" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_PROD_ENV" primaryKey="false" required="false" type="VARCHAR" size="75" autoIncrement="false" />
+    <column name="CORE_MD_SERVICES_CONFIGURABLE" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <index name="IDX_CORE_MODULES_SERVICES">
+      <index-column name="CORE_MD_SERVICES_CODE" />
+      <index-column name="COUNTRY_ISO_CODE_2" />
+      <index-column name="CORE_MD_NAME" />
+    </index>
+  </table>
+  <table name="COUNTRIES" description="">
+    <column name="COUNTRIES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="COUNTRIES_ISO_CODE_2" primaryKey="false" required="true" type="CHAR" size="2" default="" autoIncrement="false" />
+    <column name="COUNTRIES_ISO_CODE_3" primaryKey="false" required="true" type="CHAR" size="3" default="" autoIncrement="false" />
+    <column name="COUNTRIES_GROUP_CODE" primaryKey="false" required="false" type="CHAR" size="3" default="" autoIncrement="false" />
+    <column name="ADDRESS_FORMAT_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="SUPPORTED" primaryKey="false" required="true" type="BIT" default="0" autoIncrement="false" />
+    <index name="IDX_ADDRESS_FORMAT_ID_SM">
+      <index-column name="ADDRESS_FORMAT_ID" />
+    </index>
+    <index name="IDX_ISO_2_SM">
+      <index-column name="COUNTRIES_ISO_CODE_2" />
+    </index>
+    <index name="IDX_ISO_3_SM">
+      <index-column name="COUNTRIES_ISO_CODE_3" />
+    </index>
+    <index name="IDX_CODE_SM">
+      <index-column name="COUNTRIES_GROUP_CODE" />
+    </index>
+  </table>
+  <table name="COUNTRIES_DESCRIPTION" description="">
+    <column name="COUNTRIES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="LANGUAGE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="COUNTRIES_NAME" primaryKey="false" required="true" type="VARCHAR" size="64" default="" autoIncrement="false" />
+    <index name="IDX_COUNTRIES_NAME_SM">
+      <index-column name="COUNTRIES_NAME" />
+    </index>
+  </table>
+  <table name="CURRENCIES" description="">
+    <column name="CURRENCIES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="TITLE" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="CODE" primaryKey="false" required="true" type="CHAR" size="3" default="" autoIncrement="false" />
+    <column name="SYMBOL" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false" />
+    <column name="SUFFIX" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false" />
+    <column name="DECIMAL_POINT" primaryKey="false" required="false" type="CHAR" size="1" autoIncrement="false" />
+    <column name="THOUSANDS_POINT" primaryKey="false" required="false" type="CHAR" size="1" autoIncrement="false" />
+    <column name="DECIMAL_PLACES" primaryKey="false" required="false" type="CHAR" size="1" autoIncrement="false" />
+    <column name="VALUE" primaryKey="false" required="false" type="REAL" size="13,8" autoIncrement="false" />
+    <column name="LAST_UPDATED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="SUPPORTED" primaryKey="false" required="true" type="BIT" default="0" autoIncrement="false" />
+  </table>
+  <table name="CUSTOMERS" description="">
+    <column name="CUSTOMERS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CUSTOMERS_GENDER" primaryKey="false" required="false" type="CHAR" size="1" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_FIRSTNAME" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_LASTNAME" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_DOB" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="CUSTOMERS_EMAIL_ADDRESS" primaryKey="false" required="true" type="VARCHAR" size="96" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_NICK" primaryKey="false" required="false" type="VARCHAR" size="96" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_TELEPHONE" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_ADDRESS" primaryKey="false" required="true" type="VARCHAR" size="256" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_POSTALCODE" primaryKey="false" required="true" type="VARCHAR" size="20" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_CITY" primaryKey="false" required="true" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_COMPANY" primaryKey="false" required="false" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_STATE" primaryKey="false" required="false" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_ZONE" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CUSTOMERS_COUNTRY" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CUSTOMERS_BILLING_FIRSTNAME" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="CUSTOMERS_BILLING_LASTNAME" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="CUSTOMERS_BILLING_COMPANY" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false" />
+    <column name="CUSTOMERS_BILLING_ADDRESS" primaryKey="false" required="false" type="VARCHAR" size="256" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_BILLING_POSTALCODE" primaryKey="false" required="false" type="VARCHAR" size="20" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_BILLING_CITY" primaryKey="false" required="false" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_BILLING_STATE" primaryKey="false" required="false" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_BILLING_ZONE" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUSTOMERS_BILLING_COUNTRY" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUSTOMERS_FAX" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="CUSTOMERS_PASSWORD" primaryKey="false" required="false" type="VARCHAR" size="40" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_NEWSLETTER" primaryKey="false" required="false" type="CHAR" size="1" autoIncrement="false" />
+    <column name="CUSTOMERS_GROUP_PRICING" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUSTOMERS_EMAIL_FORMAT" primaryKey="false" required="false" type="VARCHAR" size="4" default="TEXT" autoIncrement="false" />
+    <column name="CUSTOMERS_AUTHORIZATION" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUSTOMERS_REFERRAL" primaryKey="false" required="false" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_ANONYMOUS" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="CUSTOMERS_LANG" primaryKey="false" required="true" type="VARCHAR" size="2" default="EN" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_EMAIL_ADDRESS_SM">
+      <index-column name="CUSTOMERS_EMAIL_ADDRESS" />
+    </index>
+    <index name="IDX_REFERRAL_SM">
+      <index-column name="CUSTOMERS_REFERRAL" />
+    </index>
+    <index name="IDX_GRP_PRICING_SM">
+      <index-column name="CUSTOMERS_GROUP_PRICING" />
+    </index>
+    <index name="IDX_NICK_SM">
+      <index-column name="CUSTOMERS_NICK" />
+    </index>
+    <index name="IDX_LAST_NAME_SM">
+      <index-column name="CUSTOMERS_LASTNAME" />
+    </index>
+    <index name="IDX_NEWSLETTER_SM">
+      <index-column name="CUSTOMERS_NEWSLETTER" />
+    </index>
+    <index name="IDX_MID_SM_CUST">
+      <index-column name="MERCHANTID" />
+    </index>
+    <index name="IDX_COMPANY_SM">
+      <index-column name="MERCHANTID" />
+      <index-column name="CUSTOMERS_COMPANY" />
+    </index>
+    <index name="IDX_COUNTRY_SM">
+      <index-column name="CUSTOMERS_COUNTRY" />
+    </index>
+  </table>
+  <table name="CUSTOMERS_BASKET" description="">
+    <column name="CUSTOMERS_BASKET_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CUSTOMERS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_ID" primaryKey="false" required="true" type="VARCHAR" size="255" autoIncrement="false" />
+    <column name="CUSTOMERS_BASKET_QUANTITY" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="FINAL_PRICE" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="CUSTOMERS_BASKET_DATE_ADDED" primaryKey="false" required="false" type="VARCHAR" size="8" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_CUST_ID_BASK_SM">
+      <index-column name="CUSTOMERS_ID" />
+    </index>
+  </table>
+  <table name="CUSTOMERS_BASKET_ATTRIBUTES" description="">
+    <column name="CUSTOMERS_BASKET_ATTRIBUTES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CUSTOMERS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_ID" primaryKey="false" required="true" type="VARCHAR" size="255" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_ID" primaryKey="false" required="true" type="VARCHAR" size="64" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_VALUE_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_VALUE_TEXT" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_SORT_ORDER" primaryKey="false" required="true" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_CUST_ID_PROD_ID_SM">
+      <index-column name="CUSTOMERS_ID" />
+      <index-column name="PRODUCTS_ID" />
+    </index>
+  </table>
+  <table name="CUSTOMERS_INFO" description="">
+    <column name="CUSTOMERS_INFO_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUSTOMERS_INFO_DT_LAST_LOGON" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="CUSTOMERS_INFO_NUMBER_LOGONS" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CUSTOMERS_INFO_DT_ACC_CREATED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="CUSTOMERS_INFO_DT_ACC_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="GLOBAL_PRODUCT_NOTIFICATIONS" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+  </table>
+  <table name="CUSTOMERS_WISHLIST" description="">
+    <column name="PRODUCTS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUSTOMERS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_MODEL" primaryKey="false" required="false" type="VARCHAR" size="13" autoIncrement="false" />
+    <column name="PRODUCTS_NAME" primaryKey="false" required="true" type="VARCHAR" size="64" default="" autoIncrement="false" />
+    <column name="PRODUCTS_PRICE" primaryKey="false" required="true" type="DECIMAL" size="8,2" default="0.00" autoIncrement="false" />
+    <column name="FINAL_PRICE" primaryKey="false" required="true" type="DECIMAL" size="8,2" default="0.00" autoIncrement="false" />
+    <column name="PRODUCTS_QUANTITY" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="WISHLIST_NAME" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+  </table>
+  <table name="DYNAMIC_LABEL" description="">
+    <column name="DYNAMIC_LABEL_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANT_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="TITLE" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false" />
+    <column name="IMAGE" primaryKey="false" required="false" type="VARCHAR" size="60" autoIncrement="false" />
+    <column name="SECTION_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="VISIBLE" primaryKey="false" required="false" type="BIT" default="1" autoIncrement="false" />
+    <column name="SORT_ORDER" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="POSITION" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_DYNAMIC_LABEL_ID_SM">
+      <index-column name="MERCHANT_ID" />
+      <index-column name="SECTION_ID" />
+    </index>
+    <index name="IDX_DYNAMIC_LABEL_TL_SM">
+      <index-column name="MERCHANT_ID" />
+      <index-column name="TITLE" />
+    </index>
+    <index name="IDX_DYNAMIC_LABEL_ST_SM">
+      <index-column name="MERCHANT_ID" />
+      <index-column name="SECTION_ID" />
+    </index>
+  </table>
+  <table name="DYNAMIC_LABEL_DESCRIPTION" description="">
+    <column name="DYNAMIC_LABEL_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="LANGUAGE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="DYNAMIC_LABEL_TITLE" primaryKey="false" required="true" type="VARCHAR" size="100" autoIncrement="false" />
+    <column name="SE_URL" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false" />
+    <column name="DYNAMIC_LABEL_DESCRIPTION" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+  </table>
+  <table name="EVENT" description="">
+    <column name="EVENT_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="EVENT_TYPE_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MERCHANT_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_EVENT_TYPE">
+      <index-column name="EVENT_TYPE_ID" />
+    </index>
+    <index name="IDX_EVENT_MERCHANT">
+      <index-column name="MERCHANT_ID" />
+    </index>
+  </table>
+  <table name="EVENT_ENTITY_TRIGGER" description="">
+    <column name="EVENT_ENTITY_TRIGGER_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="EVENT_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ENTITY_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="EVENT_TYPE" primaryKey="false" required="true" type="VARCHAR" size="60" default="" autoIncrement="false" />
+    <index name="IDX_EVENT_TRIGGER">
+      <index-column name="EVENT_ID" />
+    </index>
+  </table>
+  <table name="EVENT_NOTIFICATION" description="">
+    <column name="EVENT_NOTIFICATION_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="EVENT_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="EVENT_NAME" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="EVENT_TITLE" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="EVENT_TEXT" primaryKey="false" required="true" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="EVENT_NOTIF_SCHEDULE_DAY" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="EVENT_NOTIF_SCHEDULE_TIME" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="EVENT_NOTIF_FREQUENCE" primaryKey="false" required="false" type="VARCHAR" size="20" autoIncrement="false" />
+    <column name="EVENT_NOTIF_DATE" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="EVENT_NOTIF_DATE_TIME" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="EVENT_NOTIF_SUBSC_ADDDAYS" primaryKey="false" required="false" type="VARCHAR" size="3" autoIncrement="false" />
+    <index name="IDX_EVENT_NOTIF">
+      <index-column name="EVENT_ID" />
+    </index>
+  </table>
+  <table name="EVENT_SUBSCRIBTION" description="">
+    <column name="EVENT_SUBSCRIBTION_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="EVENT_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUSTOMER_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="OPTIN_FLAG" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <index name="IDX_EVENT_SUBSCR">
+      <index-column name="EVENT_ID" />
+    </index>
+  </table>
+  <table name="EVENT_TYPE" description="">
+    <column name="EVENT_TYPE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="EVENT_TYPE_MODULE" primaryKey="false" required="false" type="VARCHAR" size="60" default="" autoIncrement="false" />
+    <column name="EVENT_APPLY_TO_ALL_USERS" primaryKey="false" required="false" type="BIT" default="1" autoIncrement="false" />
+    <column name="EVENT_HAS_NOTIFICATION" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+  </table>
+  <table name="EVENT_TYPE_ENTITY_TYPE" description="">
+    <column name="EVENT_TYPE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ENTITY_TYPE" primaryKey="false" required="true" type="VARCHAR" size="60" default="" autoIncrement="false" />
+  </table>
+  <table name="FILES_HISTORY" description="">
+    <column name="MERCHANTID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="FILEID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="FILESIZE" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="true" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="DATE_DELETED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ACCOUNTED_DATE" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="DOWNLOAD_COUNT" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+  </table>
+  <table name="GEO_ZONES" description="">
+    <column name="GEO_ZONE_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="GEO_ZONE_NAME" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="GEO_ZONE_DESCRIPTION" primaryKey="false" required="false" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <index name="IDX_GEO_ZONES_MERCH_ID_SM">
+      <index-column name="MERCHANTID" />
+    </index>
+  </table>
+  <table name="GEO_ZONES_TAX_TEMPLATE" description="">
+    <column name="GEO_ZONE_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="GEO_ZONE_NAME" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="GEO_ZONE_DESCRIPTION" primaryKey="false" required="false" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="SCHEMEID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+  </table>
+  <table name="LANGUAGES" description="">
+    <column name="LANGUAGES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="NAME" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="CODE" primaryKey="false" required="true" type="CHAR" size="2" default="" autoIncrement="false" />
+    <column name="IMAGE" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="DIRECTORY" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="SORT_ORDER" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <index name="IDX_LANGUAGES_NAME_SM">
+      <index-column name="NAME" />
+    </index>
+  </table>
+  <table name="MANUFACTURERS" description="">
+    <column name="MANUFACTURERS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MANUFACTURERS_NAME" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="MANUFACTURERS_IMAGE" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <index name="IDX_MFG_NAME_SM">
+      <index-column name="MANUFACTURERS_NAME" />
+    </index>
+  </table>
+  <table name="MANUFACTURERS_INFO" description="">
+    <column name="MANUFACTURERS_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="LANGUAGES_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MANUFACTURERS_URL" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="URL_CLICKED" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="DATE_LAST_CLICK" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+  </table>
+  <table name="MERCHANT_CONFIGURATION" description="">
+    <column name="CONFIGURATION_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANT_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CONFIGURATION_KEY" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="CONFIGURATION_VALUE" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="CONFIGURATION_VALUE1" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="CONFIGURATION_VALUE2" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="CONFIGURATION_MODULE" primaryKey="false" required="false" type="VARCHAR" size="60" default="" autoIncrement="false" />
+    <column name="SORT_ORDER" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_KEY_VALUE2_MERCH">
+      <index-column name="MERCHANT_ID" />
+      <index-column name="CONFIGURATION_KEY" />
+    </index>
+    <index name="IDX_KEY_VALUE1_MERCH">
+      <index-column name="MERCHANT_ID" />
+    </index>
+    <index name="IDX_KEY_MODULE_MERCH">
+      <index-column name="CONFIGURATION_MODULE" />
+    </index>
+  </table>
+  <table name="MERCHANT_ID" description="">
+    <column name="MERCHANTID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+  </table>
+  <table name="MERCHANT_PAYMENT_GATEWAY_TRX" description="">
+    <column name="MERCHANT_PAYMENT_GW_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUSTOMERID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDERS_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANT_PAYMENT_GW_METHOD" primaryKey="false" required="true" type="VARCHAR" size="50" default="" autoIncrement="false" />
+    <column name="MERCHANT_PAYMENT_GW_ORDERID" primaryKey="false" required="true" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="MERCHANT_PAYMENT_GW_RESPCODE" primaryKey="false" required="false" type="VARCHAR" size="25" autoIncrement="false" />
+    <column name="MERCHANT_PAYMENT_GW_TRXID" primaryKey="false" required="true" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="MERCHANT_PAYMENT_GW_AUTHTYPE" primaryKey="false" required="true" type="VARCHAR" size="25" default="" autoIncrement="false" />
+    <column name="MERCHANT_PAYMENT_GW_SENT" primaryKey="false" required="true" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="MERCHANT_PAYMENT_GW_RECEIVED" primaryKey="false" required="true" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="MERCHANT_PAYMENT_GW_SESSION" primaryKey="false" required="false" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="AMOUNT" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <index name="IDX_PAYMENT_GATEWAY_MERCH">
+      <index-column name="MERCHANTID" />
+    </index>
+    <index name="IDX_PAYMENT_GATEWAY_TRX_CLIENT">
+      <index-column name="MERCHANTID" />
+      <index-column name="CUSTOMERID" />
+    </index>
+    <index name="IDX_PAYMENT_GATEWAY_TRX_GORDER">
+      <index-column name="MERCHANTID" />
+      <index-column name="MERCHANT_PAYMENT_GW_ORDERID" />
+    </index>
+    <index name="IDX_PAYMENT_GATEWAY_TRX_ORDER">
+      <index-column name="MERCHANTID" />
+      <index-column name="ORDERS_ID" />
+    </index>
+  </table>
+  <table name="MERCHANT_REGISTRATION" description="">
+    <column name="MERCHANTID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MERCHANT_REGISTRATION_DEF_CODE" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PROMO_CODE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CC_TYPE" primaryKey="false" required="false" type="VARCHAR" size="20" autoIncrement="false" />
+    <column name="CC_OWNER" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="CC_NUMBER" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false" />
+    <column name="CC_EXPIRES" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false" />
+    <column name="CC_CVV" primaryKey="false" required="false" type="LONGVARBINARY" size="65535" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="PROMO_CODE_EXPIRY" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+  </table>
+  <table name="MERCHANT_REGISTRATION_DEF" description="">
+    <column name="MERCHANT_REG_DEF_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANT_REG_DEF_CODE" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANT_REG_DEF_TYPE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MERCHANT_REG_DEF_ONE_TIME" primaryKey="false" required="true" type="DECIMAL" size="6,4" default="0.0000" autoIncrement="false" />
+    <column name="MERCHANT_REG_DEF_MONTHLY" primaryKey="false" required="true" type="DECIMAL" size="6,4" default="0.0000" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <index name="IDX_MERCHANT_REGISTRATION_DEF">
+      <index-column name="MERCHANT_REG_DEF_CODE" />
+    </index>
+  </table>
+  <table name="MERCHANT_STORE" description="">
+    <column name="MERCHANTID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="STORENAME" primaryKey="false" required="true" type="VARCHAR" size="40" default="" autoIncrement="false" />
+    <column name="COUNTRY" primaryKey="false" required="true" type="INTEGER" size="10" default="223" autoIncrement="false" />
+    <column name="ZONE" primaryKey="false" required="true" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="STORESTATEPROVINCE" primaryKey="false" required="false" type="VARCHAR" size="64" default="" autoIncrement="false" />
+    <column name="CURRENCY" primaryKey="false" required="true" type="VARCHAR" size="6" default="" autoIncrement="false" />
+    <column name="BGCOLORCODE" primaryKey="false" required="false" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="STORELOGO" primaryKey="false" required="false" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="STOREBANNER" primaryKey="false" required="false" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="STOREPHONE" primaryKey="false" required="false" type="VARCHAR" size="15" default="" autoIncrement="false" />
+    <column name="STOREEMAILADDRESS" primaryKey="false" required="false" type="VARCHAR" size="96" default="" autoIncrement="false" />
+    <column name="CONTINUESHOPPINGURL" primaryKey="false" required="false" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="STOREADDRESS" primaryKey="false" required="false" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="STORECITY" primaryKey="false" required="false" type="VARCHAR" size="60" default="" autoIncrement="false" />
+    <column name="STOREPOSTALCODE" primaryKey="false" required="false" type="VARCHAR" size="15" default="" autoIncrement="false" />
+    <column name="SUPPORTEDLANGUAGES" primaryKey="false" required="false" type="VARCHAR" size="20" autoIncrement="false" />
+    <column name="WEIGHTUNITCODE" primaryKey="false" required="true" type="CHAR" size="2" default="LB" autoIncrement="false" />
+    <column name="SEIZEUNITCODE" primaryKey="false" required="true" type="CHAR" size="2" default="IN" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="IN_BUSINESS_SINCE" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="TEMPLATE_MODULE" primaryKey="false" required="false" type="VARCHAR" size="64" default="BASETEMPLATE" autoIncrement="false" />
+    <column name="INVOICE_MODULE" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="USE_CACHE" primaryKey="false" required="true" type="BIT" default="1" autoIncrement="false" />
+    <column name="DEFAULTLANG" primaryKey="false" required="false" type="CHAR" size="2" autoIncrement="false" />
+    <column name="DOMAINNAME" primaryKey="false" required="false" type="VARCHAR" size="255" default="localhost" autoIncrement="false" />
+  </table>
+  <table name="MERCHANT_USER_INFORMATION" description="">
+    <column name="MERCHANT_USER_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ADMIN_NAME" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="ADMIN_EMAIL" primaryKey="false" required="true" type="VARCHAR" size="96" default="" autoIncrement="false" />
+    <column name="ADMIN_PASS" primaryKey="false" required="true" type="VARCHAR" size="40" default="" autoIncrement="false" />
+    <column name="TOKEN" primaryKey="false" required="false" type="VARCHAR" size="40" autoIncrement="false" />
+    <column name="USERFNAME" primaryKey="false" required="true" type="VARCHAR" size="40" default="" autoIncrement="false" />
+    <column name="USERLNAME" primaryKey="false" required="true" type="VARCHAR" size="40" default="" autoIncrement="false" />
+    <column name="USERADDRESS" primaryKey="false" required="true" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="USERCITY" primaryKey="false" required="true" type="VARCHAR" size="40" default="" autoIncrement="false" />
+    <column name="USERPOSTALCODE" primaryKey="false" required="true" type="VARCHAR" size="15" default="" autoIncrement="false" />
+    <column name="USERSTATE" primaryKey="false" required="true" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="USERCOUNTRYCODE" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="USERPHONE" primaryKey="false" required="true" type="VARCHAR" size="15" default="" autoIncrement="false" />
+    <column name="USERLANG" primaryKey="false" required="true" type="VARCHAR" size="2" default="EN" autoIncrement="false" />
+    <column name="STATUS" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="SECURITY_QUESTION_1" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="SECURITY_QUESTION_2" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="SECURITY_QUESTION_3" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="SECURITY_ANSWER_1" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="SECURITY_ANSWER_2" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="SECURITY_ANSWER_3" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <unique name="UNQ_MERCH_INF_KEY">
+      <unique-column name="ADMIN_EMAIL" />
+    </unique>
+    <index name="IDX_KEY_ADMIN_NAME_MERCH">
+      <index-column name="ADMIN_NAME" />
+    </index>
+    <index name="IDX_KEY_ADMIN_PASS_MERCH">
+      <index-column name="ADMIN_PASS" />
+    </index>
+    <index name="IDX_KEY_MERCHANTID_MERCH">
+      <index-column name="MERCHANTID" />
+    </index>
+  </table>
+  <table name="MERCHANT_USER_ROLE" description="">
+    <column name="MERCHANT_USER_ROLE_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ADMIN_NAME" primaryKey="false" required="true" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="ROLE_CODE" primaryKey="false" required="true" type="VARCHAR" size="10" autoIncrement="false" />
+    <index name="IDX_KEY_ADMIN_NAME">
+      <index-column name="ADMIN_NAME" />
+    </index>
+  </table>
+  <table name="MERCHANT_USER_ROLE_DEF" description="">
+    <column name="ROLEID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="ROLE_CODE" primaryKey="false" required="true" type="VARCHAR" size="10" autoIncrement="false" />
+    <column name="ROLE_DESCRIPTION" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false" />
+  </table>
+  <table name="MODULE_CONFIGURATION" description="">
+    <column name="CONFIGURATION_MODULE" primaryKey="true" required="true" type="VARCHAR" size="60" default="" autoIncrement="false" />
+    <column name="CONFIGURATION_KEY" primaryKey="true" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="COUNTRY_ISO_CODE_2" primaryKey="true" required="true" type="CHAR" size="2" default="XX" autoIncrement="false" />
+    <column name="CONFIGURATION_VALUE" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+  </table>
+  <table name="OFFSYSTEM_NOTIFICATION_ORDERS" description="">
+    <column name="OFFSYSTEM_NOTIF_ORDER_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="OFFSYSTEM_PENDING_ORDER_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PAYER_EMAIL" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="DATE_RECEIVED" primaryKey="false" required="true" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="OFFSYSTEM_MODULE" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="MERCHANT_ID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="OFFSYSTEM_STATUS" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="OFFSYSTEM_DETAILS" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <index name="IDX_OFFSYSTEM_NOTIFICATION_MID">
+      <index-column name="MERCHANT_ID" />
+    </index>
+  </table>
+  <table name="OFFSYSTEM_PENDING_ORDERS" description="">
+    <column name="OFFSYSTEM_PENDING_ORDER_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="true" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="PAYER_EMAIL" primaryKey="false" required="true" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="TRANSACTION_ID" primaryKey="false" required="false" type="VARCHAR" size="100" default="" autoIncrement="false" />
+    <column name="ORDER_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="OFFSYSTEM_MODULE" primaryKey="false" required="false" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="MERCHANT_ID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_OFFSYSTEM_PENDING_MID">
+      <index-column name="MERCHANT_ID" />
+    </index>
+    <index name="IDX_OFFSYSTEM_PENDING_PPK">
+      <index-column name="TRANSACTION_ID" />
+      <index-column name="PAYER_EMAIL" />
+    </index>
+  </table>
+  <table name="ORDERS" description="">
+    <column name="ORDERS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CUSTOMERS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUSTOMERS_NAME" primaryKey="false" required="true" type="VARCHAR" size="64" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_COMPANY" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="CUSTOMERS_STREET_ADDRESS" primaryKey="false" required="true" type="VARCHAR" size="64" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_SUBURB" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="CUSTOMERS_CITY" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_POSTCODE" primaryKey="false" required="true" type="VARCHAR" size="10" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_STATE" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="CUSTOMERS_COUNTRY" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_TELEPHONE" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_EMAIL_ADDRESS" primaryKey="false" required="true" type="VARCHAR" size="96" default="" autoIncrement="false" />
+    <column name="CUSTOMERS_ADDRESS_FORMAT_ID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="DELIVERY_NAME" primaryKey="false" required="false" type="VARCHAR" size="64" default="" autoIncrement="false" />
+    <column name="DELIVERY_COMPANY" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="DELIVERY_STREET_ADDRESS" primaryKey="false" required="false" type="VARCHAR" size="64" default="" autoIncrement="false" />
+    <column name="DELIVERY_SUBURB" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="DELIVERY_CITY" primaryKey="false" required="false" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="DELIVERY_POSTCODE" primaryKey="false" required="false" type="VARCHAR" size="10" default="" autoIncrement="false" />
+    <column name="DELIVERY_STATE" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="DELIVERY_COUNTRY" primaryKey="false" required="false" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="DELIVERY_ADDRESS_FORMAT_ID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="BILLING_NAME" primaryKey="false" required="false" type="VARCHAR" size="64" default="" autoIncrement="false" />
+    <column name="BILLING_COMPANY" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="BILLING_STREET_ADDRESS" primaryKey="false" required="false" type="VARCHAR" size="64" default="" autoIncrement="false" />
+    <column name="BILLING_SUBURB" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="BILLING_CITY" primaryKey="false" required="false" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="BILLING_POSTCODE" primaryKey="false" required="false" type="VARCHAR" size="10" default="" autoIncrement="false" />
+    <column name="BILLING_STATE" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="BILLING_COUNTRY" primaryKey="false" required="false" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="BILLING_ADDRESS_FORMAT_ID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PAYMENT_METHOD" primaryKey="false" required="false" type="VARCHAR" size="128" default="" autoIncrement="false" />
+    <column name="PAYMENT_MODULE_CODE" primaryKey="false" required="false" type="VARCHAR" size="60" default="" autoIncrement="false" />
+    <column name="SHIPPING_METHOD" primaryKey="false" required="false" type="VARCHAR" size="128" default="" autoIncrement="false" />
+    <column name="SHIPPING_MODULE_CODE" primaryKey="false" required="false" type="VARCHAR" size="60" default="" autoIncrement="false" />
+    <column name="COUPON_CODE" primaryKey="false" required="false" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="CARD_TYPE" primaryKey="false" required="false" type="VARCHAR" size="20" autoIncrement="false" />
+    <column name="CC_OWNER" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="CC_NUMBER" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="CC_EXPIRES" primaryKey="false" required="false" type="VARCHAR" size="4" autoIncrement="false" />
+    <column name="CC_CVV" primaryKey="false" required="false" type="VARCHAR" size="10" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="DATE_PURCHASED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ORDERS_STATUS" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDERS_DATE_FINISHED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="CURRENCY" primaryKey="false" required="false" type="CHAR" size="3" autoIncrement="false" />
+    <column name="CURRENCY_VALUE" primaryKey="false" required="false" type="DECIMAL" size="14,6" autoIncrement="false" />
+    <column name="ORDER_TOTAL" primaryKey="false" required="false" type="DECIMAL" size="14,2" autoIncrement="false" />
+    <column name="ORDER_TAX" primaryKey="false" required="false" type="DECIMAL" size="14,2" autoIncrement="false" />
+    <column name="IP_ADDRESS" primaryKey="false" required="false" type="VARCHAR" size="96" default="" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CHANNEL" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="DISPLAY_INVOICE_PAYMENTS" primaryKey="false" required="true" type="BIT" default="0" autoIncrement="false" />
+    <index name="IDX_STATUS_ORDERS_CUST_SM">
+      <index-column name="ORDERS_STATUS" />
+      <index-column name="ORDERS_ID" />
+      <index-column name="CUSTOMERS_ID" />
+    </index>
+    <index name="IDX_DATE_PURCHASED_SM">
+      <index-column name="DATE_PURCHASED" />
+    </index>
+    <index name="IDX_MID_SM_ORDERS">
+      <index-column name="MERCHANTID" />
+    </index>
+    <index name="IDX_CHANEL_SM">
+      <index-column name="MERCHANTID" />
+      <index-column name="CHANNEL" />
+    </index>
+    <index name="IDX_CUST_ORDER_SM">
+      <index-column name="ORDERS_ID" />
+      <index-column name="CUSTOMERS_ID" />
+      <index-column name="MERCHANTID" />
+    </index>
+    <index name="IDX_CUSTOMER_NAME">
+      <index-column name="CUSTOMERS_NAME" />
+    </index>
+  </table>
+  <table name="ORDERS_ACCNT_TRX_HISTORY" description="">
+    <column name="ORDER_ACCNT_TRX_HISTORY_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDER_ACCNT_TRX_DATE" primaryKey="false" required="true" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ORDER_ACCNT_TRX_AMOUNT" primaryKey="false" required="true" type="DECIMAL" size="15,2" autoIncrement="false" />
+    <column name="ORDER_ACCNT_TRX_STATUS" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDER_ACCNT_TRX_STATUS_TEXT" primaryKey="false" required="true" type="VARCHAR" size="255" autoIncrement="false" />
+    <index name="SM_IDX_ORDER_ACCNT_TRX_ID">
+      <index-column name="ORDER_ACCOUNT_ID" />
+    </index>
+  </table>
+  <table name="ORDERS_ACCOUNT" description="">
+    <column name="ORDER_ACCOUNT_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDER_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_STATUS_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_START_DATE" primaryKey="false" required="true" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_END_DATE" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_BILL_DAY" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="SM_IDX_ORDER_ID">
+      <index-column name="ORDER_ID" />
+    </index>
+    <index name="SM_IDX_ORDER_ACCOUNT_STATUS">
+      <index-column name="ORDER_ACCOUNT_STATUS_ID" />
+    </index>
+  </table>
+  <table name="ORDERS_ACCOUNT_PRODUCTS" description="">
+    <column name="ORDER_ACCOUNT_PRODUCT_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDER_PRODUCT_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_PRODUCT_ST_DT" primaryKey="false" required="true" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_PRODUCT_END_DT" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_PRODUCT_EOT" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_PRODUCT_ACCNT_DT" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_PRODUCT_L_ST_DT" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_PRODUCT_L_TRX_ST" primaryKey="false" required="true" type="INTEGER" size="10" default="-1" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_PRODUCT_PM_FR_TY" primaryKey="false" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_PRODUCT_STATUS" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_ORDER_ACCOUNT_ID_SM">
+      <index-column name="ORDER_ACCOUNT_ID" />
+    </index>
+  </table>
+  <table name="ORDERS_ACCOUNT_STATUS_HISTORY" description="">
+    <column name="ORDER_ACCNT_STAT_HISTORY_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDER_ACCOUNT_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDER_ACCNT_STAT_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDER_ACCNT_STAT_HISTORY_NAME" primaryKey="false" required="true" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="true" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="CUSTOMER_NOTIFIED" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="COMMENTS" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <index name="SM_IDX_ORDER_ACCOUNT_ID">
+      <index-column name="ORDER_ACCOUNT_ID" />
+    </index>
+  </table>
+  <table name="ORDERS_PRODUCTS" description="">
+    <column name="ORDERS_PRODUCTS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDERS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_MODEL" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="PRODUCTS_NAME" primaryKey="false" required="true" type="VARCHAR" size="64" default="" autoIncrement="false" />
+    <column name="PRODUCTS_PRICE" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="FINAL_PRICE" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="PRODUCTS_TAX" primaryKey="false" required="true" type="DECIMAL" size="7,4" default="0.0000" autoIncrement="false" />
+    <column name="PRODUCTS_QUANTITY" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ONETIME_CHARGES" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="PRODUCT_IS_FREE" primaryKey="false" required="true" type="BIT" default="0" autoIncrement="false" />
+    <column name="PRODUCT_SPECIAL_NEW_PRICE" primaryKey="false" required="false" type="DECIMAL" size="15,4" autoIncrement="false" />
+    <column name="PRODUCT_SPECIAL_DATE_AVAILABLE" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="PRODUCT_SPECIAL_DATE_EXPIRE" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ORIGINAL_PRODUCT_PRICE" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="SOLD_PRICE" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <index name="IDX_ORDERS_PRD_ID_SM">
+      <index-column name="ORDERS_ID" />
+    </index>
+    <index name="IDX_ORDERS_ID_PRODID_SM">
+      <index-column name="ORDERS_ID" />
+      <index-column name="PRODUCTS_ID" />
+    </index>
+  </table>
+  <table name="ORDERS_PRODUCTS_ATTRIBUTES" description="">
+    <column name="ORDERS_PRODUCTS_ATTRIBUTES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDERS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDERS_PRODUCTS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS" primaryKey="false" required="false" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_VALUES" primaryKey="false" required="true" type="VARCHAR" size="256" autoIncrement="false" />
+    <column name="OPTIONS_VALUES_PRICE" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="PRODUCT_ATTRIBUTE_IS_FREE" primaryKey="false" required="true" type="BIT" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_ATTRIBUTES_WEIGHT" primaryKey="false" required="false" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_VALUES_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_PROD_ID_SM">
+      <index-column name="ORDERS_PRODUCTS_ID" />
+    </index>
+    <index name="IDX_ORDERS_PRD_ATTR_ID_SM">
+      <index-column name="ORDERS_ID" />
+    </index>
+    <index name="IDX_O_PROD_ATTRS_ID_SM">
+      <index-column name="ORDERS_ID" />
+      <index-column name="ORDERS_PRODUCTS_ID" />
+    </index>
+  </table>
+  <table name="ORDERS_PRODUCTS_DOWNLOAD" description="">
+    <column name="ORDERS_PRODUCTS_DOWNLOAD_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDERS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDERS_PRODUCTS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDERS_PRODUCTS_FILENAME" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="DOWNLOAD_MAXDAYS" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="DOWNLOAD_COUNT" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="FILE_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_ORDERS_PRD_DWL_ID_SM">
+      <index-column name="ORDERS_ID" />
+    </index>
+    <index name="IDX_ORDERS_PRODUCTS_ID_SM">
+      <index-column name="ORDERS_PRODUCTS_ID" />
+    </index>
+    <index name="IDX_FILE_ID">
+      <index-column name="FILE_ID" />
+    </index>
+  </table>
+  <table name="ORDERS_PRODUCTS_PRICES" description="">
+    <column name="ORDERS_PRODUCTS_PRICES" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDERS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDERS_PRODUCTS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_TYPE_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_MODULE_NAME" primaryKey="false" required="true" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_NAME" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_AMOUNT" primaryKey="false" required="true" type="DECIMAL" size="15,2" autoIncrement="false" />
+    <column name="DEFAULT_PRICE" primaryKey="false" required="true" type="BIT" default="1" autoIncrement="false" />
+    <column name="PRODUCT_HAS_TAX" primaryKey="false" required="true" type="BIT" default="0" autoIncrement="false" />
+    <index name="IDX_ORDERS_PRD_PR_ID_SM">
+      <index-column name="ORDERS_ID" />
+    </index>
+    <index name="IDX_O_PROD_PRICES_ID_SM">
+      <index-column name="ORDERS_ID" />
+      <index-column name="ORDERS_PRODUCTS_ID" />
+    </index>
+  </table>
+  <table name="ORDERS_PRODUCTS_PRICES_SPECIAL" description="">
+    <column name="ORDERS_PRODUCTS_PRICES" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="SPECIALS_NEW_PRODUCTS_PRICE" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="ORIGINAL_PRICE" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="ORDERS_PRODUCTS_SPECIAL_ST_DT" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ORDERS_PRODUCTS_SPECIAL_END_DT" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="ORDERS_PRODUCTS_SPECIAL_DAYS" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+  </table>
+  <table name="ORDERS_STATUS" description="">
+    <column name="ORDERS_STATUS_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="LANGUAGE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="ORDERS_STATUS_NAME" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <index name="IDX_ORDERS_STATUS_NAME_SM">
+      <index-column name="ORDERS_STATUS_NAME" />
+    </index>
+  </table>
+  <table name="ORDERS_STATUS_HISTORY" description="">
+    <column name="ORDERS_STATUS_HISTORY_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDERS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ORDERS_STATUS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="true" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="CUSTOMER_NOTIFIED" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="COMMENTS" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <index name="IDX_ORDERS_STAT_HIST_ID_SM">
+      <index-column name="ORDERS_ID" />
+    </index>
+    <index name="IDX_ORDERS_ID_STATUS_ID_SM">
+      <index-column name="ORDERS_ID" />
+      <index-column name="ORDERS_STATUS_ID" />
+    </index>
+  </table>
+  <table name="ORDERS_TOTAL" description="">
+    <column name="ORDERS_TOTAL_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ORDERS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="TITLE" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="TEXT" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="VALUE" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="MODULE" primaryKey="false" required="true" type="VARCHAR" size="50" default="" autoIncrement="false" />
+    <column name="SORT_ORDER" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_OT_ORDERS_ID_SM">
+      <index-column name="ORDERS_ID" />
+    </index>
+    <index name="IDX_OT_MODULE_SM">
+      <index-column name="MODULE" />
+    </index>
+  </table>
+  <table name="PAGE" description="">
+    <column name="PAGE_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANT_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="HEADER" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="TITLE" primaryKey="false" required="true" type="VARCHAR" size="60" autoIncrement="false" />
+    <column name="NAME" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false" />
+    <column name="VISIBLE" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="ENABLED" primaryKey="false" required="false" type="BIT" default="1" autoIncrement="false" />
+    <column name="SECURED" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="STYLE" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PROPERTY1" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <column name="PROPERTY2" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <column name="PROPERTY3" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <column name="PROPERTY4" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <column name="PROPERTY5" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <column name="PROPERTY6" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <column name="PROPERTY7" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <column name="PROPERTY8" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <column name="PROPERTY9" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <column name="PROPERTY10" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <index name="IDX_PAGE_MERCHANT_ID_SM">
+      <index-column name="MERCHANT_ID" />
+    </index>
+    <index name="IDX_TITLE_MERCHANT_ID_SM">
+      <index-column name="MERCHANT_ID" />
+      <index-column name="TITLE" />
+    </index>
+  </table>
+  <table name="PORTLET" description="">
+    <column name="PORTLET_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANT_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PAGE" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="TITLE" primaryKey="false" required="true" type="VARCHAR" size="60" autoIncrement="false" />
+    <column name="NAME" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false" />
+    <column name="PORTLET_TYPE" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="LABEL_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="VISIBLE" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="ENABLED" primaryKey="false" required="false" type="BIT" default="1" autoIncrement="false" />
+    <column name="SORT_ORDER" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="COLUMN_ID" primaryKey="false" required="true" type="VARCHAR" size="20" autoIncrement="false" />
+    <index name="IDX_PORTLET_MERCHANT_ID_SM">
+      <index-column name="MERCHANT_ID" />
+    </index>
+    <index name="IDX_PORTLET_PAGE_ID_SM">
+      <index-column name="MERCHANT_ID" />
+      <index-column name="PAGE" />
+    </index>
+    <index name="IDX_PORTLET_PG_COL_ID_SM">
+      <index-column name="MERCHANT_ID" />
+      <index-column name="PAGE" />
+      <index-column name="COLUMN_ID" />
+    </index>
+    <index name="IDX_PORTLET_LABEL_ID_SM">
+      <index-column name="MERCHANT_ID" />
+      <index-column name="LABEL_ID" />
+    </index>
+  </table>
+  <table name="PRODUCT_RELATIONSHIP" description="">
+    <column name="RELATIONSHIP_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANT_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PRODUCT_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="RELATED_PRODUCT_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="RELATIONSHIP_TYPE" primaryKey="false" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="RELATIONSHIP_ACTIVE" primaryKey="false" required="false" type="BIT" default="1" autoIncrement="false" />
+    <index name="IDX_RELATIONSHIP_PRODUCT">
+      <index-column name="MERCHANT_ID" />
+      <index-column name="PRODUCT_ID" />
+    </index>
+    <index name="IDX_RELATIONSHIP_TYPE">
+      <index-column name="MERCHANT_ID" />
+      <index-column name="RELATIONSHIP_TYPE" />
+    </index>
+    <index name="IDX_RELATIONSHIP_LINE">
+      <index-column name="PRODUCT_ID" />
+      <index-column name="RELATED_PRODUCT_ID" />
+      <index-column name="MERCHANT_ID" />
+      <index-column name="RELATIONSHIP_TYPE" />
+    </index>
+  </table>
+  <table name="PRODUCT_TYPES" description="">
+    <column name="TYPE_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="TYPE_NAME" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="TYPE_HANDLER" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="TYPE_MASTER_TYPE" primaryKey="false" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="ALLOW_ADD_TO_CART" primaryKey="false" required="true" type="CHAR" size="1" default="Y" autoIncrement="false" />
+    <column name="DEFAULT_IMAGE" primaryKey="false" required="false" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <index name="IDX_TYPE_MASTER_TYPE_SM">
+      <index-column name="TYPE_MASTER_TYPE" />
+    </index>
+  </table>
+  <table name="PRODUCTS" description="">
+    <column name="PRODUCTS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PRODUCTS_TYPE" primaryKey="false" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="PRODUCTS_QUANTITY" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_MODEL" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+    <column name="PRODUCTS_IMAGE" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="PRODUCTS_PRICE" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="PRODUCTS_VIRTUAL" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_DATE_ADDED" primaryKey="false" required="true" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="PRODUCTS_LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="PRODUCTS_DATE_AVAILABLE" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="PRODUCTS_WEIGHT" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="PRODUCTS_STATUS" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_FEATURED" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_TAX_CLASS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MANUFACTURERS_ID" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PRODUCTS_ORDERED" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_QUANTITY_ORDER_MIN" primaryKey="false" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="PRODUCTS_QUANTITY_ORDER_UNITS" primaryKey="false" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="PRODUCT_IS_FREE" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="PRODUCT_IS_CALL" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="PRODUCT_IS_ALWAYS_FREE_SHP" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_QUANTITY_ORDER_MAX" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_SORT_ORDER" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MASTER_CATEGORIES_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_LENGTH" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="PRODUCTS_WIDTH" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="PRODUCTS_HEIGHT" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="ASIN" primaryKey="false" required="false" type="VARCHAR" size="256" autoIncrement="false" />
+    <column name="UPC" primaryKey="false" required="false" type="VARCHAR" size="256" autoIncrement="false" />
+    <column name="SKU" primaryKey="false" required="false" type="VARCHAR" size="256" autoIncrement="false" />
+    <column name="EAN" primaryKey="false" required="false" type="VARCHAR" size="256" autoIncrement="false" />
+    <column name="ISBN" primaryKey="false" required="false" type="VARCHAR" size="256" autoIncrement="false" />
+    <column name="PRODUCTS_IMAGE_LARGE" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="PRODUCTS_IMAGE_CROP" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_EXTERNAL_DL" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <column name="PRODUCTS_IMAGE_1" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="PRODUCTS_IMAGE_2" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="PRODUCTS_IMAGE_3" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="PRODUCTS_IMAGE_4" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="PRODUCT_REVIEW_AVG" primaryKey="false" required="false" type="DECIMAL" size="5,1" autoIncrement="false" />
+    <column name="PRODUCT_REVIEW_COUNT" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_PRODUCTS_DATE_ADDED_SM">
+      <index-column name="PRODUCTS_DATE_ADDED" />
+    </index>
+    <index name="IDX_PRODUCTS_STATUS_SM">
+      <index-column name="PRODUCTS_STATUS" />
+    </index>
+    <index name="IDX_PRODUCTS_DATE_AVAILABLE_SM">
+      <index-column name="PRODUCTS_DATE_AVAILABLE" />
+    </index>
+    <index name="IDX_PRODUCTS_ORDERED_SM">
+      <index-column name="PRODUCTS_ORDERED" />
+    </index>
+    <index name="IDX_PRODUCTS_MODEL_SM">
+      <index-column name="PRODUCTS_MODEL" />
+    </index>
+    <index name="IDX_PRODUCTS_FEATURED_SM">
+      <index-column name="PRODUCTS_FEATURED" />
+    </index>
+    <index name="IDX_MASTER_CATEGORIES_ID_SM">
+      <index-column name="MASTER_CATEGORIES_ID" />
+    </index>
+    <index name="IDX_PRODUCTS_SORT_ORDER_SM">
+      <index-column name="PRODUCTS_SORT_ORDER" />
+    </index>
+    <index name="IDX_MANUFACTURERS_ID_SM">
+      <index-column name="MANUFACTURERS_ID" />
+    </index>
+    <index name="IDX_MERCHANT_PRODUCTS_SM">
+      <index-column name="MERCHANTID" />
+    </index>
+    <index name="IDX_PRODUCTS_TAXCLASS_SM">
+      <index-column name="PRODUCTS_TAX_CLASS_ID" />
+    </index>
+  </table>
+  <table name="PRODUCTS_ATTRIBUTES" description="">
+    <column name="PRODUCTS_ATTRIBUTES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PRODUCTS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="OPTIONS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="OPTIONS_VALUES_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="OPTIONS_VALUES_PRICE" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_SORT_ORDER" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCT_ATTRIBUTE_IS_FREE" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_ATTRIBUTES_WEIGHT" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="ATTRIBUTES_DEFAULT" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="ATTRIBUTES_DISPLAY_ONLY" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="ATTRIBUTES_DISCOUNTED" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <column name="ATTRIBUTES_REQUIRED" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <index name="IDX_ID_OPTIONS_ID_VALUES_SM">
+      <index-column name="PRODUCTS_ID" />
+      <index-column name="OPTIONS_ID" />
+      <index-column name="OPTIONS_VALUES_ID" />
+    </index>
+    <index name="IDX_PRD_ID_ATTRS_SM">
+      <index-column name="PRODUCTS_ID" />
+    </index>
+  </table>
+  <table name="PRODUCTS_ATTRIBUTES_DOWNLOAD" description="">
+    <column name="PRODUCTS_ATTRIBUTES_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_ATTRIBUTES_FILENAME" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="PRODUCTS_ATTRIBUTES_MAXDAYS" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_ATTRIBUTES_MAXCOUNT" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+  </table>
+  <table name="PRODUCTS_DESCRIPTION" description="">
+    <column name="PRODUCTS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="LANGUAGE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="PRODUCTS_NAME" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false" />
+    <column name="PRODUCTS_DESCRIPTION" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="PRODUCTS_URL" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false" />
+    <column name="PRODUCTS_VIEWED" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_HIGHLIGHT" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false" />
+    <column name="SE_URL_SRC" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false" />
+    <column name="SE_URL" primaryKey="false" required="false" type="VARCHAR" size="100" autoIncrement="false" />
+    <column name="METATAG_TITLE" primaryKey="false" required="false" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="METATAG_KEYWORDS" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="METATAG_DESCRIPTION" primaryKey="false" required="false" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+    <column name="PRODUCTS_EXTERNAL_DL" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <column name="PRODUCTS_TITLE" primaryKey="false" required="false" type="VARCHAR" size="120" autoIncrement="false" />
+    <index name="IDX_PRODUCTS_NAME_SM">
+      <index-column name="PRODUCTS_NAME" />
+    </index>
+    <index name="IDX_PRD_ID_DESC_SM">
+      <index-column name="PRODUCTS_ID" />
+    </index>
+    <index name="IDX_PRODUCTS_SE_SM">
+      <index-column name="SE_URL" />
+    </index>
+  </table>
+  <table name="PRODUCTS_NOTIFICATIONS" description="">
+    <column name="PRODUCTS_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUSTOMERS_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+  </table>
+  <table name="PRODUCTS_OPTIONS" description="">
+    <column name="PRODUCTS_OPTIONS_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_SORT_ORDER" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_TYPE" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_MID_SM_OPTIONS">
+      <index-column name="MERCHANTID" />
+    </index>
+    <index name="IDX_PRDOPT_SORT_ORDER_SM">
+      <index-column name="PRODUCTS_OPTIONS_SORT_ORDER" />
+    </index>
+  </table>
+  <table name="PRODUCTS_OPTIONS_DESCRIPTION" description="">
+    <column name="PRODUCTS_OPTIONS_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="LANGUAGE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_NAME" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_COMMENT" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <index name="IDX_PRD_OPT_DESC_ID_SM">
+      <index-column name="PRODUCTS_OPTIONS_ID" />
+    </index>
+    <index name="IDX_PRODUCTS_OPTIONS_NAME_SM">
+      <index-column name="PRODUCTS_OPTIONS_NAME" />
+    </index>
+  </table>
+  <table name="PRODUCTS_OPTIONS_TYPES" description="">
+    <column name="PRODUCTS_OPTIONS_TYPES_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_TYPES_NAME" primaryKey="false" required="false" type="VARCHAR" size="32" autoIncrement="false" />
+  </table>
+  <table name="PRODUCTS_OPTIONS_VAL_PRD_OPTS" description="">
+    <column name="PRODUCTS_OPTIONS_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_VALUES_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_PRD_OPTID_SM">
+      <index-column name="PRODUCTS_OPTIONS_ID" />
+    </index>
+    <index name="IDX_PRD_OPTIONS_VAL_ID_SM">
+      <index-column name="PRODUCTS_OPTIONS_VALUES_ID" />
+    </index>
+  </table>
+  <table name="PRODUCTS_OPTIONS_VALUES" description="">
+    <column name="PRODUCTS_OPTIONS_VALUES_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_VALUES_SORT_O" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_VALUES_IMAGE" primaryKey="false" required="false" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_MID_SM_OPTVAL">
+      <index-column name="MERCHANTID" />
+    </index>
+    <index name="IDX_PRD_OPT_VAL_S_ORDER_SM">
+      <index-column name="PRODUCTS_OPTIONS_VALUES_SORT_O" />
+    </index>
+  </table>
+  <table name="PRODUCTS_OPTIONS_VALUES_DESC" description="">
+    <column name="PRODUCTS_OPTIONS_VALUES_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="LANGUAGE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="PRODUCTS_OPTIONS_VALUES_NAME" primaryKey="false" required="true" type="VARCHAR" size="64" default="" autoIncrement="false" />
+    <index name="IDX_PRD_OPT_VALUES_NAME_SM">
+      <index-column name="PRODUCTS_OPTIONS_VALUES_NAME" />
+    </index>
+    <index name="IDX_PRD_OPT_VALUES_ID_SM">
+      <index-column name="PRODUCTS_OPTIONS_VALUES_ID" />
+    </index>
+  </table>
+  <table name="PRODUCTS_PRICE" description="">
+    <column name="PRODUCT_PRICE_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PRODUCT_ID" primaryKey="false" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_TYPE_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_MODULE_NAME" primaryKey="false" required="true" type="VARCHAR" size="64" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_AMOUNT" primaryKey="false" required="true" type="DECIMAL" size="15,2" autoIncrement="false" />
+    <column name="DEFAULT_PRICE" primaryKey="false" required="false" type="BIT" default="1" autoIncrement="false" />
+    <index name="SM_IDX_PRD_PRICE_PRD_ID">
+      <index-column name="PRODUCT_ID" />
+    </index>
+  </table>
+  <table name="PRODUCTS_PRICE_DESCRIPTION" description="">
+    <column name="PRODUCT_PRICE_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="LANGUAGE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_NAME" primaryKey="false" required="false" type="VARCHAR" size="255" autoIncrement="false" />
+  </table>
+  <table name="PRODUCTS_PRICE_SPECIALS" description="">
+    <column name="PRODUCT_PRICE_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_SPECIAL_ST_DATE" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_SPECIAL_END_DATE" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_SPECIAL_DAYS" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PRODUCT_PRICE_SPECIAL_AMOUNT" primaryKey="false" required="true" type="DECIMAL" size="15,2" autoIncrement="false" />
+  </table>
+  <table name="PRODUCTS_TO_CATEGORIES" description="">
+    <column name="PRODUCTS_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CATEGORIES_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_CAT_PROD_ID_SM">
+      <index-column name="CATEGORIES_ID" />
+      <index-column name="PRODUCTS_ID" />
+    </index>
+  </table>
+  <table name="REVIEWS" description="">
+    <column name="REVIEWS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="PRODUCTS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="CUSTOMERS_ID" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="CUSTOMERS_NAME" primaryKey="false" required="true" type="VARCHAR" size="64" default="" autoIncrement="false" />
+    <column name="REVIEWS_RATING" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="REVIEWS_READ" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="STATUS" primaryKey="false" required="false" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <index name="IDX_PRD_ID_REV_SM">
+      <index-column name="PRODUCTS_ID" />
+    </index>
+    <index name="IDX_CUST_ID_REV_SM">
+      <index-column name="CUSTOMERS_ID" />
+    </index>
+    <index name="IDX_STATUS_REV_SM">
+      <index-column name="STATUS" />
+    </index>
+    <index name="IDX_DATE_ADDED_SM">
+      <index-column name="DATE_ADDED" />
+    </index>
+  </table>
+  <table name="REVIEWS_DESCRIPTION" description="">
+    <column name="REVIEWS_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="LANGUAGES_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="REVIEWS_TEXT" primaryKey="false" required="true" type="LONGVARCHAR" size="65535" autoIncrement="false" />
+  </table>
+  <table name="SPECIALS" description="">
+    <column name="SPECIAL_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="PRODUCTS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="SPECIALS_NEW_PRODUCTS_PRICE" primaryKey="false" required="true" type="DECIMAL" size="15,4" default="0.0000" autoIncrement="false" />
+    <column name="SPECIALS_DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="SPECIALS_LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="EXPIRES_DATE" primaryKey="false" required="false" type="DATE" size="10" default="0001-01-01" autoIncrement="false" />
+    <column name="DATE_STATUS_CHANGE" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="STATUS" primaryKey="false" required="false" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="SPECIALS_DATE_AVAILABLE" primaryKey="false" required="false" type="DATE" size="10" default="0001-01-01" autoIncrement="false" />
+    <index name="IDX_SPECIAL_PRODUCT_SM">
+      <index-column name="PRODUCTS_ID" />
+    </index>
+    <index name="IDX_STATUS_SPEC_SM">
+      <index-column name="STATUS" />
+    </index>
+    <index name="IDX_DATE_AVAIL_SM">
+      <index-column name="SPECIALS_DATE_AVAILABLE" />
+    </index>
+    <index name="IDX_EXPIRES_DATE_SM">
+      <index-column name="EXPIRES_DATE" />
+    </index>
+  </table>
+  <table name="TAX_CLASS" description="">
+    <column name="TAX_CLASS_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="TAX_CLASS_TITLE" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <column name="TAX_CLASS_DESCRIPTION" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="false" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <index name="IDX_MERCHANT_TAX_CLASS">
+      <index-column name="MERCHANTID" />
+    </index>
+  </table>
+  <table name="TAX_RATES" description="">
+    <column name="TAX_RATES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="TAX_ZONE_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="TAX_CLASS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="TAX_PRIORITY" primaryKey="false" required="false" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="TAX_RATE" primaryKey="false" required="true" type="DECIMAL" size="7,4" default="0.0000" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="PIGGYBACK" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <index name="IDX_MERCH_TAX_MERCH_ID_SM">
+      <index-column name="MERCHANTID" />
+    </index>
+    <index name="IDX_MERCH_TAX_ZONE_ID_SM">
+      <index-column name="TAX_ZONE_ID" />
+    </index>
+    <index name="IDX_MERCH_TAX_CLASS_ID_SM">
+      <index-column name="TAX_CLASS_ID" />
+    </index>
+  </table>
+  <table name="TAX_RATES_DESCRIPTION" description="">
+    <column name="TAX_RATES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="LANGUAGE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="TAX_DESCRIPTION" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+    <index name="IDX_MERCH_TAX_RATES_DESC_ID">
+      <index-column name="TAX_RATES_ID" />
+    </index>
+  </table>
+  <table name="TAX_RATES_DESCRIPTION_TAX_TPL" description="">
+    <column name="TAX_RATES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="LANGUAGE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="TAX_DESCRIPTION" primaryKey="false" required="true" type="VARCHAR" size="255" default="" autoIncrement="false" />
+  </table>
+  <table name="TAX_RATES_TAX_TEMPLATE" description="">
+    <column name="TAX_RATES_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="TAX_ZONE_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="TAX_CLASS_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="TAX_PRIORITY" primaryKey="false" required="false" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="TAX_RATE" primaryKey="false" required="true" type="DECIMAL" size="7,4" default="0.0000" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="true" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <column name="PIGGYBACK" primaryKey="false" required="false" type="BIT" default="0" autoIncrement="false" />
+    <index name="IDX_MERCH_TAX_ZNID_TPL_SM">
+      <index-column name="TAX_ZONE_ID" />
+    </index>
+    <index name="IDX_MERCH_TX_CLS_IDTPL_SM">
+      <index-column name="TAX_CLASS_ID" />
+    </index>
+  </table>
+  <table name="ZONES" description="">
+    <column name="ZONE_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="true" />
+    <column name="ZONE_COUNTRY_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ZONE_CODE" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+    <index name="IDX_ZONE_COUNTRY_ID_SM">
+      <index-column name="ZONE_COUNTRY_ID" />
+    </index>
+    <index name="IDX_ZONE_CODE_SM">
+      <index-column name="ZONE_CODE" />
+    </index>
+  </table>
+  <table name="ZONES_DESCRIPTION" description="">
+    <column name="ZONE_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="LANGUAGE_ID" primaryKey="true" required="true" type="INTEGER" size="10" default="1" autoIncrement="false" />
+    <column name="ZONE_NAME" primaryKey="false" required="true" type="VARCHAR" size="32" default="" autoIncrement="false" />
+  </table>
+  <table name="ZONES_TO_GEO_ZONES" description="">
+    <column name="ASSOCIATION_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="MERCHANTID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ZONE_COUNTRY_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ZONE_ID" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="GEO_ZONE_ID" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="false" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <index name="IDX_MERCH_ZONES_SM">
+      <index-column name="GEO_ZONE_ID" />
+      <index-column name="ZONE_COUNTRY_ID" />
+      <index-column name="ZONE_ID" />
+      <index-column name="MERCHANTID" />
+    </index>
+    <index name="IDX_MERCH_ZONES_MERCHANT_SM">
+      <index-column name="MERCHANTID" />
+    </index>
+  </table>
+  <table name="ZONES_TO_GEO_ZONES_TAX_TPL" description="">
+    <column name="ASSOCIATION_ID" primaryKey="true" required="true" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="ZONE_COUNTRY_ID" primaryKey="false" required="true" type="INTEGER" size="10" default="0" autoIncrement="false" />
+    <column name="ZONE_ID" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="GEO_ZONE_ID" primaryKey="false" required="false" type="INTEGER" size="10" autoIncrement="false" />
+    <column name="LAST_MODIFIED" primaryKey="false" required="false" type="TIMESTAMP" size="19" autoIncrement="false" />
+    <column name="DATE_ADDED" primaryKey="false" required="true" type="TIMESTAMP" size="19" default="0001-01-01 00:00:00" autoIncrement="false" />
+    <index name="IDX_ZONES_SM">
+      <index-column name="GEO_ZONE_ID" />
+      <index-column name="ZONE_COUNTRY_ID" />
+      <index-column name="ZONE_ID" />
+    </index>
+  </table>
+</database>

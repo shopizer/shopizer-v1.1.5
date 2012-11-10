@@ -1,0 +1,148 @@
+/*
+ * Common to all sub parts of the system
+ * catalog
+ * checkout
+ *
+ */
+
+
+.icon-ok{
+	border:solid 1px #90ac13;
+	background:#eef4d3 url(../img/icon-green.png) 8px 6px no-repeat;
+	color:#6b800d;
+	font-weight:bold;
+	padding:17px;
+	text-align:left;
+}
+
+.icon-error{
+	border:solid 1px #CC0000;
+	background:#F7CBCA url(../img/icon-red.png) 8px 6px no-repeat;
+	color:#CC0000;
+	font-weight:bold;
+	padding:17px;
+	text-align:left;
+}
+
+
+
+
+/** Buttons with images **/
+
+
+
+
+
+.href-button-checkout {
+	width: 380px;
+	height: auto;
+	top: 25px;
+	position: relative;
+	float:right;
+}
+
+
+.href-button-checkout span.button1-box1 {
+	float: left;
+	width: 4px;
+	height: 20px;
+	background-image: url("../img/button1a.gif");
+	background-repeat: no-repeat;
+}
+
+
+
+.href-button-checkout span.button1-box2a {
+	float: left;
+	width: auto;
+	height: 20px;
+	font-family: Tahoma, Helvetica, Arial;
+	font-size: 11px;
+	font-weight: normal;
+	font-style: normal;
+	text-transform: uppercase;
+	color: #ffffff;
+	background-image: url("../img/button1b.gif");
+	background-repeat: repeat-x;
+	padding: 0px;
+	padding-top: 3px;
+	padding-left: 4px;
+	padding-right: 4px;
+	border: 0px;
+	margin: 0px;
+	text-decoration: none;
+}
+
+.href-button-checkout span.button1-box3 {
+	float: left;
+	width: 4px;
+	height: 20px;
+	background-image: url("../img/button1c.gif");
+	background-repeat: no-repeat;
+}
+
+
+/** 2nd set of buttons **/
+
+.button-t div.button-left {
+	float: left;
+	width: auto;
+	height: 25px;
+	padding-left: 10px;
+	background: url(../img/button-transparent.png) no-repeat left 0px;
+	cursor: pointer;
+}
+
+.button-t div.button-right {
+	float: left;
+	width: auto;
+	height: 19px;
+	padding-right: 10px;
+	padding-top: 6px;
+	font: bold 12px Arial;
+	text-decoration: none;
+	color: #ffffff;
+	background: url(../img/button-transparent.png) no-repeat right 0px;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.button-t:hover div.button-left {
+	float: left;
+	width: auto;
+	height: 25px;
+	padding-left: 10px;
+	background: url(../img/button-transparent.png) no-repeat left -25px;
+	cursor: pointer;
+}
+
+.button-t:hover div.button-right {
+	float: left;
+	width: auto;
+	height: 19px;
+	padding-right: 10px;
+	padding-top: 6px;
+	font: bold 12px Arial;
+	text-decoration: none;
+	color: #ffffff;
+	background: url(../img/button-transparent.png) no-repeat right -25px;
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+
+#preview {
+	position:absolute;
+	border:1px solid #ccc;
+	background:#333;
+	padding:5px;
+	display:none;
+	color:#fff;
+}
+
+#overwrites pagination padding
+
+.pagination a, .pagination span {
+    margin-bottom: 0px;
+}
+

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 11, 2009 9:19:07 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.ReviewDescription" table="REVIEWS_DESCRIPTION">
+        <composite-id name="id" class="com.salesmanager.core.entity.catalog.ReviewDescriptionId">
+            <key-property name="reviewId" type="long">
+                <column name="REVIEWS_ID" />
+            </key-property>
+            <key-property name="languageId" type="int">
+                <column name="LANGUAGES_ID" />
+            </key-property>
+        </composite-id>
+        <property name="reviewText" type="string">
+            <column name="REVIEWS_TEXT" length="65535" not-null="true" />
+        </property>
+        
+        <many-to-one name="review" class="com.salesmanager.core.entity.catalog.Review" insert="false" update="false" column="REVIEWS_ID" not-null="true"/>
+        
+
+    </class>
+</hibernate-mapping>

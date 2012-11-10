@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sm-shop" default="build" basedir=".">
+	<description>
+		Build script for the sales manager catalog
+   </description>
+
+
+
+
+	<property name="appname" value="shop" />
+	<property name="lib.dir" value="lib" />
+	<property name="dist.dir" value="dist" />
+	<property name="src.dir" value="src" />
+	<property name="conf.dir" value="conf" />
+	<property name="core" value="sm-core" />
+	<property name="webcontent.dir" value="WebContent" />
+	<property name="war.dir" value="${webcontent.dir}" />
+	<property name="struts.files.dir" value="${conf.dir}/struts" />
+	<property name="war.file" value="${dist.dir}/${appname}.war" />
+	<property name="ear.file" value="${dist.dir}/${appname}.ear" />
+	<property name="webinf.dir" value="${war.dir}/WEB-INF" />
+	<property name="class.dir" value="${war.dir}/WEB-INF/classes" />
+	<property name="jsp.dir" value="${war.dir}/WEB-INF/jsp" />
+	<property name="libs.dir" value="${war.dir}/WEB-INF/lib" />
+
+
+
+
+
+	<path id="master-classpath" description="Master CLASSPATH for this script">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="../${core}/lib/">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="../${core}/lib/compile/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="../${core}/lib/hibernate/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="../${core}/lib/misc/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="../${core}/lib/spring/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="../${core}/lib/struts/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="../${core}/lib/axis/">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="../${core}/dist/">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement location="${class.dir}/" />
+	</path>
+
+	<!-- STUFF FROM CORE -->
+	<target name="builddependency" description="Build and bring SM-CORE dependency">
+		<ant antfile="../${core}/build.xml" dir="../${core}" />
+		<copy file="../${core}/dist/sm-core.jar" tofile="lib/${core}.jar" overwrite="true" />
+		<copy todir="${class.dir}" overwrite="true">
+			<fileset dir="../${core}/conf/hibernate">
+				<include name="**/*.*" />
+				<!--Copy the content to your hibernate file -->
+			</fileset>
+			<fileset dir="../${core}/conf/spring" includes="**" />
+			<fileset dir="../${core}/conf/properties" includes="**" />
+			<fileset dir="../${core}/conf/templates" includes="**" />
+			<fileset dir="../${core}/conf/resources" includes="**" />
+			<fileset dir="../${core}/conf/tlds/" includes="**" />
+		</copy>
+	</target>
+
+
+	<!-- Local stuff -->
+	<target name="copyconf" description="copy configuration files to web content">
+
+		<copy todir="${class.dir}" overwrite="true">
+			<fileset dir="${conf.dir}/struts/" includes="**" />
+			<fileset dir="${conf.dir}/properties/" includes="**" />
+			<fileset dir="${conf.dir}/resources/" includes="**" />
+			<fileset dir="${conf.dir}/hibernate/" includes="**" />
+		</copy>
+
+		<copy todir="${libs.dir}/" overwrite="true">
+			<!-- Get from core first -->
+			<fileset dir="${lib.dir}/" includes="**"/>
+			<fileset dir="../${core}/lib/axis/" includes="**"/>
+			<fileset dir="../${core}/lib/misc/" includes="**"/>
+			<fileset dir="../${core}/lib/struts/" includes="**"/>
+			<fileset dir="../${core}/lib/hibernate/" includes="**"/>
+			<fileset dir="../${core}/lib/spring/" includes="**"/>
+			<fileset dir="../${core}/lib/compile/" includes="**" >
+				<exclude name="jsp-api.jar"/>
+				<exclude name="servlet-api.jar"/>
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="init" description="Setup for build script">
+		<delete>
+			<fileset dir="${dist.dir}" />
+		</delete>
+		<delete>
+			<fileset dir="${class.dir}" />
+		</delete>
+		<delete>
+			<fileset dir="${libs.dir}" />
+		</delete>
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${class.dir}" />
+		<mkdir dir="${libs.dir}" />
+		<mkdir dir="${jsp.dir}" />
+		<mkdir dir="${libs.dir}" />
+	</target>
+
+	<target name="compile" description="Compiles .java files to WAR directory" depends="init,builddependency">
+		<javac srcdir="${src.dir}" destdir="${class.dir}" debug="true" failonerror="true" classpathref="master-classpath" />
+	</target>
+
+	<target name="war" depends="compile,copyconf">
+		<war destfile="${war.file}" webxml="${webcontent.dir}/WEB-INF/web.xml">
+			<fileset dir="${war.dir}">
+				<include name="**/*.*" />
+				<exclude name="**/web.xml" />
+			</fileset>
+		</war>
+		<copy file="${war.file}" tofile="../${war.file}" overwrite="true" />
+	</target>
+
+
+
+	<target name="deploy" depends="war">
+		<!-- specify a value for container.dir & webfoldre.name -->
+		<copy file="${war.file}" tofile="${container.dir}/${webfolder.name}/${appname}.war" overwrite="true" />
+	</target>
+
+	<target name="build" depends="war">
+
+	</target>
+
+</project>

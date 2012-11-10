@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 29, 2008 3:52:35 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.customer.Customer" table="CUSTOMERS">
+        <comment></comment>
+        <id name="customerId" type="long">
+            <column name="CUSTOMERS_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">CUSTOMER_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="customerGender" type="string">
+            <column name="CUSTOMERS_GENDER" length="1" not-null="false">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerFirstname" type="string">
+            <column name="CUSTOMERS_FIRSTNAME" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerLastname" type="string">
+            <column name="CUSTOMERS_LASTNAME" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerDob" type="timestamp">
+            <column name="CUSTOMERS_DOB" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerEmailAddress" type="string">
+            <column name="CUSTOMERS_EMAIL_ADDRESS" length="96" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerNick" type="string">
+            <column name="CUSTOMERS_NICK" length="96">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerTelephone" type="string">
+            <column name="CUSTOMERS_TELEPHONE" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerStreetAddress" type="string">
+            <column name="CUSTOMERS_ADDRESS" length="256" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerPostalCode" type="string">
+            <column name="CUSTOMERS_POSTALCODE" length="20" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerCity" type="string">
+            <column name="CUSTOMERS_CITY" length="100" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerCompany" type="string">
+            <column name="CUSTOMERS_COMPANY" length="100">
+                <comment></comment>
+            </column>
+        </property>
+         <property name="customerState" type="string">
+            <column name="CUSTOMERS_STATE" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerZoneId" type="int">
+            <column name="CUSTOMERS_ZONE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+                <property name="customerCountryId" type="int">
+            <column name="CUSTOMERS_COUNTRY" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="customerBillingFirstName" type="string">
+            <column name="CUSTOMERS_BILLING_FIRSTNAME" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerBillingLastName" type="string">
+            <column name="CUSTOMERS_BILLING_LASTNAME" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerBillingCompany" type="string">
+            <column name="CUSTOMERS_BILLING_COMPANY" length="100">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="customerBillingStreetAddress" type="string">
+            <column name="CUSTOMERS_BILLING_ADDRESS" length="256">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerBillingPostalCode" type="string">
+            <column name="CUSTOMERS_BILLING_POSTALCODE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerBillingCity" type="string">
+            <column name="CUSTOMERS_BILLING_CITY" length="100">
+                <comment></comment>
+            </column>
+        </property>
+         <property name="customerBillingState" type="string">
+            <column name="CUSTOMERS_BILLING_STATE" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerBillingZoneId" type="int">
+            <column name="CUSTOMERS_BILLING_ZONE">
+                <comment></comment>
+            </column>
+        </property>
+                <property name="customerBillingCountryId" type="int">
+            <column name="CUSTOMERS_BILLING_COUNTRY">
+                <comment></comment>
+            </column>
+        </property>
+
+
+        <property name="customerFax" type="string">
+            <column name="CUSTOMERS_FAX" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerPassword" type="string">
+            <column name="CUSTOMERS_PASSWORD" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerNewsletter" type="java.lang.Character">
+            <column name="CUSTOMERS_NEWSLETTER" length="1">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerGroupPricing" type="int">
+            <column name="CUSTOMERS_GROUP_PRICING">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerEmailFormat" type="string">
+            <column name="CUSTOMERS_EMAIL_FORMAT" length="4">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerAuthorization" type="int">
+            <column name="CUSTOMERS_AUTHORIZATION">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerReferral" type="string">
+            <column name="CUSTOMERS_REFERRAL" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerAnonymous" type="boolean">
+            <column name="CUSTOMERS_ANONYMOUS">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerLang" type="string">
+            <column name="CUSTOMERS_LANG" length="40" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantId" type="int">
+            <column name="MERCHANTID">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 27, 2007 2:34:29 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.Category" table="CATEGORIES">
+        <comment></comment>
+        <id name="categoryId" type="long">
+            <column name="CATEGORIES_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">CATEGORY_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="categoryImage" type="string">
+            <column name="CATEGORIES_IMAGE" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="parentId" type="long">
+            <column name="PARENT_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="sortOrder" type="java.lang.Integer">
+            <column name="SORT_ORDER">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="categoryStatus" type="boolean">
+            <column name="CATEGORIES_STATUS">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="visible" type="boolean">
+            <column name="VISIBLE">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="refCategoryId" type="int">
+            <column name="REFCATEGORYID">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="refCategoryLevel" type="int">
+            <column name="REFCATEGORYLEVEL">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="refCategoryName" type="string">
+            <column name="REFCATEGORYNAME">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="refCategoryParentId" type="string">
+            <column name="REFCATEGORYPARENTID" length="11">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="refExpired" type="string">
+            <column name="REFEXPIRED" length="5">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantId" type="java.lang.Integer">
+            <column name="MERCHANTID">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="depth" type="java.lang.Integer">
+            <column name="DEPTH">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="lineage" type="string">
+            <column name="LINEAGE">
+                <comment></comment>
+            </column>
+        </property>
+
+        <!--<set name="subCategories" lazy="false" inverse="true" fetch="join">
+           <key column="PARENT_ID" />
+           <one-to-many class="com.salesmanager.core.entity.catalog.Category"/>
+      	</set>-->
+
+      <many-to-one name="parent" class="com.salesmanager.core.entity.catalog.Category"
+           column="PARENT_ID" insert="false" update="false"/>
+
+
+
+        <set name="descriptions"
+				inverse="true"
+				fetch="join"
+				lazy="true">
+				<key column="CATEGORIES_ID"/>
+				<one-to-many class="com.salesmanager.core.entity.catalog.CategoryDescription" />
+		</set>
+		
+
+
+
+
+    </class>
+</hibernate-mapping>

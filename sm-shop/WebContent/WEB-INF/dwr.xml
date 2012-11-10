@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN"
+    "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+<dwr>
+    <allow>
+
+	   <!-- add product to mini cart -->
+	   <create creator="new" javascript="ShoppingCart">
+      		<param name="class" value="com.salesmanager.catalog.common.AjaxCatalogUtil"/>
+      		<include method="addProductWithAttributes"/>
+      		<include method="addProductNoAttributes"/>
+      		<include method="removeProduct"/>
+    	</create>
+    	
+        <create creator="new" javascript="Catalog">
+      		<param name="class" value="com.salesmanager.catalog.common.AjaxCatalogUtil"/>
+      		<include method="setPrice"/>
+    	</create>
+    	
+    	<create creator="new" javascript="Customer">
+      		<param name="class" value="com.salesmanager.core.util.www.ajax.CustomerUtil"/>
+      		<include method="setGeoLocationCustomerInformation"/>
+      		<include method="logout"/>
+    	</create>
+    	
+    	<!-- update zones (states-provinces) ... -->
+    	<create creator="new" javascript="UpdateZones">
+      		<param name="class" value="com.salesmanager.core.util.www.ajax.UpdateZones"/>
+      		<include method="getZones"/>
+    	</create>
+
+	    <create creator="new" javascript="AddProduct">
+      		<param name="class" value="com.salesmanager.checkout.cart.AjaxShoppingCartUtil"/>
+      		<include method="calculate"/>
+      		<include method="removeProduct"/>
+      		<include method="setGeoLocationCustomerInformation"/>
+    	</create>
+    	
+    	
+		<!-- catalog -->
+		<convert converter="collection" match="java.util.Collection"/>
+		<convert converter="bean" match="com.salesmanager.core.entity.catalog.Product">
+  			<param name="exclude" value="attributes"/>
+		</convert>
+		<convert converter="bean" match="com.salesmanager.catalog.product.ProductAttribute"/>
+		<convert converter="bean" match="com.salesmanager.core.entity.reference.Zone"/>
+		<!-- checkout -->
+		<convert converter="bean" match="com.salesmanager.core.entity.orders.*"/>
+    	<convert converter="bean" match="com.salesmanager.core.entity.shipping.ShippingInformation"/>
+   		<convert converter="bean" match="com.salesmanager.core.entity.catalog.ProductPrice"/>
+   		<convert converter="bean" match="com.salesmanager.core.entity.customer.*"/>
+
+
+     </allow>
+
+
+</dwr>

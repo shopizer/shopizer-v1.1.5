@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 8, 2008 9:09:20 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.system.CentralSequencer" table="CENTRAL_SEQUENCER">
+        <comment></comment>
+        <id name="centralSequencerId" type="int">
+            <column name="CENTRAL_SEQUENCER_ID" />
+			<generator class="assigned" />
+        </id>
+            <property name="customersBasketIdNextValue" type="long">
+                <column name="CUST_BASKET_ID_NEXT_VALUE" />
+            </property>
+            <property name="customersBasketAttributesIdNextValue" type="long">
+                <column name="CUST_BASKET_ATTR_ID_NEXT_VAL" />
+            </property>
+            <property name="merchantConfigurationIdNextValue" type="long">
+                <column name="MERCHANT_CONF_ID_NEXT_VAL" />
+            </property>
+            <property name="merchantUserInformationIdNextValue" type="long">
+                <column name="MERCHANT_USER_INFO_ID_NEXT_VAL" />
+            </property>
+            <property name="categoryIdNextValue" type="long">
+                <column name="CATEGORY_ID_NEXT_VALUE" />
+            </property>
+            <property name="productIdNextValue" type="long">
+                <column name="PRODUCT_ID_NEXT_VALUE" />
+            </property>
+            <property name="productOptionsIdNextValue" type="long">
+                <column name="PRODUCT_OPTIONS_ID_NEXT_VALUE" />
+            </property>
+            <property name="productAttributeIdNextValue" type="long">
+                <column name="PRODUCT_ATTR_ID_NEXT_VAL" />
+            </property>
+            <property name="geoZoneIdNextValue" type="long">
+                <column name="GEO_ZONE_ID_NEXT_VALUE" />
+            </property>
+            <property name="taxRateIdNextValue" type="long">
+                <column name="TAX_RATE_ID_NEXT_VALUE" />
+            </property>
+            <property name="productOptionIdNextValue" type="long">
+                <column name="PRODUCT_OPTION_ID_NEXT_VALUE" />
+            </property>
+            <property name="productOptionValuesIdNextValue" type="long">
+                <column name="PRODUCT_OPT_VALUES_ID_NEXT_VAL" />
+            </property>
+            <property name="orderIdNextValue" type="long">
+                <column name="ORDER_ID_NEXT_VALUE" />
+            </property>
+            <property name="customerIdNextValue" type="long">
+                <column name="CUSTOMER_ID_NEXT_VALUE" />
+            </property>
+
+    </class>
+</hibernate-mapping>

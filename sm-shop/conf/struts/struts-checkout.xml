@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+
+
+
+	<package name="cart" extends="default" namespace="/cart">
+	     
+	     
+	     <result-types>
+    		 <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 <result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+    	 </result-types>
+	
+	
+		<action name="errorPage">
+	  	     <result name="success" type="tiles">global.error</result>
+	    </action>
+	
+		<action name="emptyCart" class="com.salesmanager.checkout.cart.ShoppingCartAction" method="emptyCart">
+   			<result type="tiles">cart.messages</result>
+   	    </action>
+   	    
+   	    <!--  ****** Shopping Cart ****** -->
+
+	    <!-- Remote URL addToCart-->
+	    <action name="addToCart" class="com.salesmanager.checkout.cart.ShoppingCartAction" method="addToCart">
+   			<result name="success" type="redirect">
+            		<param name="actionName">showCart</param>
+				<param name="namespace">/checkout</param>
+       		</result>
+   			<result type="tiles" name="input">cart.messages</result>
+   			<interceptor-ref name="smRemoteCheckoutStack" /><!-- does not check for token but check model driven -->
+   		</action>
+   		
+   	     <!-- From catalog (remote checkout from shop)-->
+		<action name="checkoutRemote" class="com.salesmanager.checkout.cart.StoreShoppingCartAction" method="checkoutRemote">
+   			<result name="success" type="redirect">
+            		<param name="actionName">showCart</param>
+				<param name="namespace">/checkout</param>
+       		</result>
+   			<result type="tiles" name="input">cart.messages</result>
+   			<interceptor-ref name="smCartStack" /><!-- does not check for token -->
+   		</action>
+   		
+   		 <!-- From catalog (regular checkout from shop)-->
+   		<action name="checkoutLocal" class="com.salesmanager.checkout.cart.StoreShoppingCartAction" method="checkoutLocal">
+   			<result type="redirect" name="landing">
+            		<param name="actionName">landing</param>
+            		<param name="namespace">/store</param>
+        		</result>
+   			<result name="success" type="redirect">
+            		<param name="actionName">showCart</param>
+				<param name="namespace">/checkout</param>
+       		</result>
+   			<result type="tiles" name="input">cart.messages</result>
+   			<interceptor-ref name="smCartStack" /><!-- does not check for token -->
+   		</action>
+
+
+
+   		
+		 <!-- *** Invoice *** -->
+   		 <!-- Prepare -->
+   		 <action name="viewInvoice" class="com.salesmanager.checkout.invoice.InvoiceAction" method="prepareInvoice">
+   			<result name="success" type="redirect">
+            		<param name="actionName">displayInvoice</param>
+				    <param name="namespace">/checkout</param>
+			</result>
+   			<interceptor-ref name="smCartStack" />
+   		 </action>
+   		 
+
+   		 
+   		 <action name="prepareSimpleInvoice" class="com.salesmanager.checkout.invoice.InvoiceAction" method="prepareInvoice">
+   			<result name="success" type="redirect">
+            	<param name="actionName">displaySimpleInvoice</param>
+			</result>
+   			<interceptor-ref name="smCartStack" />
+   		 </action>
+   		 
+
+   		 <action name="displaySimpleInvoice" class="com.salesmanager.checkout.invoice.InvoiceAction" method="displayInvoice">
+   			<result name="success">/checkout/invoice/simpleInvoice.jsp</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+	   		 <!-- Print -->
+   		 <action name="printInvoice" class="com.salesmanager.checkout.invoice.InvoiceAction" method="printInvoice">
+   			<result name="displayInvoice" type="redirect">
+            		<param name="actionName">displayInvoice</param>
+				    <param name="namespace">/checkout</param>
+			</result>
+   			<result name="success" type="stream">
+					 <param name="contentType">application/pdf</param>
+					 <param name="inputName">invoiceInputStream</param>
+					 <param name="contentDisposition">attachment;filename="client_invoice.pdf"</param>
+					 <param name="bufferSize">1024</param>
+			</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+	
+	</package>
+
+
+
+	<!-- SSL urls -->
+   <package name="checkout" extends="default" namespace="/checkout">
+
+
+       <result-types>
+    		 <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 <result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+    	 </result-types>
+
+
+	    <action name="errorPage">
+	  	     <result name="success" type="tiles">global.error</result>
+	    </action>
+
+	    <action name="emptyCart" class="com.salesmanager.checkout.cart.ShoppingCartAction" method="emptyCart">
+   			<result type="tiles">cart.messages</result>
+   	    </action>
+   	    
+   	    <!--  ****** Shopping Cart ****** -->
+
+
+		<!-- Displays shopping cart -->
+   		<action name="showCart" class="com.salesmanager.checkout.cart.ShoppingCartAction" method="displayCart">
+   			<result type="tiles">cart.main</result>
+   			<result type="tiles" name="input">cart.messages</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		</action>
+
+
+   		
+   		<action name="showSignin">
+   			<result name="success">/checkout/components/logon.jsp</result>
+   		</action>
+   		
+   		<!-- ****** Checkout Flow ****** -->
+
+
+   		 <action name="checkout" class="com.salesmanager.checkout.flow.InitCheckoutAction" method="initCheckout">
+   			<result name="payPalExpressCheckout" type="redirect">payPalExpressCheckout</result>
+   			<result name="success" type="redirect">customer</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+   		 
+   		 
+   		 <!-- Display Billing information -->
+   		 <action name="customer" class="com.salesmanager.checkout.flow.CustomerInformationAction" method="displayCustomer">
+   			<result type="tiles">checkout.customer</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+   		  <action name="validateCustomer" class="com.salesmanager.checkout.flow.CustomerInformationAction" method="validateShippingBilling">
+   			<result name="success" type="redirect">shipping</result>
+   			<result name="SUCCESS-SUMMARY" type="redirect">summary</result>
+   			<result type="tiles" name="input">checkout.customer</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+   		 
+   		 <action name="logonCustomer" class="com.salesmanager.checkout.flow.CustomerInformationAction" method="logonCustomer">
+   			<result name="success" type="redirect">customer</result>
+   			<result name="input" type="tiles">checkout.customer</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+   		<!-- Display shipping --> 
+		<action name="shipping" class="com.salesmanager.checkout.flow.ShippingAction" method="displayShipping">
+   			<result type="tiles">checkout.shipping</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+   		 <action name="selectShippingMethod" class="com.salesmanager.checkout.flow.ShippingAction" method="selectShipping">
+   			<result name="success" type="redirect">summary</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+		<!-- Display payment method -->
+   		 <action name="payment" class="com.salesmanager.checkout.flow.PaymentAction" method="displayPayment">
+   			<result type="tiles">checkout.payment</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+   		 <action name="selectPaymentMethod" class="com.salesmanager.checkout.flow.PaymentAction" method="selectPayment">
+   			<result name="payPalExpressCheckout" type="redirect">payPalExpressCheckout</result>
+   			<result name="success" type="redirect">summary</result>
+   			<result type="tiles" name="input">checkout.payment</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+		 <!-- Display summary page -->
+		 <action name="summary" class="com.salesmanager.checkout.flow.DisplayOrderSummaryAction" method="displayOrderSummaryAction">
+   			<result type="tiles">checkout.summary</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+   		 <action name="comitOrder" class="com.salesmanager.checkout.flow.ComitOrderAction" method="comitOrder">
+   			<result name="success" type="redirect">displayOrder</result>
+   			<result name="PAYMENTERROR" type="redirect">payment</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+   		 <!-- Display read only order -->
+   		 <action name="displayOrder" class="com.salesmanager.checkout.flow.ComitOrderAction" method="displayOrder">
+   			<result type="tiles">checkout.thankyou</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+   		 
+   		 
+   		 <!--****** Invoice flow ******-->
+   		 
+   		 <!--  Display -->
+   		 <action name="displayInvoice" class="com.salesmanager.checkout.invoice.InvoiceAction" method="displayInvoice">
+   			<result type="tiles">invoice.display</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+   		 
+   		 
+
+   		 
+   		 <!-- Print -->
+   		 <action name="printInvoice" class="com.salesmanager.checkout.invoice.InvoiceAction" method="printInvoice">
+   			<result name="displayInvoice" type="redirect">displayInvoice</result>
+   			<result name="success" type="stream">
+					 <param name="contentType">application/pdf</param>
+					 <param name="inputName">invoiceInputStream</param>
+					 <param name="contentDisposition">attachment;filename="client_invoice.pdf"</param>
+					 <param name="bufferSize">1024</param>
+			</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+   		 
+   		 
+   		 <!-- Payment Initialize -->
+   		 <action name="initInvoiceCheckout" class="com.salesmanager.checkout.flow.InitCheckoutAction" method="initCheckout">
+   			<result name="payPalExpressCheckout" type="redirect">payPalInvoiceExpressCheckout</result>
+   			<result name="success" type="redirect">initInvoicePayment</result>
+   			<result name="input" type="redirect">displayInvoice</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+   		 
+   		 <!-- Payment Route to payment method -->
+   		 <action name="initInvoicePayment" class="com.salesmanager.checkout.flow.InvoicePaymentAction" method="displayPayment">
+   			<result type="tiles">invoice.payment</result><!-- credit card -->
+   			<result name="summary" type="redirect">invoiceSummary</result>
+   			<result name="input" type="redirect">displayInvoice</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+   		 
+   		 <!-- Payment Select payment -->
+   		 <action name="selectInvoicePaymentMethod" class="com.salesmanager.checkout.flow.PaymentAction" method="selectPayment">
+   			<result name="payPalExpressCheckout" type="redirect">payPalInvoiceExpressCheckout</result>
+   			<result name="success" type="redirect">invoiceSummary</result>
+   			<result name="input" type="redirect">initInvoicePayment</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+   		 
+   		 <action name="payPalInvoiceExpressCheckout" class="com.salesmanager.checkout.flow.PayPalExpressCheckoutAction" method="preparePaypalRequest">
+   			<result name="success">/checkout/components/paypalRequest.jsp</result>
+			<result name="PAYMENTERROR" type="redirect">displayInvoice</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+
+		 <action name="invoiceSummary" class="com.salesmanager.checkout.flow.DisplayInvoiceSummaryAction" method="displayOrderSummaryAction">
+   			<result type="tiles">invoice.summary</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+   		 <action name="comitInvoice" class="com.salesmanager.checkout.flow.ComitInvoiceAction" method="comitOrder">
+   			<result name="success" type="redirect">displayInvoiceConfirmation</result>
+   			<result name="PAYMENTERROR" type="redirect">displayInvoice</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+   		 <action name="displayInvoiceConfirmation" class="com.salesmanager.checkout.flow.ComitOrderAction" method="displayOrder">
+   			<result type="tiles">invoice.thankyou</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+   		 
+   		 
+   		 <!-- ****** PayPal express checkout request ****** -->
+   		 <action name="payPalExpressCheckout" class="com.salesmanager.checkout.flow.PayPalExpressCheckoutAction" method="preparePaypalRequest">
+   			<result name="success">/checkout/components/paypalRequest.jsp</result>
+			<result name="PAYMENTERROR" type="redirect">showCart</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+
+		 <!--  cancel url checkout -->
+   		 <action name="payPalExpressCheckoutReturn" class="com.salesmanager.checkout.flow.PayPalExpressCheckoutAction" method="preparePaypalResponse">
+   			<result name="SUMMARY" type="redirect">summary</result>
+   			<result name="PAYMENTERROR" type="redirect">payment</result>
+   			<result name="success" type="redirect">payPalNotification</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+   		 
+   		 <!--  cancel url invoice -->
+   		 <action name="payPalInvoiceExpressCheckoutReturn" class="com.salesmanager.checkout.flow.PayPalExpressCheckoutAction" method="preparePaypalResponse">
+   			<result name="SUMMARY" type="redirect">invoiceSummary</result>
+   			<result name="PAYMENTERROR" type="redirect">displayInvoice</result>
+   			<result name="success" type="redirect">invoiceSummary</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		 </action>
+
+		<!--  This block is not invoked -->
+   		<action name="payPalNotification" class="com.salesmanager.checkout.flow.PayPalExpressCheckoutAction" method="payPalNotification">
+   			<result name="success" type="redirect">customer</result>
+   			<interceptor-ref name="smCheckoutStack" />
+   		</action>
+
+
+		<!-- ****** Download files section ****** -->
+   		<action name="getFile" class="com.salesmanager.checkout.files.FilesAction" method="getFile">
+			<result name="success" type="stream">
+  				<param name="contentType">application/octet-stream</param>
+  				<param name="inputName">inputStream</param>
+  				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+  				<param name="bufferSize">1024</param>
+			</result>
+			<result name="MAXIMUMDOWNLOADREACHED" type="redirect">
+				<param name="actionName">displayOrder</param>
+            	<param name="fileMessage">${fileMessage}</param>
+			</result>
+			<interceptor-ref name="smCartStack" />
+   		</action>
+
+   	    <action name="accessUrl" class="com.salesmanager.checkout.files.FilesAction" method="accessUrl">
+   			<result name="success" type="redirect">
+   				<param name="actionName">viewFiles</param>
+            	<param name="orderId">${orderId}</param>
+			</result>
+			<interceptor-ref name="smCartStack" />
+   		</action>
+
+   		<action name="viewFiles" class="com.salesmanager.checkout.files.FilesAction" method="viewFiles">
+   			<result type="tiles">checkout.files</result>
+   			<interceptor-ref name="smCartStack" />
+   		</action>
+
+
+	 </package>
+
+
+
+
+
+
+
+
+
+
+</struts>

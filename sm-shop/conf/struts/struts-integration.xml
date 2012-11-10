@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+
+
+
+
+    <package name="integration" extends="default" namespace="/integration">
+
+		 <result-types>
+    		 <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 <result-type name="redirect-action" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+    	 </result-types>
+    	 
+    	 <action name="errorPage">
+	  	     <result name="success" type="tiles">global.error</result>
+	    </action>
+    	 
+    	 <!-- FB Page -->
+	     <!-- 1st * = pagetitle/ -->
+	     <action name="/fbPage/*/" method="displayPage" class="com.salesmanager.integration.page.FbPageAction">
+			<result name="success" type="tiles">fbpage</result>
+			<result name="oauth">/integration/oauthRequest.jsp</result>
+			<result name="error" type="tiles">global.simple.error</result>
+			<interceptor-ref name="smFbPageStack" />
+		</action>
+		
+		<!-- oauth -->
+		<!--
+		<action name="oauthRequest" method="displayPage" class="com.salesmanager.integration.page.OauthRequestAction">
+			<result name="success">oauthRequest.jsp</result>
+			<result name="error" type="tiles">global.simple.error</result>
+		</action>
+		-->
+    	 
+    	 <!-- Page -->
+	     <!-- * = pagetitle/ -->
+    	 <action name="/page/*/" method="displayPage" class="com.salesmanager.integration.page.PageAction">
+			<result name="success" type="tiles">fbpage</result>
+			<result name="error" type="tiles">global.simple.error</result>
+			<interceptor-ref name="smPageStack" />
+		</action>
+
+
+    </package>
+
+
+
+</struts>

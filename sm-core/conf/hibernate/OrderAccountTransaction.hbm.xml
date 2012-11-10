@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 8, 2008 9:09:20 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.test.OrdersAccountTransactions" table="ORDERS_ACCOUNT_TRANSACTIONS">
+        <comment></comment>
+        <id name="orderAccountTransactionId" type="long">
+            <column name="ORDER_ACCOUNT_TRANSACTION_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="orderId" type="long">
+            <column name="ORDER_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountTransactionDate" type="timestamp">
+            <column name="ORDER_ACCOUNT_TRANSACTION_DATE" length="0" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountTransactionAmount" type="big_decimal">
+            <column name="ORDER_ACCOUNT_TRANSACTION_AMOUNT" precision="15" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountTransactionStatus" type="int">
+            <column name="ORDER_ACCOUNT_TRANSACTION_STATUS" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountTransactionStatusText" type="string">
+            <column name="ORDER_ACCOUNT_TRANSACTION_STATUS_TEXT" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

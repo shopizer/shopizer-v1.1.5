@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 8, 2008 9:09:20 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.system.CentralIntegrationError" table="CENTRAL_INTEGRATION_ERRORS">
+        <comment></comment>
+        <id name="centralIntegrationErrorId" type="long">
+            <column name="CENTRAL_INTEGRATION_ERRORS_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">CIE_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="merchantid" type="int">
+            <column name="MERCHANTID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="centralIntegrationErrorDescription" type="string">
+            <column name="CENTRAL_INTEGRATION_ERR_DESC">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

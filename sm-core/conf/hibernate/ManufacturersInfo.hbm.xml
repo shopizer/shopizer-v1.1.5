@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 11, 2009 9:19:07 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.test.ManufacturersInfo" table="MANUFACTURERS_INFO">
+        <composite-id name="id" class="com.salesmanager.core.test.ManufacturersInfoId">
+            <key-property name="manufacturersId" type="int">
+                <column name="MANUFACTURERS_ID" />
+            </key-property>
+            <key-property name="languagesId" type="int">
+                <column name="LANGUAGES_ID" />
+            </key-property>
+        </composite-id>
+        <property name="manufacturersUrl" type="string">
+            <column name="MANUFACTURERS_URL" not-null="true" />
+        </property>
+        <property name="urlClicked" type="int">
+            <column name="URL_CLICKED" not-null="true" />
+        </property>
+        <property name="dateLastClick" type="timestamp">
+            <column name="DATE_LAST_CLICK" length="0" />
+        </property>
+    </class>
+</hibernate-mapping>

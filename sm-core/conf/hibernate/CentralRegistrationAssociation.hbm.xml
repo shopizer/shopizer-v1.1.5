@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 11, 2009 9:19:07 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.system.CentralRegistrationAssociation" table="CENTRAL_REG_ASSOCIATION">
+        <id name="centralRegistrationAssociationId" type="java.lang.Integer">
+            <column name="CENTRAL_REG_ASSOCIATION_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">CRA_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="merchantRegistrationDefCode" type="int">
+            <column name="MERCHANT_REGISTRATION_DEF_CODE" />
+        </property>
+        <property name="centralGroupCode" type="string">
+            <column name="CENTRAL_GROUP_CODE" length="10" />
+        </property>
+        <property name="centralFunctionCode" type="string">
+            <column name="CENTRAL_FUNCTION_CODE" length="10" />
+        </property>
+        <property name="promotionCode" type="int">
+            <column name="PROMOTION_CODE" />
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0" />
+        </property>
+        
+        
+
+        
+        
+    </class>
+</hibernate-mapping>

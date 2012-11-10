@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2008 8:23:32 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.tax.GeoZoneTaxTemplate" table="GEO_ZONES_TAX_TEMPLATE">
+        <comment></comment>
+        <id name="geoZoneId" type="long">
+            <column name="GEO_ZONE_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="geoZoneName" type="string">
+            <column name="GEO_ZONE_NAME" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="geoZoneDescription" type="string">
+            <column name="GEO_ZONE_DESCRIPTION">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="schemeid" type="int">
+            <column name="SCHEMEID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2007 8:24:10 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.merchant.MerchantUserInformation" table="MERCHANT_USER_INFORMATION" >
+        <comment></comment>
+        <id name="merchantUserId" type="long">
+            <column name="MERCHANT_USER_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">MERCHANT_USER_INFO_ID_NEXT_VAL</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="adminName" type="string">
+            <column name="ADMIN_NAME" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="adminEmail" type="string">
+            <column name="ADMIN_EMAIL" length="96" not-null="true" unique="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="adminPass" type="string">
+            <column name="ADMIN_PASS" length="40" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="token" type="string">
+            <column name="TOKEN" length="40">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="userfname" type="string">
+            <column name="USERFNAME" length="40" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="userlname" type="string">
+            <column name="USERLNAME" length="40" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="useraddress" type="string">
+            <column name="USERADDRESS" length="100" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="usercity" type="string">
+            <column name="USERCITY" length="40" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="userpostalcode" type="string">
+            <column name="USERPOSTALCODE" length="15" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="userstate" type="string">
+            <column name="USERSTATE" length="100" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="usercountrycode" type="int">
+            <column name="USERCOUNTRYCODE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="userphone" type="string">
+            <column name="USERPHONE" length="15" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="merchantId" type="java.lang.Integer">
+            <column name="MERCHANTID">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="userlang" type="string">
+            <column name="USERLANG" length="2" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+                <property name="status" type="int">
+            <column name="STATUS" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="securityQuestion1" type="string">
+            <column name="SECURITY_QUESTION_1" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="securityQuestion2" type="string">
+            <column name="SECURITY_QUESTION_2" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="securityQuestion3" type="string">
+            <column name="SECURITY_QUESTION_3" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="securityAnswer1" type="string">
+            <column name="SECURITY_ANSWER_1" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="securityAnswer2" type="string">
+            <column name="SECURITY_ANSWER_2" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="securityAnswer3" type="string">
+            <column name="SECURITY_ANSWER_3" length="64">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

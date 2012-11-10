@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 4, 2009 7:13:57 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.ProductRelationship" table="PRODUCT_RELATIONSHIP">
+        <comment></comment>
+        <id name="relationshipId" type="long">
+            <column name="RELATIONSHIP_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">RELATIONSHIP_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="merchantId" type="int">
+            <column name="MERCHANT_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productId" type="long">
+            <column name="PRODUCT_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="relatedProductId" type="long">
+            <column name="RELATED_PRODUCT_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="relationshipType" type="int">
+            <column name="RELATIONSHIP_TYPE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="relationshipActive" type="boolean">
+            <column name="RELATIONSHIP_ACTIVE">
+                <comment></comment>
+            </column>
+        </property>
+
+
+    </class>
+</hibernate-mapping>

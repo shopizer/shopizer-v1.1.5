@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 5, 2008 10:22:35 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.ProductPrice" table="PRODUCTS_PRICE">
+        <comment></comment>
+        <id name="productPriceId" type="long">
+            <column name="PRODUCT_PRICE_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">PRODUCT_PRICE_ID_NEXT_VAL</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="productId" type="long">
+            <column name="PRODUCT_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productPriceTypeId" type="int">
+            <column name="PRODUCT_PRICE_TYPE_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productPriceModuleName" type="string">
+            <column name="PRODUCT_PRICE_MODULE_NAME" length="64" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productPriceAmount" type="big_decimal">
+            <column name="PRODUCT_PRICE_AMOUNT" precision="15" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="defaultPrice" type="boolean">
+            <column name="DEFAULT_PRICE">
+                <comment></comment>
+            </column>
+        </property>
+
+         <one-to-one name="special"
+			class="com.salesmanager.core.entity.catalog.ProductPriceSpecial" fetch="join" />
+
+
+
+         <set name="priceDescriptions"
+				lazy="false"
+				fetch="join"
+				batch-size="10"
+				inverse="true">
+				<key column="PRODUCT_PRICE_ID" />
+				<one-to-many class="com.salesmanager.core.entity.catalog.ProductPriceDescription" />
+		 </set>
+
+		<!--
+        <set name="specials"
+				lazy="false"
+				fetch="join"
+				batch-size="10"
+				inverse="true">
+				<key column="PRODUCT_PRICE_ID" />
+				<one-to-many class="com.salesmanager.core.entity.catalog.ProductPriceSpecial" />
+		</set>
+		-->
+
+    </class>
+</hibernate-mapping>

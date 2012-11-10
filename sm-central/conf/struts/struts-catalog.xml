@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+
+
+    <package name="catalog" extends="default" namespace="/catalog">
+
+		
+		<result-types>
+    		 	<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 	<result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+        </result-types>
+        
+		<default-action-ref name="productlist" />
+
+
+		<!-- Product relationship -->
+	    <!-- {1}=associationType,  {2}=method-->
+	    <!-- eg crosssell_display.action -->
+	    <!-- featuredItems_display -->
+	    <!--
+	    <action name="*_*" method="{2}" class="com.salesmanager.central.catalog.RelationShip{1}Action">
+				<result name="success" type="tiles">{1}</result>
+				<result name="input" type="tiles">{1}</result>
+				<result name="deletecomplete" type="redirectAction">{1}_{2}</result>
+				<interceptor-ref name="smAdminStack" />
+		</action>
+		-->
+		
+		<!-- invoke /relationship.action?relationShipType=[0, 10, 20, 30] see CatalogConstants for values (default is 0) -->
+		<!-- when doing cross sell or related items, set url parameter &product.productId=<productId> -->
+		<action name="relationship" method="display" class="com.salesmanager.central.catalog.RelationShipAction">
+				<result name="success" type="tiles">relationship</result>
+				<result name="input" type="tiles">relationship</result>
+				<result name="deletecomplete" type="redirectAction">relationship</result>
+				<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+		
+	   <action name="relationshipProduct" method="display" class="com.salesmanager.central.catalog.RelationShipAction">
+				<result name="success" type="tiles">relationshipProduct</result>
+				<result name="input" type="tiles">relationshipProduct</result>
+				<result name="deletecomplete" type="redirectAction">relationshipProduct</result>
+				<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+		
+        <!-- Category entry point -->
+        <action name="category" class="com.salesmanager.central.catalog.EditCategoryAction" method="display">
+			<result name="success" type="tiles">category</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+
+
+		<!-- Category edition -->
+		<action name="showeditcategory" class="com.salesmanager.central.catalog.EditCategoryAction" method="showEditCategory">
+			<result type="tiles">editcategory</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+	    <action name="savecategory" class="com.salesmanager.central.catalog.EditCategoryAction" method="saveCategory">
+			<result name="success" type="tiles">editcategory</result>
+			<result name="input" type="tiles">editcategory</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+	    <action name="deletecategory" class="com.salesmanager.central.catalog.EditCategoryAction" method="deleteCategory">
+			<result name="error" type="redirectAction">
+            	<param name="actionName">showeditcategory</param>
+				<param name="categoryid">${category.categoryId}</param>
+       		</result>
+			<result name="success" type="redirectAction">category</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+	    <action name="showmovecategory" class="com.salesmanager.central.catalog.EditCategoryAction" method="showEditCategory">
+			<result name="success" type="tiles">editparentcategory</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+	    <action name="savemovecategory" class="com.salesmanager.central.catalog.EditCategoryAction" method="saveCategory">
+			<result name="success" type="redirectAction">category</result>
+			<result name="UNAUTHORIZED" type="redirectAction">category</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+		
+		
+		<action name="uploadCategory" class="com.salesmanager.central.util.upload.GenericFileUploadAction" method ="uploadCategories">
+			<result name="error" type="redirectAction">
+            	<param name="actionName">category</param>
+       		</result> 
+			<result name="success" type="redirectAction">
+            	<param name="actionName">category</param>
+       		</result>
+			<result name="input" type="redirectAction">
+            	<param name="actionName">category</param>
+       		</result>  
+       		<interceptor-ref name="smCatalogRoleStack" />     		        		   	 
+        </action>
+        
+        <!-- Product list -->
+
+		<action name="productlist" class="com.salesmanager.central.catalog.ProductListAction" method="show">
+			<result name="success" type="tiles">productlist</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+		
+		 <action name="uploadProducts" class="com.salesmanager.central.util.upload.GenericFileUploadAction" method ="uploadProducts">
+			<result name="error" type="redirectAction">
+            	<param name="actionName">productlist</param>
+       		</result> 
+			<result name="success" type="redirectAction">
+            	<param name="actionName">productlist</param>
+       		</result>
+			<result name="input" type="redirectAction">
+            	<param name="actionName">productlist</param>
+       		</result>
+       		<interceptor-ref name="smCatalogRoleStack" />            
+        </action>
+        
+		<action name="updatelist" class="com.salesmanager.central.catalog.ProductListAction" method="updateavailability">
+			<result name="success" type="redirectAction">productlist</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+
+		<!-- Product edition -->
+
+	    <action name="showcreateproduct" class="com.salesmanager.central.catalog.EditProductAction" method="showProductEditMode">
+			<result name="success" type="tiles">createproduct</result>
+			<result name="input" type="tiles">createproduct</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+		
+	    <action name="showeditproduct" class="com.salesmanager.central.catalog.EditProductAction" method="showProductEditMode">
+			<result name="success" type="tiles">editproduct</result>
+			<result name="input" type="tiles">editproduct</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+
+		<action name="saveproduct" class="com.salesmanager.central.catalog.EditProductAction" method="saveProduct">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">showeditproduct</param>
+            	<param name="product.productId">${newProductId}</param>
+            	<param name="cropImageUrl">${cropImageUrl}</param>
+       		</result>
+			<result name="input" type="tiles">editproduct</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+	    <action name="delete_file" class="com.salesmanager.central.catalog.EditProductAction" method="deleteFile">
+				<result name="success" type="tiles">editproduct</result>
+				<result name="unauthorized" type="redirectAction">productlist</result>
+				<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+		<action name="deleteproduct" class="com.salesmanager.central.catalog.EditProductAction" method="deleteProduct">
+			<result name="success" type="redirectAction">productlist</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+		<action name="cloneproduct" class="com.salesmanager.central.catalog.EditProductAction" method="cloneProduct">
+			<result name="success" type="tiles">createproduct</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+		
+		
+		<!-- crop product -->
+		<action name="showCropProductImage" class="com.salesmanager.central.catalog.EditProductAction" method="showCropProductImage">
+			<result name="success" type="tiles">cropproduct</result>
+			<result name="productList" type="redirectAction">productlist</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+		
+		<action name="cropProductImage" class="com.salesmanager.central.catalog.EditProductAction" method="cropProductImage">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">showcreateproduct</param>
+            	<param name="product.productId">${product.productId}</param>
+       		</result>
+       		<result name="productList" type="redirectAction">productlist</result>
+       		<result name="input" type="tiles">editproduct</result>
+       		<interceptor-ref name="smCatalogRoleStack" />
+		</action>		
+
+		<!-- Discount -->
+
+		<action name="editdiscount" class="com.salesmanager.central.catalog.EditDiscountAction" method="showDiscount">
+				<result name="success" type="tiles">discounts</result>
+				<result name="unauthorized" type="redirectAction">productlist</result>
+				<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+		<action name="savediscount" class="com.salesmanager.central.catalog.EditDiscountAction" method="saveDiscount">
+				<result name="success" type="tiles">discounts</result>
+				<result name="unauthorized" type="redirectAction">productlist</result>
+				<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+		<action name="deletediscount" class="com.salesmanager.central.catalog.EditDiscountAction" method="deleteDiscount">
+				<result name="success" type="tiles">discounts</result>
+				<result name="unauthorized" type="redirectAction">productlist</result>
+				<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+
+		<!-- Product Price -->
+
+		<action name="showproductprice" class="com.salesmanager.central.catalog.EditProductPriceAction" method="displayProductPrice">
+			<result name="success" type="tiles">productprices</result>
+			<result name="error" type="redirectAction">
+            	<param name="actionName">productlist</param>
+       		</result>
+       		<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+
+		<action name="addproductprice" class="com.salesmanager.central.catalog.EditProductPriceAction" method="editProductPrice">
+			<result name="error" type="redirectAction">
+            	<param name="actionName">showproductprice</param>
+            	<param name="product.productId">${product.productId}</param>
+       		</result>
+       	    <result name="success" type="redirectAction">
+            	<param name="actionName">showproductprice</param>
+            	<param name="product.productId">${product.productId}</param>
+       		</result>
+			<result name="input" type="tiles">productprices</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+		<action name="editproductprice" class="com.salesmanager.central.catalog.EditProductPriceAction" method="editProductPrice">
+			<result name="error" type="redirectAction">
+            	<param name="actionName">showproductprice</param>
+            	<param name="product.productId">${product.productId}</param>
+       		</result>
+       	    <result name="success" type="redirectAction">
+            	<param name="actionName">showproductprice</param>
+            	<param name="product.productId">${product.productId}</param>
+       		</result>
+			<result name="input" type="tiles">productprices</result>
+			<result name="validation" type="tiles">productprices</result>
+			<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+		<action name="showproductpricediscount" class="com.salesmanager.central.catalog.EditProductPriceDiscountAction" method="displayProductPriceDiscount">
+			<result name="success" type="tiles">pricediscounts</result>
+			<result name="error" type="redirectAction">
+            	<param name="actionName">showproductprice</param>
+            	<param name="product.productId">${product.productId}</param>
+       		</result>
+       		<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+		<action name="editproductpricediscount" class="com.salesmanager.central.catalog.EditProductPriceDiscountAction" method="editProductPriceDiscount">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">showproductpricediscount</param>
+            	<param name="price.productPriceId">${price.productPriceId}</param>
+            	<param name="product.productId">${product.productId}</param>
+       		</result>
+       		<result name = "error" type="tiles">pricediscounts</result>
+       		<result name="input" type="tiles">pricediscounts</result>
+       		<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+
+		<action name="deletepricediscount" class="com.salesmanager.central.catalog.EditProductPriceDiscountAction" method="deleteProductPriceDiscount">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">showproductpricediscount</param>
+            	<param name="price.productPriceId">${price.productPriceId}</param>
+            	<param name="product.productId">${product.productId}</param>
+       		</result>
+       		<result name = "error" type="tiles">pricediscounts</result>
+       		<result name="input" type="tiles">pricediscounts</result>
+       		<interceptor-ref name="smCatalogRoleStack" />
+		</action>
+		
+		
+		<!-- Product images -->
+		 <action name="displayImages" class="com.salesmanager.central.catalog.EditImagesAction" method="displayImages">
+				<result name="success" type="tiles">productimages</result>
+				<result name="input" type="tiles">productimages</result>
+				<result name="unauthorized" type="redirectAction">productlist</result>
+				<interceptor-ref name="smCatalogRoleStack" />
+		 </action>
+		 
+		 <action name="uploadImages" class="com.salesmanager.central.catalog.EditImagesAction" method="saveImages">
+				<result name="success" type="redirectAction">
+					<param name="actionName">displayImages</param>
+					<param name="product.productId">${product.productId}</param>
+				</result>
+				<result name="input" type="tiles">productimages</result>
+				<result name="unauthorized" type="redirectAction">productlist</result>
+				<interceptor-ref name="smCatalogRoleStack" />
+		 </action>
+		 
+		 <action name="deleteImage" class="com.salesmanager.central.catalog.EditImagesAction" method="deleteImage">
+				<result name="success" type="redirectAction">
+					<param name="actionName">displayImages</param>
+					<param name="product.productId">${product.productId}</param>
+				</result>
+				<result name="input" type="tiles">productimages</result>
+				<result name="unauthorized" type="redirectAction">productlist</result>
+				<interceptor-ref name="smCatalogRoleStack" />
+		 </action>
+
+
+		<!-- Upload product -->
+
+		 <action name="showuploadform" class="com.salesmanager.central.catalog.EditProductUploadAction" method="showUploadForm">
+				<result name="success" type="tiles">fileview</result>
+				<result name="unauthorized" type="redirectAction">productlist</result>
+				<interceptor-ref name="smCatalogRoleStack" />
+		 </action>
+
+		 <action name="uploadproduct" class="com.salesmanager.central.catalog.EditProductUploadAction" method="uploadProduct">
+				<result name="success" type="tiles">fileview</result>
+				<result name="input" type="tiles">fileview</result>
+				<result name="unauthorized" type="redirectAction">productlist</result>
+				<interceptor-ref name="fileUpload">
+        			<param name="maximumSize">1048576</param><!-- approximatly 10 mb -->
+     			</interceptor-ref>
+     			<interceptor-ref name="smCatalogRoleStack"/>     				
+		 </action>
+
+
+		<!-- Product Options -->
+
+		<action name="productoption" class="com.salesmanager.central.catalog.EditProductOptionsAction" method="displayProductOptions">
+			<result name="success" type="tiles">productoptions</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+
+		<action name="editproductoptions" class="com.salesmanager.central.catalog.EditProductOptionsAction" method="editProductOptions">
+			<result name="success" type="redirectAction">productoption</result>
+			<result name="input" type="tiles">productoptions</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+
+		<action name="addproductoption" class="com.salesmanager.central.catalog.EditProductOptionsAction" method="addProductOption">
+			<result name="success" type="redirectAction">productoption</result>
+			<result name="input" type="tiles">productoptions</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+
+		<!-- Product Options Values-->
+
+		<action name="productoptionvalues" class="com.salesmanager.central.catalog.EditProductOptionsValuesAction" method="displayProductOptionsValues">
+			<result name="success" type="tiles">productoptionsvalues</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+
+		<action name="editproductoptionsvalues" class="com.salesmanager.central.catalog.EditProductOptionsValuesAction" method="editProductOptionsValues">
+			<result name="success" type="redirectAction">productoptionvalues</result>
+			<result name="associate-success" type="redirectAction">
+            	<param name="actionName">productoptionvalues</param>
+            	<param name="productOption.productOptionId">${productOption.productOptionId}</param>
+       		</result>
+			<result name="input" type="tiles">productoptionsvalues</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+		
+		
+		<action name="editproductoptionvaluetext" class="com.salesmanager.central.catalog.EditProductAttributesAction" method="editProductOptionTextValues">
+			<result name="success" type="tiles">producttextoptionvalues</result>			
+			<result name="error" type="redirectAction">
+				<param name="actionName">productattributes</param>
+            	<param name="product.productId">${product.productId}</param>
+			</result>
+			<result name="input" type="tiles">producttextoptionvalues</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+		
+		<action name="saveproductoptionvaluetext" class="com.salesmanager.central.catalog.EditProductAttributesAction" method="saveProductOptionTextValues">
+			<result name="success" type="tiles">producttextoptionvalues</result>			
+			<result name="error" type="tiles">producttextoptionvalues</result>
+			<result name="input" type="tiles">producttextoptionvalues</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+
+		<action name="addproductoptionvalue" class="com.salesmanager.central.catalog.EditProductOptionsValuesAction" method="addProductOptionValue">
+			<result name="success" type="redirectAction">productoptionvalues</result>
+			<result name="associate-success" type="redirectAction">
+            	<param name="actionName">productoptionvalues</param>
+            	<param name="productOption.productOptionId">${productOption.productOptionId}</param>
+       		</result>
+			<result name="input" type="tiles">productoptionsvalues</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+
+		<action name="addproductoptionvalueid" class="com.salesmanager.central.catalog.EditProductOptionsValuesAction" method="associateProductOptionValue">
+			<result name="success" type="redirectAction">productoptionvalues</result>
+			<result name="associate-success" type="redirectAction">
+            	<param name="actionName">productoptionvalues</param>
+            	<param name="productOption.productOptionId">${productOption.productOptionId}</param>
+       		</result>
+			<result name="input" type="tiles">productoptionsvalues</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+
+		<!-- Product attributes -->
+
+		<action name="productattributes" class="com.salesmanager.central.catalog.EditProductAttributesAction" method="displayProductAttributes">
+			<result name="success" type="tiles">productattributes</result>
+			<result name="input" type="tiles">productattributes</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+
+		<action name="addproductoptiontoattribute" class="com.salesmanager.central.catalog.EditProductAttributesAction" method="addProductAttributes">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">productattributes</param>
+            	<param name="product.productId">${product.productId}</param>
+       		</result>
+			<result name="input" type="tiles">productattributes</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+
+		<action name="editproductattributes" class="com.salesmanager.central.catalog.EditProductAttributesAction" method="editProductAttributes">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">productattributes</param>
+            	<param name="product.productId">${product.productId}</param>
+       		</result>
+			<result name="input" type="tiles">productattributes</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+
+
+
+		<action name="choosecategory" class="com.salesmanager.central.catalog.EditProductAction" method="setcategory">
+			<result name="success" type="tiles">editproduct</result>
+			<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+
+
+		<action name="productpreview" class="com.salesmanager.central.catalog.ProductPreviewAction" method="display">
+				<result name="success" type="tiles">productpreview</result>
+				<result name="unauthorized" type="redirectAction">productlist</result>
+				<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+		
+		<action name="productreview" class="com.salesmanager.central.catalog.ProductReviewAction" method="reviewProduct">
+				<result name="success" type="tiles">productreview</result>
+				<result name="unauthorized" type="redirectAction">productlist</result>
+				<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+		
+		<action name="removeReview" class="com.salesmanager.central.catalog.ProductReviewAction" method="removeReview">
+				<result name="success" type="tiles">productreview</result>
+				<result name="unauthorized" type="redirectAction">productlist</result>
+				<interceptor-ref name="smCatalogRoleStack"/>
+		</action>
+
+
+
+
+
+
+
+
+
+    </package>
+
+
+
+
+</struts>

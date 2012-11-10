@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 8, 2008 8:01:10 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.ProductDescription" table="PRODUCTS_DESCRIPTION">
+        <comment></comment>
+        <composite-id name="id" class="com.salesmanager.core.entity.catalog.ProductDescriptionId">
+            <key-property name="productId" type="long">
+                <column name="PRODUCTS_ID" />
+            </key-property>
+            <key-property name="languageId" type="int">
+                <column name="LANGUAGE_ID" />
+            </key-property>
+        </composite-id>
+        <property name="productName" type="string">
+            <column name="PRODUCTS_NAME" length="64" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productDescription" type="string">
+            <column name="PRODUCTS_DESCRIPTION" length="65535">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productTitle" type="string">
+            <column name="PRODUCTS_TITLE" length="120">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productUrl" type="string">
+            <column name="PRODUCTS_URL">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productViewed" type="java.lang.Integer">
+            <column name="PRODUCTS_VIEWED">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productHighlight" type="string">
+            <column name="PRODUCTS_HIGHLIGHT">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="seUrlSrc" type="string">
+            <column name="SE_URL_SRC" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="seUrl" type="string">
+            <column name="SE_URL" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="metatagTitle" type="string">
+            <column name="METATAG_TITLE" />
+        </property>
+        <property name="metatagKeywords" type="string">
+            <column name="METATAG_KEYWORDS" length="65535" />
+        </property>
+        <property name="metatagDescription" type="string">
+            <column name="METATAG_DESCRIPTION" length="65535" />
+        </property>
+        <property name="productExternalDl" type="string">
+            <column name="PRODUCTS_EXTERNAL_DL" length="120">
+                <comment></comment>
+            </column>
+        </property>
+
+        <many-to-one name="product" class="com.salesmanager.core.entity.catalog.Product" insert="false" update="false" column="PRODUCTS_ID" not-null="true"/>
+
+    </class>
+</hibernate-mapping>

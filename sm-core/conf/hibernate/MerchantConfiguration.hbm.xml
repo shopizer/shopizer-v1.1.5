@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 29, 2007 2:11:20 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.merchant.MerchantConfiguration" table="MERCHANT_CONFIGURATION">
+        <comment></comment>
+        <id name="configurationId" type="long">
+            <column name="CONFIGURATION_ID" />
+
+
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">MERCHANT_CONF_ID_NEXT_VAL</param>
+                <param name="max_lo">2</param>
+        	</generator>
+
+
+
+
+        </id>
+        <property name="merchantId" type="int">
+            <column name="MERCHANT_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="configurationModule" type="string">
+            <column name="CONFIGURATION_MODULE" length="60">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="configurationKey" type="string">
+            <column name="CONFIGURATION_KEY" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="configurationValue" type="string">
+            <column name="CONFIGURATION_VALUE" length="65535">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="configurationValue1" type="string">
+            <column name="CONFIGURATION_VALUE1" length="65535">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="configurationValue2" type="string">
+            <column name="CONFIGURATION_VALUE2" length="65535">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="sortOrder" type="java.lang.Integer">
+            <column name="SORT_ORDER">
+                <comment></comment>
+            </column>
+        </property>
+        
+    </class>
+</hibernate-mapping>

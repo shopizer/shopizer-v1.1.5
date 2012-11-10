@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 11, 2009 9:19:07 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.system.CentralFunction" table="CENTRAL_FUNCTION">
+        <id name="centralFunctionId" type="java.lang.Integer">
+            <column name="CENTRAL_FUNCTION_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="centralFunctionCode" type="string">
+            <column name="CENTRAL_FUNCTION_CODE" length="10" unique="true" />
+        </property>
+        <property name="centralGroupCode" type="string">
+            <column name="CENTRAL_GROUP_CODE" length="10" />
+        </property>
+        <property name="centralFunctionDescription" type="string">
+            <column name="CENTRAL_FUNCTION_DESCRIPTION" length="40" />
+        </property>
+        <property name="centralFunctionPosition" type="byte">
+            <column name="CENTRAL_FUNCTION_POSITION"/>
+        </property>
+        <property name="centralFunctionVisible" type="boolean">
+            <column name="CENTRAL_FUNCTION_VISIBLE" />
+        </property>
+        <property name="centralFunctionUrl" type="string">
+            <column name="CENTRAL_FUNCTION_URL" />
+        </property>
+        <property name="centralFunctionNew" type="boolean">
+            <column name="CENTRAL_FUNCTION_NEW" />
+        </property>
+        <property name="centralFunctionNewUntil" type="timestamp">
+            <column name="CENTRAL_FUNCTION_NEW_UNTIL" length="0" />
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0" />
+        </property>
+        <property name="role" type="string">
+            <column name="ROLE" />
+        </property>
+            
+    </class>
+</hibernate-mapping>

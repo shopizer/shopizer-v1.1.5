@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+    
+    
+    <package name="default" extends="struts-default">
+    
+    
+         <result-types>
+    		 <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 <result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+    	 </result-types>
+	    
+	    <interceptors>
+	      <interceptor name="smSefurl" class="com.salesmanager.catalog.URLInterceptor"/>
+	      <interceptor name="smCatalog" class="com.salesmanager.catalog.CatalogInterceptor"/>
+		  <interceptor name="smProfile" class="com.salesmanager.customer.ProfileInterceptor"/>
+		  <interceptor name="smCheckout" class="com.salesmanager.checkout.OrderInterceptor"/>
+		  <interceptor name="smCart" class="com.salesmanager.checkout.ShoppingCartInterceptor"/>
+		  <interceptor name="smPage" class="com.salesmanager.integration.PageInterceptor"/>
+		  <interceptor name="smFb" class="com.salesmanager.integration.FbPageInterceptor"/>
+	      
+	      <!-- Landing, search, contact & other pages -->
+	      <interceptor-stack name="smCatalogStack">
+	        <interceptor-ref name="basicStack"/>
+	        <interceptor-ref name="smCatalog"/>
+	      </interceptor-stack>
+	      <!-- For category and product pages -->
+	      <interceptor-stack name="smSEOStack">
+	        <interceptor-ref name="basicStack"/>
+	        <interceptor-ref name="smCatalog"/>
+	        <interceptor-ref name="smSefurl"/>
+	      </interceptor-stack>
+	      <!--  For customer / profile -->
+	      <interceptor-stack name="smCustomerStack">
+	        <interceptor-ref name="basicStack"/>
+	        <interceptor-ref name="smProfile"/>
+	      </interceptor-stack>
+	      <!--  checkout check token-->
+	      <interceptor-stack name="smCheckoutStack">
+		  	<interceptor-ref name="basicStack" />
+		  	<interceptor-ref name="smCheckout" />
+		  </interceptor-stack>
+		  <!--  remote checkout -->
+	      <interceptor-stack name="smRemoteCheckoutStack">
+		  	<interceptor-ref name="modelDriven"/>
+		  	<interceptor-ref name="basicStack" />
+		  	<interceptor-ref name="smCart" />
+		  </interceptor-stack>
+		  <!--  basic (locale, merchantid, store, analytics) -->
+		  <interceptor-stack name="smCartStack">
+		  	<interceptor-ref name="basicStack" />
+		  	<interceptor-ref name="smCart" />
+		  </interceptor-stack>
+		  <!-- page interceptor -->
+		  <interceptor-stack name="smPageStack">
+		    <interceptor-ref name="basicStack"/>
+		  	<interceptor-ref name="smPage" />
+		  </interceptor-stack>
+		  <!-- fb page interceptor -->
+		  <interceptor-stack name="smFbPageStack">
+		    <interceptor-ref name="basicStack"/>
+		  	<interceptor-ref name="smFb" />
+		  </interceptor-stack>
+	    </interceptors>
+
+	    
+	    <global-results>
+			<result name="GENERICERROR" type="tiles">global.error</result>
+			<result name="MINIMALERROR" type="tiles">global.simple.error</result>
+			<result name="DEFAULT" type="tiles">landing</result>
+			<result name="NOSTORE">/components/nostore.jsp</result>
+			<result name="AUTHORIZATIONERROR" type="tiles">landing</result>
+	    </global-results>
+	  
+	</package>
+
+
+	<!-- Catalog -->
+    <include file="struts-catalog.xml" />
+
+    <!-- Customer -->
+    <include file="struts-customer.xml" />
+
+    <!-- Checkout -->
+    <include file="struts-checkout.xml" />
+    
+    <!-- Integration -->
+    <include file="struts-integration.xml" />
+
+
+</struts>
+
+

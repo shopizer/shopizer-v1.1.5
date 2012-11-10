@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 1, 2008 9:31:45 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.orders.OrderProduct" table="ORDERS_PRODUCTS">
+        <comment></comment>
+        <id name="orderProductId" type="long">
+            <column name="ORDERS_PRODUCTS_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">ORDER_PRODUCT_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+
+        <property name="orderId" type="long">
+            <column name="ORDERS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productId" type="long">
+            <column name="PRODUCTS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productModel" type="string">
+            <column name="PRODUCTS_MODEL" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productName" type="string">
+            <column name="PRODUCTS_NAME" length="64" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productPrice" type="big_decimal">
+            <column name="PRODUCTS_PRICE" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="finalPrice" type="big_decimal">
+            <column name="FINAL_PRICE" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productTax" type="big_decimal">
+            <column name="PRODUCTS_TAX" precision="7" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productQuantity" type="int">
+            <column name="PRODUCTS_QUANTITY" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="onetimeCharge" type="big_decimal">
+            <column name="ONETIME_CHARGES" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productIsFree" type="boolean">
+            <column name="PRODUCT_IS_FREE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="productSpecialNewPrice" type="big_decimal">
+            <column name="PRODUCT_SPECIAL_NEW_PRICE" precision="15" scale="4">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productSpecialDateAvailable" type="timestamp">
+            <column name="PRODUCT_SPECIAL_DATE_AVAILABLE" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productSpecialDateExpire" type="timestamp">
+            <column name="PRODUCT_SPECIAL_DATE_EXPIRE" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="originalProductPrice" type="big_decimal">
+            <column name="ORIGINAL_PRODUCT_PRICE" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="soldPrice" type="big_decimal">
+            <column name="SOLD_PRICE" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+
+
+                <set name="orderattributes"
+					inverse="true" lazy="false" fetch="join">
+					<key column="ORDERS_PRODUCTS_ID"/>
+					<one-to-many class="com.salesmanager.core.entity.orders.OrderProductAttribute" />
+				</set>
+
+
+
+
+				<set name="prices"
+					inverse="true" lazy="false" fetch="join">
+					<key column="ORDERS_PRODUCTS_ID"/>
+					<one-to-many class="com.salesmanager.core.entity.orders.OrderProductPrice" />
+				</set>
+
+				<set name="downloads"
+					inverse="true" lazy="false" fetch="join">
+					<key column="ORDERS_PRODUCTS_ID"/>
+					<one-to-many class="com.salesmanager.core.entity.orders.OrderProductDownload" />
+				</set>
+
+
+
+
+    </class>
+</hibernate-mapping>

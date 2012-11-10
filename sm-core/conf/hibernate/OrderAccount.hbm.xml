@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 28, 2009 11:17:24 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.orders.OrderAccount" table="ORDERS_ACCOUNT">
+        <comment></comment>
+        <id name="orderAccountId" type="long">
+            <column name="ORDER_ACCOUNT_ID" />
+             <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">ORDER_ACCOUNT_ID_NEXT_VALUE</param>
+                <param name="max_lo">1</param>
+        	</generator>
+        </id>
+        <property name="orderId" type="long">
+            <column name="ORDER_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountStatusId" type="int">
+            <column name="ORDER_ACCOUNT_STATUS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountStartDate" type="timestamp">
+            <column name="ORDER_ACCOUNT_START_DATE" length="0" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountEndDate" type="timestamp">
+            <column name="ORDER_ACCOUNT_END_DATE" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderAccountBillDay" type="int">
+            <column name="ORDER_ACCOUNT_BILL_DAY" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+
+        <set name="orderAccountProducts"
+				inverse="true"
+				lazy="false"
+				fetch="join">
+				<key column="ORDER_ACCOUNT_ID" />
+				<one-to-many class="com.salesmanager.core.entity.orders.OrderAccountProduct"/>
+		</set>
+
+
+    </class>
+</hibernate-mapping>

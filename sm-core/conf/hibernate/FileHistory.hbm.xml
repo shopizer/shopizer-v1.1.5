@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 27, 2008 2:00:58 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.orders.FileHistory" table="FILES_HISTORY">
+        <comment></comment>
+        <composite-id name="id" class="com.salesmanager.core.entity.orders.FileHistoryId">
+            <key-property name="merchantId" type="int">
+                <column name="MERCHANTID" />
+            </key-property>
+            <key-property name="fileid" type="long">
+                <column name="FILEID" />
+            </key-property>
+        </composite-id>
+        <property name="filesize" type="int">
+            <column name="FILESIZE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateDeleted" type="timestamp">
+            <column name="DATE_DELETED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="accountedDate" type="timestamp">
+            <column name="ACCOUNTED_DATE" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="downloadCount" type="int">
+            <column name="DOWNLOAD_COUNT" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

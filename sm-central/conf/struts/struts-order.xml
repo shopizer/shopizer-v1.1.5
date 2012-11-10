@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+
+    <package name="orders" extends="default" namespace="/orders">
+	   
+	   
+	   <result-types>
+    		<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		<result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+       </result-types>
+	   
+	   <default-action-ref name="orderlist" />
+
+
+		<!-- Order list -->
+
+        <action name="orderlist" class="com.salesmanager.central.orders.OrderListAction" method="displayOrderList">
+			<result name="success" type="tiles">orderlist</result>
+			<result name="ERROR" type="tiles">orderlist</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="orderlistpage" class="com.salesmanager.central.orders.OrderListAction" method="displayOrderListPage">
+			<result name="success" type="tiles">orderlist</result>
+			<result name="ERROR" type="tiles">orderlist</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+		
+		<action name="orderReport" class="com.salesmanager.central.orders.OrderListAction" method="createReportByCriteria">
+				<result name="input" type="redirectAction">
+				    <param name="actionName">orderlist</param>
+				</result>
+				<result name="success" type="stream">
+					 <param name="contentType">application/pdf</param>
+					 <param name="inputName">inputStream</param>
+					 <param name="contentDisposition">attachment;filename="orders.pdf"</param>
+					 <param name="bufferSize">1024</param>
+				</result>
+				<interceptor-ref name="smOrderRoleStack" />
+		</action>
+		
+		
+		<!-- Order details -->
+
+		<action name="orderdetails" class="com.salesmanager.central.orders.EditOrderDetailsAction" method="showOrderDetails">
+			<result name="success" type="tiles">orderdetails</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+
+		<action name="invoice" class="com.salesmanager.central.orders.EditOrderDetailsAction" method="generateInvoice">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">orderdetails</param>
+            	<param name="order.orderId">${order.orderId}</param>
+       		</result>
+       		<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="invoiceReport" class="com.salesmanager.central.orders.EditOrderDetailsAction" method="generateInvoiceReport">
+				<result name="input" type="redirectAction">
+				    <param name="actionName">orderdetails</param>
+            		<param name="order.orderId">${order.orderId}</param>
+				</result>
+				<result name="success" type="stream">
+					 <param name="contentType">application/pdf</param>
+					 <param name="inputName">inputStream</param>
+					 <param name="contentDisposition">attachment;filename="invoice.pdf"</param>
+					 <param name="bufferSize">1024</param>
+				</result>
+				<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="resetdownloadcounters" class="com.salesmanager.central.orders.EditOrderDetailsAction" method="generateDownload">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">orderdetails</param>
+            	<param name="order.orderId">${order.orderId}</param>
+       		</result>
+       		<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+
+	    <action name="packing" class="com.salesmanager.central.orders.EditOrderDetailsAction" method="generatePacking">
+			<result name="success">packing.jsp</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="updatestatus" class="com.salesmanager.central.orders.EditOrderDetailsAction" method="updateStatus">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">orderdetails</param>
+            	<param name="order.orderId">${order.orderId}</param>
+       		</result>
+       		<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="searchcriteria" class="com.salesmanager.central.orders.OrderListAction" method="searchByCriteria">
+			<result name="success" type="tiles">orderlist</result>
+			<result name="ERROR" type="redirectAction">orderlist</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="editcustomershipping" class="com.salesmanager.central.orders.EditCustomerAction" method="viewShippingCustomer">
+			<result name="success" type="tiles">editcustomershipping</result>
+			<result name="ERROR" type="redirectAction">orderdetails</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="editcustomerbilling" class="com.salesmanager.central.orders.EditCustomerAction" method="viewBillingCustomer">
+			<result name="success" type="tiles">editcustomerbilling</result>
+			<result name="ERROR" type="redirectAction">orderdetails</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="editshipping" class="com.salesmanager.central.orders.EditCustomerAction" method="editShipping">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">editcustomershipping</param>
+            	<param name="order.orderId">${order.orderId}</param>
+       		</result>
+			<result name="ERROR" type="redirectAction">orderdetails</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="validateaddress" class="com.salesmanager.central.orders.AddressValidationAction" method="getAddressMatch">
+			<result name="success" type="tiles">editcustomershipping</result>
+			<result name="error" type="redirectAction">
+            	<param name="actionName">editcustomershipping</param>
+            	<param name="order.orderId">${order.orderId}</param>
+       		</result>
+       		<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="editbilling" class="com.salesmanager.central.orders.EditCustomerAction" method="editBilling">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">editcustomerbilling</param>
+            	<param name="order.orderId">${order.orderId}</param>
+       		</result>
+			<result name="ERROR" type="redirectAction">orderdetails</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="displaymailaddress" class="com.salesmanager.central.orders.EditCustomerAction" method="displayOrderEmailAddress">
+			<result name="success" type="tiles">editorderemailaddress</result>
+			<result name="ERROR" type="redirectAction">orderdetails</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="editemailaddress" class="com.salesmanager.central.orders.EditCustomerAction" method="editOrderEmailAddress">
+			<result name="success" type="tiles">editorderemailaddress</result>
+       		<result name="input" type="tiles">editorderemailaddress</result>
+			<result name="ERROR" type="redirectAction">orderdetails</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="transactiondetails" class="com.salesmanager.central.orders.TransactionDetailsAction" method="displayTransactions">
+			<result name="success" type="tiles">transactiondetails</result>
+			<result name="ERROR" type="redirectAction">orderdetails</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="transactionprocess" class="com.salesmanager.central.orders.TransactionDetailsAction" method="processTransaction">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">transactiondetails</param>
+            	<param name="order.orderId">${order.orderId}</param>
+       		</result>
+       		<result name="input" type="tiles">transactiondetails</result>
+			<result name="ERROR" type="redirectAction">orderdetails</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+
+
+
+
+
+	</package>
+
+</struts>

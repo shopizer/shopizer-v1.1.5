@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 12, 2007 2:18:29 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.ProductType" table="PRODUCT_TYPES">
+        <cache usage="read-only"/>
+        <comment></comment>
+        <id name="typeId" type="int">
+            <column name="TYPE_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="typeName" type="string">
+            <column name="TYPE_NAME" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="typeHandler" type="string">
+            <column name="TYPE_HANDLER" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="typeMasterType" type="int">
+            <column name="TYPE_MASTER_TYPE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="allowAddToCart" type="char">
+            <column name="ALLOW_ADD_TO_CART" length="1" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="defaultImage" type="string">
+            <column name="DEFAULT_IMAGE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

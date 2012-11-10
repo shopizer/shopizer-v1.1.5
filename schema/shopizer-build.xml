@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="salesmanager" default="create.schemas" basedir=".">
+   <description>
+   - creates the schema
+   - copy data
+   </description>
+
+   <property file="${property}"/>
+
+
+   <property name="db_host" value="${db_host}"/><!-- keep -->
+   <property name="db_port" value="${db_port}"/><!-- keep -->
+   <property name="db_username" value="${db_username}"/><!-- keep -->
+   <property name="db_password" value="${db_password}"/><!-- keep -->
+   <property name="db_name" value="${salesmanager_db_name}"/><!-- keep -->
+   <property name="sqldir" value="${shopizer.project.path}/project/sql" /><!-- keep -->
+
+   <path id="classpath"> 
+		<fileset dir="./lib/drivers/" includes="**/*.jar"/>
+		<fileset dir="./lib/tools/" includes="**/*.jar"/>
+   </path> 
+
+   
+   <!-- *********************   MYSQL   **************************** -->
+   <!--  ** May have to change max allowed packet in my.ini max_allowed_packet=16M  ** -->
+
+   <target name="create.schema.mysql" description="Create schema MySQL">
+	<echo message="INTO create.schema.mysql"/>
+	 <sql driver="com.mysql.jdbc.Driver"
+       	url="jdbc:mysql://${db_host}:${db_port}/${db_name}"
+       	userid="${db_username}" password="${db_password}">
+    		<classpath>
+			<path refid="classpath"/> 
+    		</classpath>
+		<connectionProperty name="useUnicode" value="true"/>
+		<connectionProperty name="characterEncoding" value="UTF-8"/>  
+    		<transaction  src="./sql/shopizer_schema_mysql.sql"/>
+            <transaction  src="./sql/data/shopizer_data.sql"/>
+            <transaction  src="./sql/data/shopizer_merchant_data.sql"/>
+		<transaction  src="./sql/data/shopizer_modules.sql"/>
+		<transaction  src="./sql/data/decotemplates.sql"/>
+  	</sql>
+   </target>
+
+
+  <!-- *********************   HSQLDB   **************************** -->
+  <target name="create.schema.hsql.ddl" description="Create HSQL Schema using DDL util">
+    <taskdef classname="org.apache.ddlutils.task.DdlToDatabaseTask"
+          name="ddlToDatabase"
+          classpathref="classpath"/>
+ 
+  	<ddlToDatabase usedelimitedsqlidentifiers="true">
+   		<database driverclassname="org.hsqldb.jdbcDriver"
+             	url="jdbc:hsqldb:hsql://${db_host}:${db_port}/${db_name}"
+             	username="${db_username}"
+             	password="${db_password}"/> 
+   		<fileset dir="./sql/">
+     			<include name="shopizer_schema_hsqldb.xml"/> 
+   		</fileset> 
+ 
+   		<createdatabase failonerror="false"/> 
+   		<writeschematodatabase alterdatabase="true"
+                          failonerror="false"/> 
+  	</ddlToDatabase> 
+  </target>
+
+
+ <target name="create.data.hsql" depends="create.schema.hsql.ddl" description="Create schema HSQLDB">
+	<echo message="INTO create.schema.hsql"/>
+	 <sql driver="org.hsqldb.jdbcDriver"
+       	url="jdbc:hsqldb:hsql://${db_host}:${db_port}/${db_name}"
+       	userid="${db_username}" password="${db_password}" >
+    		<classpath>
+			<path refid="classpath"/> 
+    		</classpath>
+            <transaction  src="./sql/data/shopizer_data.sql"/>
+            <transaction  src="./sql/data/shopizer_merchant_data.sql"/>
+		<transaction  src="./sql/data/shopizer_modules.sql"/>
+		<transaction  src="./sql/data/decotemplates.sql"/>
+  	</sql>
+  </target>
+
+
+   <!-- *********************   ORACLE   **************************** -->
+   <target name="create.schema.oracle" description="Create schema Oracle">
+	<echo message="INTO create.schema.oracle"/>
+
+	<exec executable="SQLPLUS.EXE">
+		<arg line="${db_username}/${db_password}@${db_name} @sql/shopizer_oracle.sql"/>
+	</exec>
+
+   </target>
+
+
+   
+
+</project>

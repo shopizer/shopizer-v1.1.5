@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 31, 2008 5:06:09 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.merchant.MerchantUserRole" table="MERCHANT_USER_ROLE">
+        <comment></comment>
+        <id name="merchantUserRoleId" type="long">
+            <column name="MERCHANT_USER_ROLE_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">MUR_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        
+        <property name="adminName" type="string">
+            <column name="ADMIN_NAME" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="roleCode" type="string">
+            <column name="ROLE_CODE" length="10" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

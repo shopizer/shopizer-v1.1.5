@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 18, 2008 9:14:50 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.Country" table="COUNTRIES">
+        <cache usage="read-only"/>
+        <comment></comment>
+        <id name="countryId" type="int">
+            <column name="COUNTRIES_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="countryIsoCode2" type="string">
+            <column name="COUNTRIES_ISO_CODE_2" length="2" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="countryIsoCode3" type="string">
+            <column name="COUNTRIES_ISO_CODE_3" length="3" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="countryGroupCode" type="string">
+            <column name="COUNTRIES_GROUP_CODE" length="3">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="addressFormatId" type="int">
+            <column name="ADDRESS_FORMAT_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="supported" type="boolean">
+            <column name="SUPPORTED" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <set name="Descriptions"
+				inverse="true" lazy="false">
+				<key column="COUNTRIES_ID"/>
+				<one-to-many class="com.salesmanager.core.entity.reference.CountryDescription" />
+		</set>
+    </class>
+</hibernate-mapping>

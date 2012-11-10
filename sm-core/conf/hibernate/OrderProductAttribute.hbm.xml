@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 1, 2008 9:31:45 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.orders.OrderProductAttribute" table="ORDERS_PRODUCTS_ATTRIBUTES">
+        <comment></comment>
+        <id name="orderProductAttributeId" type="long">
+            <column name="ORDERS_PRODUCTS_ATTRIBUTES_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">ORDER_PRODUCT_ATTR_ID_NEXT_VAL</param>
+                <param name="max_lo">1</param>
+        	</generator>
+        </id>
+        <property name="orderId" type="long">
+            <column name="ORDERS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderProductId" type="long">
+            <column name="ORDERS_PRODUCTS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productOption" type="string">
+            <column name="PRODUCTS_OPTIONS" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productOptionValue" type="string">
+            <column name="PRODUCTS_OPTIONS_VALUES" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="optionValuePrice" type="big_decimal">
+            <column name="OPTIONS_VALUES_PRICE" precision="15" scale="4" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productAttributeIsFree" type="boolean">
+            <column name="PRODUCT_ATTRIBUTE_IS_FREE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productAttributeWeight" type="big_decimal">
+            <column name="PRODUCTS_ATTRIBUTES_WEIGHT" precision="15" scale="4">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productOptionId" type="long">
+            <column name="PRODUCTS_OPTIONS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productOptionValueId" type="long">
+            <column name="PRODUCTS_OPTIONS_VALUES_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

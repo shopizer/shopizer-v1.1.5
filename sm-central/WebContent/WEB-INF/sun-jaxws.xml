@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints
+  xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
+  version="2.0">
+  <endpoint
+    name="salesManagerCustomerService"
+    implementation="com.salesmanager.core.service.ws.impl.SalesManagerCustomerWSImpl"
+    url-pattern="/salesManagerCustomerService"/>
+    
+    <endpoint
+    name="salesManagerInvoiceService"
+    implementation="com.salesmanager.core.service.ws.impl.SalesManagerInvoiceWSImpl"
+    url-pattern="/salesManagerInvoiceService"/>
+</endpoints>

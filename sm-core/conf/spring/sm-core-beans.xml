@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+<beans>
+
+
+	<!--  external properties file -->
+	<bean id="propertyConfigurer" 
+ 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    		<property name="location">
+      			 <value>classpath:systems.properties</value>
+    		</property>
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>messages</value>
+				<value>central-customer</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- Sending Email -->
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!-- configured in systems.properties-->
+		<property name="protocol" value="${mailSender.protocol}"/>
+		<property name="host" value="${mailSender.host}"/>
+		<property name="port" value="${mailSender.port}"/>
+
+		<property name="username"><value>${mailSender.username}</value></property>
+		<property name="password"><value>${mailSender.password}</value></property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">${mailSender.mail.smtp.auth}</prop>
+				<prop key="mail.smtp.starttls.enable">${mail.smtp.starttls.enable}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="freemarkerMailConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+		<property name="templateLoaderPath" value="/template/mail"/>
+	</bean>
+
+	<!-- Using your own smtp server -->
+	<bean id="htmlEmailSender" class="com.salesmanager.core.module.impl.application.utils.SmtpMailModule" >
+		<property name="mailSender" ref="mailSender"/>
+		<property name="freemarkerMailConfiguration" ref="freemarkerMailConfiguration"/>
+	</bean>
+	
+	<!-- Simple outbound smtp -->
+	<!--
+	<bean id="htmlEmailSender" class="com.salesmanager.core.module.impl.application.utils.SimpleSmtpMailModule" >
+		<property name="freemarkerMailConfiguration" ref="freemarkerMailConfiguration"/>
+	</bean>
+	-->
+
+	<bean id="customTemplateUtil" class="com.salesmanager.core.util.CustomTemplateUtilImpl" >
+		<property name="freeMarkerConfiguration" ref="freemarkerCustomConfiguration"/>
+	</bean>
+
+	<bean id="freemarkerCustomConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+		<property name="templateLoaderPath" value="/template/other"/>
+	</bean>
+
+
+</beans>

@@ -1,0 +1,73 @@
+/***************************************
+   cart
+-------------------------------------- */
+
+#cart {
+
+	border:1px;
+}
+
+#cart th,
+#cart td {
+  padding: 3px 6px;
+}
+#cart th {
+  text-align: left;
+  color: #000;
+}
+
+
+#cart tbody th,
+.subhead {
+  background-color: #6f93ce;
+  padding-left: 0;
+}
+th img {
+  float: left;
+}
+
+tr.even,
+tr.first {
+  background-color: #eee;
+}
+tr.odd,
+tr.second {
+  background-color: #ddd;
+}
+tr.third {
+  background-color: #ccc;
+}
+
+
+#cart {
+  border-collapse: collapse;
+}
+#cart tfoot {
+  /**border-top: 2px solid #000;**/
+  white-space: nowrap;
+}
+#cart tfoot tr {
+  /**border-bottom: 1px solid #ccc;**/
+}
+td.item {
+  width: 100%;
+}
+td.quantity input {
+  width: 30px;
+
+}
+#cart th.price, td.price,
+#cart th.cost, td.cost,
+td.value {
+  text-align: right;
+}
+td.delete-item {
+  text-align: center;
+}
+tr.total {
+  font-weight: bold;
+}
+tr.actions {
+  text-align: right;
+}
+

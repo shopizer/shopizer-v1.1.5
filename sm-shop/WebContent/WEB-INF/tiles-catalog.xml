@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+ */
+-->
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="landing" template="/layout/catalogDefault.jsp">
+    	<put-attribute name="page" value="landing" type="string"/>
+        <put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp" />
+        <put-attribute name="body" value="/layout/catalog/landing.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+    
+   <definition name="category" template="/layout/catalogDefault.jsp">
+   		<put-attribute name="page" value="category" type="string"/>
+   		<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/layout/catalog/category.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+
+   <definition name="product" template="/layout/catalogDefault.jsp">
+   		<put-attribute name="page" value="product" type="string"/>
+   		<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/layout/catalog/product.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+
+    <definition name="search" template="/layout/catalogDefault.jsp">
+    	<put-attribute name="page" value="search" type="string"/>
+    	<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/layout/catalog/search.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+    
+    <definition name="contact" template="/layout/catalogDefault.jsp">
+    	<put-attribute name="page" value="contact" type="string"/>
+    	<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/layout/catalog/contact.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+    
+    
+    <definition name="contentpage" template="/layout/catalogDefault.jsp">
+    	<put-attribute name="page" value="pagelink" type="string"/>
+    	<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/layout/catalog/page.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+    
+    <definition name="register" template="/layout/catalogDefault.jsp">
+    	<put-attribute name="page" value="register" type="string"/>
+    	<put-attribute name="register" value="category" type="string"/>
+   		<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/customer/registerCustomer.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+    
+    
+    <definition name="profile" template="/layout/catalogDefault.jsp">
+    	<put-attribute name="page" value="profile" type="string"/>
+   		<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/customer/profile.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+    
+    <definition name="changePasswordForm" template="/layout/catalogDefault.jsp">
+    	<put-attribute name="page" value="profile" type="string"/>
+   		<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/customer/logon/changePassword.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+    
+    <definition name="orders" template="/layout/catalogDefault.jsp">
+    	<put-attribute name="page" value="orders" type="string"/>
+   		<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/customer/orders.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+    
+    <definition name="reviews" template="/layout/catalogDefault.jsp">
+    	<put-attribute name="page" value="reviews" type="string"/>
+   		<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/customer/reviews.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+    
+    <definition name="reviewsForm" template="/layout/catalogDefault.jsp">
+    	<put-attribute name="page" value="reviewsForm" type="string"/>
+   		<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/components/catalog/reviewsForm.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+    
+    
+    <definition name="changeAddressForm" template="/layout/catalogDefault.jsp">
+    	<put-attribute name="page" value="address" type="string"/>
+   		<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/customer/address.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+    </definition>
+    
+    
+    <definition name="global.error" template="/layout/catalogDefault.jsp">
+    	<put-attribute name="page" value="global.error" type="string"/>
+    	<put-attribute name="openWrapper" value="/layout/catalog/openWrapper.jsp"/>
+        <put-attribute name="header" value="/layout/catalog/header.jsp"/>
+        <put-attribute name="openBody" value="/layout/catalog/openBody.jsp"/>
+        <put-attribute name="body" value="/components/empty.jsp"/>
+        <put-attribute name="closeBody" value="/layout/catalog/closeBody.jsp"/>
+        <put-attribute name="closeWrapper" value="/layout/catalog/closeWrapper.jsp"/>
+        <put-attribute name="footer" value="/layout/catalog/footer.jsp"/>
+	</definition>
+
+
+
+</tiles-definitions>

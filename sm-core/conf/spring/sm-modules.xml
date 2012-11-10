@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+<beans>
+
+
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ======================== -->
+
+	<!-- Files modules -->
+    <bean id="localfile" class="com.salesmanager.core.module.impl.application.files.LocalFileImpl"/>
+	<bean id="productfile" singleton="false" class="com.salesmanager.core.module.impl.application.files.LocalFileImpl"/>
+
+	
+	<!-- utils modules -->
+	<bean id="passwordgenerator" class="com.salesmanager.core.module.impl.application.utils.SimplePasswordGeneratorModule"/>
+	<bean id="fileUpload" class="com.salesmanager.core.util.file.csv.CSVFileUploadImpl">
+    	<property name="fileReader" ref="fileReader" />
+    </bean>
+    <bean id="fileReader" class="com.salesmanager.core.util.file.csv.CSVFileReader"/>
+	<bean id="captcha" factory-method="getInstance" class="com.salesmanager.core.module.impl.application.utils.SimpleCaptchaModule"/>
+	<bean id="cache" factory-method="getInstance" class="com.salesmanager.core.module.impl.application.utils.OsCacheCacheModuleImpl"/>
+
+
+	<!-- currencies modules -->
+	<bean id="USD" class="com.salesmanager.core.module.impl.application.currencies.USDCurrencyModule"/>
+	<bean id="CAD" class="com.salesmanager.core.module.impl.application.currencies.CADCurrencyModule"/>
+	<bean id="EUR" class="com.salesmanager.core.module.impl.application.currencies.EURCurrencyModule"/>
+
+	<!--  prices modules -->
+	<bean id="monthly-price" class="com.salesmanager.core.module.impl.application.prices.MonthlyPriceModule"/>
+	<bean id="onetime-price" class="com.salesmanager.core.module.impl.application.prices.OneTimePriceModule"/>
+
+	<!--  shipping modules -->
+	<bean id="packing-box" class="com.salesmanager.core.module.impl.application.shipping.CalculateBoxPackingModule"/>
+	<bean id="packing-item" class="com.salesmanager.core.module.impl.application.shipping.CalculateItemPackingModule"/>
+
+	<bean id="upsxml" class="com.salesmanager.core.module.impl.integration.shipping.UPSQuotesImpl"/>
+	<bean id="canadapost" class="com.salesmanager.core.module.impl.integration.shipping.CanadaPostQuotesImpl"/>
+	<bean id="fedex" class="com.salesmanager.core.module.impl.integration.shipping.FedexQuotesImpl"/>
+	<bean id="fedexexpress" class="com.salesmanager.core.module.impl.integration.shipping.FedexExpressQuotesImpl"/>
+	<bean id="fedexground" class="com.salesmanager.core.module.impl.integration.shipping.FedexGroundQuotesImpl"/>
+	<bean id="usps" class="com.salesmanager.core.module.impl.integration.shipping.USPSQuotesImpl"/>
+
+
+	<!--  payment modules -->
+	<bean id="moneris" class="com.salesmanager.core.module.impl.integration.payment.MonerisTransactionImpl"/>
+	<bean id="paypal" class="com.salesmanager.core.module.impl.integration.payment.PaypalTransactionImpl"/>
+	<bean id="psigate" class="com.salesmanager.core.module.impl.integration.payment.PsigateTransactionImpl"/>
+	<bean id="authorizenet" class="com.salesmanager.core.module.impl.integration.payment.AuthorizeNetTransactionImpl"/>
+	<bean id="cod" class="com.salesmanager.core.module.impl.integration.payment.CodTransactionImpl"/>
+	<bean id="moneyorder" class="com.salesmanager.core.module.impl.integration.payment.MoneyOrderTransactionImpl"/>
+	<bean id="free" class="com.salesmanager.core.module.impl.integration.payment.FreeTransactionImpl"/>
+
+	<!-- logon module -->
+	<bean id="merchantLogon" class="com.salesmanager.core.module.impl.application.logon.CustomLogonImpl"/>
+    <bean id="customerLogon" class="com.salesmanager.core.module.impl.application.logon.CustomerJAASLogonImpl">
+    	<property name="customerService" ref="customerService" />
+    </bean>
+
+	<!-- tax module -->
+	<bean id="CA" class="com.salesmanager.core.module.impl.application.tax.CanadianTaxModule"/>
+
+</beans>

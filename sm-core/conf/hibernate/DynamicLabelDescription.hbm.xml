@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 25, 2009 12:08:22 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.DynamicLabelDescription" table="DYNAMIC_LABEL_DESCRIPTION">
+        <comment></comment>
+        <composite-id name="id" class="com.salesmanager.core.entity.reference.DynamicLabelDescriptionId">
+            <key-property name="dynamicLabelId" type="long">
+                <column name="DYNAMIC_LABEL_ID" />
+            </key-property>
+            <key-property name="languageId" type="int">
+                <column name="LANGUAGE_ID" />
+            </key-property>
+        </composite-id>
+        <property name="dynamicLabelTitle" type="string">
+            <column name="DYNAMIC_LABEL_TITLE" length="100" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dynamicLabelDescription" type="string">
+            <column name="DYNAMIC_LABEL_DESCRIPTION" length="65535">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="seUrl" type="string">
+            <column name="SE_URL" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <many-to-one name="dynamicLabel" class="com.salesmanager.core.entity.reference.DynamicLabel" insert="false" update="false" column="DYNAMIC_LABEL_ID" not-null="true"/>
+
+
+    </class>
+</hibernate-mapping>

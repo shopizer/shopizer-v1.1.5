@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 29, 2008 11:38:31 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.orders.OrderProductPrice" table="ORDERS_PRODUCTS_PRICES">
+        <comment></comment>
+        <id name="orderProductPrice" type="long">
+            <column name="ORDERS_PRODUCTS_PRICES" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">ORDER_PRD_PRICE_ID_NEXT_VAL</param>
+                <param name="max_lo">1</param>
+        	</generator>
+        </id>
+        <property name="orderId" type="long">
+            <column name="ORDERS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderProductId" type="long">
+            <column name="ORDERS_PRODUCTS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productPriceTypeId" type="int">
+            <column name="PRODUCT_PRICE_TYPE_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productPriceModuleName" type="string">
+            <column name="PRODUCT_PRICE_MODULE_NAME" length="64" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productPriceAmount" type="big_decimal">
+            <column name="PRODUCT_PRICE_AMOUNT" precision="15" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="defaultPrice" type="boolean">
+            <column name="DEFAULT_PRICE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+                <property name="productHasTax" type="boolean">
+            <column name="PRODUCT_HAS_TAX" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="productPriceName" type="string">
+            <column name="PRODUCT_PRICE_NAME" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 27, 2007 2:34:29 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.catalog.CategoryDescription" table="CATEGORIES_DESCRIPTION">
+        <comment></comment>
+        <composite-id name="id" class="com.salesmanager.core.entity.catalog.CategoryDescriptionId">
+            <key-property name="categoryId" type="long">
+                <column name="CATEGORIES_ID" />
+            </key-property>
+            <key-property name="languageId" type="int">
+                <column name="LANGUAGE_ID" />
+            </key-property>
+        </composite-id>
+        <property name="categoryName" type="string">
+            <column name="CATEGORIES_NAME" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="categoryDescription" type="string">
+            <column name="CATEGORIES_DESCRIPTION" length="65535">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="categoryTitle" type="string">
+            <column name="CATEGORIES_TITLE" length="120">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="seUrlSrc" type="string">
+            <column name="SE_URL_SRC" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="seUrl" type="string">
+            <column name="SE_URL" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <property name="metatagTitle" type="string">
+            <column name="METATAG_TITLE" />
+        </property>
+        <property name="metatagKeywords" type="string">
+            <column name="METATAG_KEYWORDS" length="65535" />
+        </property>
+        <property name="metatagDescription" type="string">
+            <column name="METATAG_DESCRIPTION" length="65535" />
+        </property>
+
+        <many-to-one name="category" class="com.salesmanager.core.entity.catalog.Category" insert="false" update="false" column="CATEGORIES_ID" not-null="true"/>
+		
+
+		
+		
+		
+
+    </class>
+</hibernate-mapping>

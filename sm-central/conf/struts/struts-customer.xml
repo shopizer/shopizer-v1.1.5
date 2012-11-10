@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+
+    <package name="customer" extends="default" namespace="/customer">
+
+
+		<result-types>
+    		 	<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 	<result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+        </result-types>
+
+
+        <action name="customerlist" class="com.salesmanager.central.customer.CustomerListAction" method="displayCustomerList">
+			<result name="success" type="tiles">customerlist</result>
+			<result name="ERROR" type="tiles">customerlist</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="customerdetails" class="com.salesmanager.central.customer.CustomerDetailsAction" method="displayCustomerDetails">
+			<result name="success" type="tiles">customerdetails</result>
+			<result name="ERROR" type="redirectAction">
+            	<param name="actionName">customerlist</param>
+       		</result>
+       		<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="showselectcompany" class="com.salesmanager.central.customer.CustomerDetailsAction" method="displaySelectCompany">
+			<result>modalselectcompany.jsp</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="showcreatecustomer" class="com.salesmanager.central.customer.CustomerDetailsAction" method="displayCustomerCreate">
+			<result name="success" type="tiles">customerdetails</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="editcustomer" class="com.salesmanager.central.customer.CustomerDetailsAction" method="createCustomer">
+			<result name="error" type="tiles">customerdetails</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">customerdetails</param>
+            	<param name="customer.customerId">${customer.customerId}</param>
+       		</result>
+       		<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+
+		<action name="resetcustomerpassword" class="com.salesmanager.central.customer.CustomerDetailsAction" method="resetPassword">
+			<result name="error" type="tiles">customerdetails</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">customerdetails</param>
+            	<param name="customer.customerId">${customer.customerId}</param>
+       		</result>
+       		<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+
+
+
+	</package>
+
+</struts>

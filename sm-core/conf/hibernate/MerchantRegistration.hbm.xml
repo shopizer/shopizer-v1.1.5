@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 13, 2007 8:24:10 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.merchant.MerchantRegistration" table="MERCHANT_REGISTRATION">
+        <comment></comment>
+        <id name="merchantId" type="java.lang.Integer">
+            <column name="MERCHANTID" />
+            <generator class="assigned" />
+        </id>
+        <property name="merchantRegistrationDefCode" type="int">
+            <column name="MERCHANT_REGISTRATION_DEF_CODE" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="ccType" type="string">
+            <column name="CC_TYPE" length="20">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="ccOwner" type="string">
+            <column name="CC_OWNER" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="ccNumber" type="string">
+            <column name="CC_NUMBER" length="100">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="ccExpires" type="string">
+            <column name="CC_EXPIRES" length="4">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="ccCvv" type="binary">
+            <column name="CC_CVV">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="promoCode" type="java.lang.Integer">
+            <column name="PROMO_CODE">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="promoCodeExpiry" type="timestamp">
+            <column name="PROMO_CODE_EXPIRY" length="0">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

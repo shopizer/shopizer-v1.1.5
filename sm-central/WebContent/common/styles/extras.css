@@ -1,0 +1,126 @@
+.box {
+	font-family : Verdana,Arial,Helvetica,sans-serif;
+	font-size: 0.8333em;
+	line-height: 1.5;
+	padding: .5em 1em;
+	margin-bottom: .8em;
+	border: 0.1em dashed;
+}
+
+.box h3 {
+	padding-top: 1.1333em;
+	padding-bottom: 0.5333em;
+}
+
+.icon-ok{
+	border:solid 1px #90ac13;
+	background:#eef4d3 url(../img/icon-green.png) 8px 6px no-repeat;
+	color:#6b800d;
+	font-weight:bold;
+	padding:17px;
+	text-align:left;
+}
+
+.icon-error{
+	border:solid 1px #CC0000;
+	background:#F7CBCA url(../img/icon-red.png) 8px 6px no-repeat;
+	color:#CC0000;
+	font-weight:bold;
+	padding:17px;
+	text-align:left;
+}
+
+.clean-yellow{
+		border:solid 1px #DEDEDE;
+		background:#FFFFCC;
+		color:#222222;
+		padding:4px;
+		text-align:center;
+}
+
+.profile {
+	font-family : Verdana,Arial,Helvetica,sans-serif;
+        font-size:0.8333em;
+	line-height:32px;
+	color:#53524b;
+	background:url(../img/profile-left.jpg) top left no-repeat #e0dfd0;;
+}
+	.profile div {
+		background:url(../img/profile-right.jpg) top right no-repeat;
+		height:32px;
+		line-height:32px;
+		padding:0 10px;
+	}
+.profile-inner-section{
+		border:solid 4px #e0dfd0;
+		border-top:none;
+		background:#f4f4e9;
+		padding:14px;
+		margin-bottom:20px;
+		font-size:0.8333em;
+		font-family : Verdana,Arial,Helvetica,sans-serif;
+}
+
+
+            /** tables **/
+            #box-table-a
+                                                {
+                                                        font-size: 12px;
+                                                        margin: 0px;
+                                                        text-align: left;
+                                                        border-collapse: collapse;
+                                                }
+                                                #box-table-a th
+                                                {
+                                                        font-size: 13px;
+                                                        font-weight: normal;
+                                                        padding: 8px;
+                                                        background: #b9c9fe;
+                                                        border-top: 4px solid #aabcfe;
+                                                        border-bottom: 1px solid #fff;
+                                                        color: #039;
+                                                }
+                                                #box-table-a td
+                                                {
+                                                        padding: 8px;
+                                                        background: #e8edff;
+                                                        border-bottom: 1px solid #fff;
+                                                        color: #669;
+                                                        border-top: 1px solid transparent;
+                                                }
+                                                        #box-table-a tr:hover td
+                                                {
+                                                        background: #d0dafd;
+                                                        color: #339;
+                                                }
+
+
+                                                #hor-minimalist-a
+                                                {
+                                                        font-size: 12px;
+                                                        background: #fff;
+                                                        margin: 0px;
+                                                        width: 520px;
+                                                        border-collapse: collapse;
+                                                        text-align: left;
+                                                }
+                                                #hor-minimalist-a th
+                                                {
+                                                        font-size: 14px;
+                                                        font-weight: normal;
+                                                        color: #039;
+                                                        padding: 10px 8px;
+                                                        border-bottom: 2px solid #6678b1;
+                                                }
+                                                #hor-minimalist-a td
+                                                {
+                                                        color: #669;
+                                                        padding: 9px 8px 0px 8px;
+                                                }
+                                                #hor-minimalist-a tbody tr:hover td
+                                                {
+                                                        color: #009;
+                                                }
+
+
+            /** End tables **/

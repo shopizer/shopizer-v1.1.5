@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2008 8:23:32 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.tax.TaxRateDescriptionTaxTemplate" table="TAX_RATES_DESCRIPTION_TAX_TPL">
+        <cache usage="read-only"/>
+        <comment></comment>
+        <composite-id name="id" class="com.salesmanager.core.entity.tax.TaxRateDescriptionTaxTemplateId">
+            <key-property name="taxRateId" type="long">
+                <column name="TAX_RATES_ID" />
+            </key-property>
+            <key-property name="languageId" type="int">
+                <column name="LANGUAGE_ID" />
+            </key-property>
+        </composite-id>
+        <property name="taxDescription" type="string">
+            <column name="TAX_DESCRIPTION" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

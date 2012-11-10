@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 4, 2008 8:23:32 PM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.ZoneToGeoZone" table="ZONES_TO_GEO_ZONES">
+        <comment></comment>
+        <id name="associationId" type="long">
+            <column name="ASSOCIATION_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">GTGZ_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="merchantId" type="int">
+            <column name="MERCHANTID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="zoneCountryId" type="int">
+            <column name="ZONE_COUNTRY_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="zoneId" type="java.lang.Integer">
+            <column name="ZONE_ID">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="geoZoneId" type="java.lang.Long">
+            <column name="GEO_ZONE_ID">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="lastModified" type="timestamp">
+            <column name="LAST_MODIFIED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0">
+                <comment></comment>
+            </column>
+        </property>
+        
+        <many-to-one name="geoZone" class="com.salesmanager.core.entity.reference.GeoZone" column="GEO_ZONE_ID" insert="false" update="false"/>
+        
+    </class>
+</hibernate-mapping>

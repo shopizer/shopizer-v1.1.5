@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 31, 2008 10:41:41 AM by Hibernate Tools 3.2.0.beta8 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.ZoneDescription" table="ZONES_DESCRIPTION">
+        <cache usage="read-only"/>
+        <comment></comment>
+        <composite-id name="id" class="com.salesmanager.core.entity.reference.ZoneDescriptionId">
+            <key-property name="zoneId" type="int">
+                <column name="ZONE_ID" />
+            </key-property>
+            <key-property name="languageId" type="int">
+                <column name="LANGUAGE_ID" />
+            </key-property>
+        </composite-id>
+        <property name="zoneName" type="string">
+            <column name="ZONE_NAME" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+
+        <many-to-one name="zone"
+        	class="com.salesmanager.core.entity.reference.Zone"
+        	column="ZONE_ID"
+        	insert="false"
+        	update="false"
+        	not-null="true"/>
+    </class>
+</hibernate-mapping>

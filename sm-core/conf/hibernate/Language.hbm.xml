@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 17, 2007 12:41:35 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.reference.Language" table="LANGUAGES">
+        <cache usage="read-only"/>
+        <comment></comment>
+        <id name="languageId" type="int">
+            <column name="LANGUAGES_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="code" type="string">
+            <column name="CODE" length="2" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="image" type="string">
+            <column name="IMAGE" length="64">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="directory" type="string">
+            <column name="DIRECTORY" length="32">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="sortOrder" type="java.lang.Integer">
+            <column name="SORT_ORDER">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

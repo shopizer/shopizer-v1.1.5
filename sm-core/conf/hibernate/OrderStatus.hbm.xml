@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 3, 2007 8:57:47 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.orders.OrderStatus" table="ORDERS_STATUS">
+        <cache usage="read-only"/>
+        <comment></comment>
+        <composite-id name="id" class="com.salesmanager.core.entity.orders.OrderStatusId">
+            <key-property name="orderStatusId" type="int">
+                <column name="ORDERS_STATUS_ID" />
+            </key-property>
+            <key-property name="languageId" type="int">
+                <column name="LANGUAGE_ID" />
+            </key-property>
+        </composite-id>
+        <property name="orderStatusName" type="string">
+            <column name="ORDERS_STATUS_NAME" length="32" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

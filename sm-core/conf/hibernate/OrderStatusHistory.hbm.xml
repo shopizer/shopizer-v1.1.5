@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 3, 2007 8:57:47 PM by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="com.salesmanager.core.entity.orders.OrderStatusHistory" table="ORDERS_STATUS_HISTORY">
+        <comment></comment>
+        <id name="orderStatusHistoryId" type="long">
+            <column name="ORDERS_STATUS_HISTORY_ID" />
+            <generator class="hilo">
+                <param name="table">CENTRAL_SEQUENCER</param>
+                <param name="column">STATUS_HIST_ID_NEXT_VALUE</param>
+                <param name="max_lo">2</param>
+        	</generator>
+        </id>
+        <property name="orderId" type="long">
+            <column name="ORDERS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="orderStatusId" type="int">
+            <column name="ORDERS_STATUS_ID" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="dateAdded" type="timestamp">
+            <column name="DATE_ADDED" length="0" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="customerNotified" type="java.lang.Integer">
+            <column name="CUSTOMER_NOTIFIED">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="comments" type="string">
+            <column name="COMMENTS" length="65535">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

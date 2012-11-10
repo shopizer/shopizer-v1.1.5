@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+
+    <package name="invoice" extends="default" namespace="/invoice">
+
+
+
+
+
+
+
+	    <action name="invoicelist" class="com.salesmanager.central.invoice.InvoiceListAction" method="displayInvoiceList">
+			<result name="success" type="tiles">invoicelist</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+	    <action name="invoicereset" class="com.salesmanager.central.invoice.InvoiceListAction" method="resetInvoiceList">
+			<result name="success" type="tiles">invoicelist</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+
+	    <action name="showselectctproduct" class="com.salesmanager.central.invoice.InvoiceDetailsAction" method="selectProduct">
+			<result>modalselectproduct.jsp</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+
+	    <action name="showselectctattributes" class="com.salesmanager.central.catalog.EditProductAttributesAction" method="displayProductAttributes">
+			<result>modalselectattributes.jsp</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+	    <action name="showshippingmethods" class="com.salesmanager.central.shipping.EditShippingMethods" method="displayShippingMethods">
+			<result>modalselectshipping.jsp</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+
+		<action name="showcreateinvoiceinit" class="com.salesmanager.central.invoice.InvoiceDetailsAction" method="createInvoice">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">showcreateinvoice</param>
+            	<param name="order.orderId">${order.orderId}</param>
+       		</result>
+			<result name="error" type="redirectAction">invoicelist</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+
+		<action name="showcreateinvoice" class="com.salesmanager.central.invoice.InvoiceDetailsAction" method="displayInvoiceCreate">
+			<result name="success" type="tiles">invoicedetails</result>
+			<result name="error" type="redirectAction">invoicelist</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="showeditinvoice" class="com.salesmanager.central.invoice.InvoiceDetailsAction" method="displayInvoiceDetails">
+			<result name="success" type="tiles">invoicedetails</result>
+			<result name="error" type="redirectAction">invoicelist</result>
+			<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+
+		<action name="saveinvoice" class="com.salesmanager.central.invoice.InvoiceDetailsAction" method="saveInvoice">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">showeditinvoice</param>
+            	<param name="order.orderId">${order.orderId}</param>
+       		</result>
+       		<result name="error" type="tiles">invoicedetails</result>
+       		<interceptor-ref name="smOrderRoleStack" />
+		</action>
+		
+	    <action name="sendInvoiceEmail" class="com.salesmanager.central.invoice.InvoiceDetailsAction" method="sendInvoiceEmail">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">showeditinvoice</param>
+            	<param name="order.orderId">${order.orderId}</param>
+       		</result>
+       		<result name="input" type="tiles">invoicedetails</result>
+       		<result name="error" type="tiles">invoicedetails</result>
+       		<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+
+		<action name="deleteinvoice" class="com.salesmanager.central.invoice.InvoiceDetailsAction" method="deleteInvoice">
+			<result name="success" type="redirectAction">
+            	invoicelist
+       		</result>
+       		<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="receiveinvoicepayment" class="com.salesmanager.central.invoice.InvoiceDetailsAction" method="receiveInvoicePayment">
+			<result name="success" type="tiles">
+            	invoicepayment
+       		</result>
+       		<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+		<action name="processinvoicepayment" class="com.salesmanager.central.invoice.InvoiceDetailsAction" method="processInvoicePayment">
+			<result name="success" type="tiles">
+            	invoicePaymentConfirmation
+       		</result>
+       		<result name="error" type="tiles">
+            	invoicepayment
+       		</result>
+       		<interceptor-ref name="smOrderRoleStack" />
+		</action>
+
+
+
+
+
+
+
+
+	</package>
+
+</struts>

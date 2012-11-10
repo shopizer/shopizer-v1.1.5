@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+
+
+    <package name="store" extends="default" namespace="/">
+
+	    <result-types>
+    		 	<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 	<result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+        </result-types>
+
+		<default-action-ref name="landing" />
+
+		<action name="landing" class="com.salesmanager.catalog.store.LandingAction" method="displayLanding">
+			<result name="success" type="tiles">landing</result>
+			<interceptor-ref name="smCatalogStack" />
+		</action>
+				
+		<action name="search" class="com.salesmanager.catalog.store.SearchAction" method="search">
+			<result name="success" type="tiles">search</result>
+			<interceptor-ref name="smCatalogStack" />
+		</action>
+		
+		<action name="contact" class="com.salesmanager.catalog.store.ContactAction" method="display">
+			<result name="success" type="tiles">contact</result>
+			<interceptor-ref name="smCatalogStack" />
+		</action>
+		
+		<action name="page" method="page" class="com.salesmanager.catalog.store.SearchAction">
+			<result name="success" type="tiles">search</result>
+			<interceptor-ref name="smCatalogStack" />
+		</action>
+		
+
+		
+		<action name="checkout" class="com.salesmanager.catalog.cart.CheckoutAction" method="checkout">
+			<result name="checkoutRemote">/components/catalog/checkout.jsp</result>
+			<result name="landing" type="redirectAction">landing</result>
+			<result type="redirect" name="checkoutLocal">
+            		<param name="actionName">checkoutLocal</param>
+            		<param name="namespace">/cart</param>
+        	</result>
+			<interceptor-ref name="smCatalogStack" />
+		</action>
+
+
+    </package>
+
+
+
+	<!-- product listing pages -->
+	<package name="category" extends="default" namespace="/category">
+
+		 <result-types>
+    		 <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 <result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+    	 </result-types>
+
+		<default-action-ref name="category" />
+
+		<!-- display listing pages -->
+	    <!-- {1}=categoryId-->
+	    <!-- eg catalog/category/table-lamp?merchantId=123  [table-lamp] is the categoryId here -->
+	    <action name="*" method="displayCategory" class="com.salesmanager.catalog.category.CategoryListAction">
+			<result name="success" type="tiles">category</result>
+			<interceptor-ref name="smSEOStack" />
+		</action>
+		
+		<!-- support category.action -->
+	    <action name="category" method="displayCategory" class="com.salesmanager.catalog.category.CategoryListAction">
+			<result name="success" type="tiles">category</result>
+			<interceptor-ref name="smSEOStack" />
+		</action>
+		
+		<!-- paging in categorylist -->
+		<action name="page" method="page" class="com.salesmanager.catalog.category.CategoryListAction">
+			<result name="success" type="tiles">category</result>
+			<interceptor-ref name="smCatalogStack" />
+		</action>
+		
+
+    </package>
+    
+    <!-- product detail pages -->
+    <package name="product" extends="default" namespace="/product">
+
+		 <result-types>
+    		 <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 <result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+    	 </result-types>
+
+		<default-action-ref name="product" />
+
+		<!-- display listing pages -->
+	    <!-- {1}=productd -->
+	    <!-- eg catalog/product/table-lamp-1?merchantId=123  [table-lamp-1] is the productId here -->
+	    <action name="*" method="displayProduct" class="com.salesmanager.catalog.product.ProductDetailsAction">
+			<result name="success" type="tiles">product</result>
+			<interceptor-ref name="smSEOStack" />
+		</action>
+		
+	    <!-- support product.action -->
+	    <action name="product" method="displayCategory" class="com.salesmanager.catalog.product.ProductDetailsAction">
+			<result name="success" type="tiles">product</result>
+			<interceptor-ref name="smSEOStack" />
+		</action>
+		
+		<!-- support product.action -->
+	    <action name="reviews" method="displayReviews" class="com.salesmanager.catalog.product.ProductDetailsAction">
+			<result name="success">/components/catalog/reviews.jsp</result>
+			<interceptor-ref name="smCatalogStack" />
+		</action>
+		
+		<action name="reviewsForm" method="reviewsForm" class="com.salesmanager.catalog.product.ProductDetailsAction">
+			<result name="success" type="tiles">reviewsForm</result>
+			<interceptor-ref name="smCatalogStack" />
+		</action>
+		
+		<action name="createReview" method="createReview" class="com.salesmanager.catalog.product.ProductDetailsAction">
+			<result name="success" type="tiles">reviewsForm</result>
+			<result name="input" type="tiles">reviewsForm</result>
+			<interceptor-ref name="smCatalogStack" />
+		</action>
+		
+
+    </package>
+    
+    <!-- Custom content pages -->
+    <package name="content" extends="default" namespace="/content">
+    
+    	 <result-types>
+    		 <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+    		 <result-type name="redirect" class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+    	 </result-types>
+    	
+    	<!-- display custom pages -->
+	    <!-- {1}=page-seo-url-->
+	    <!-- eg shop/content/shipping-policies  [shipping-policies] is the seo url for dynamic label description-->
+	    <action name="*" method="displayPage" class="com.salesmanager.catalog.store.StorePageAction">
+			<result name="success" type="tiles">contentpage</result>
+			<result type="redirect" name="landing">
+            		<param name="actionName">landing</param>
+            		<param name="namespace">/</param>
+        	</result>
+			<interceptor-ref name="smSEOStack" />
+		</action>
+    
+    </package>
+    
+    
+    <!-- Pass through requests go back to caller page -->
+    <package name="passthrough" extends="default" namespace="/passthrough">
+    	
+    	
+    	
+    	<!-- minicart regular add to cart -->
+		<action name="addToCart" method="addToCart" class="com.salesmanager.catalog.cart.MiniShoppingCartAction">
+			<interceptor-ref name="smCatalogStack" />
+			<result name="success" type="redirect">${lastUrl}</result>
+		</action>
+		
+		<!-- Change language -->
+		<action name="changeLanguage" method="changeLanguage" class="com.salesmanager.catalog.store.LanguageAction">
+			<result type="redirect" name="landing">
+            		<param name="actionName">landing</param>
+            		<param name="namespace">/</param>
+        	</result>
+        	<result name="success">/common/punchout.jsp</result>
+        	<interceptor-ref name="i18n"/>
+			<interceptor-ref name="basicStack" />
+		</action>
+    
+    
+    </package>
+    
+
+
+
+</struts>
